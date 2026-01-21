@@ -1,20 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
+</script>
 <template>
   <div class="w-screen min-h-screen">
     <ClientOnly>
       <Navbar />
     </ClientOnly>
     <Hero />
-    <Marquee
-      :items="[
-        'Apartments',
-        'Condos',
-        'Boarding Houses',
-        'Pet Friendly',
-        'Near IT Park',
-        'Budget Rentals',
-      ]"
-    />
+    <ClientOnly>
+      <PartnersAndSponsors />
+    </ClientOnly>
     <div class="h-screen w-screen"></div>
   </div>
 </template>
