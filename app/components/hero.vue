@@ -57,7 +57,7 @@ const heroBg = computed(() => {
       </div>
       <div class="flex h-full items-end">
         <Button class="gap-2 px-6 py-5">
-          <Icon name="lucide:search" />
+          <Icon name="lucide:search" class="bg-[#fafafa] dark:bg-[#121212]" />
           Search
         </Button>
       </div>
