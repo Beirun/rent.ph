@@ -10,7 +10,7 @@
       <div class="flex flex-col gap-4">
         <Label for="location">Location</Label>
         <Select id="location">
-          <SelectTrigger class="w-110 py-5">
+          <SelectTrigger class="w-115 py-5">
             <SelectValue>
               <Icon name="lucide:map-pin" />
               <Label>Select/Enter a City</Label>
@@ -58,7 +58,7 @@
       
       <div class="flex items-end">
         <Button class="gap-2 px-6 py-5.25">
-          <Icon name="lucide:search" />
+          <Icon name="lucide:search" class="bg-[#fafafa] dark:bg-[#121212]" />
           Search
         </Button>
       </div>
