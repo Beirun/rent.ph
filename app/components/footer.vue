@@ -42,7 +42,7 @@ const suplinks = [
 
 <template>
     <div class="w-screen h-full bg-[#111827] ">
-        <div class="w-screen h-full  flex justify-center gap-[8em] p-[4em]">
+        <div class="w-screen h-full flex justify-center gap-[8em] p-[4em]">
             <div class="flex flex-col gap-4 ">
                 <div>
                     <NuxtImg src="/rentph-logo.png" class="h-12" />
@@ -102,8 +102,9 @@ const suplinks = [
                 </div>
             </div>
         </div>
+        <hr class="border-0 h-[0.5px] bg-gray-800 mx-[4em]" />
     </div>
-    <footer class="w-screen border-t border-t-gray-400 text-[#9CA3AF]  p-4 h-full bg-[#111827] flex justify-center">
+    <footer class="w-screen text-[#9CA3AF] py-18 p-12 h-full bg-[#111827] flex justify-center">
         © 2026 Rent.ph. All rights reserved.
     </footer>
 </template>
