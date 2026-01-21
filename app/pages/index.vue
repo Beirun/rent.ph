@@ -11,6 +11,9 @@ import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
       <CardListing v-for="_ in new Array(10)"></CardListing>
     </div>
     <ClientOnly>
+      <PartnersAndSponsors />
+    </ClientOnly>
+    <ClientOnly>
       <Footer />
     </ClientOnly>
   </div>
