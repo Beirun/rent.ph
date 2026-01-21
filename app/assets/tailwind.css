@@ -45,7 +45,7 @@
   font-family: Poppins;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(21.779% 0.00002 271.152);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -80,7 +80,7 @@
 .dark {
   font-family: Poppins;
   --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
+  --foreground: oklch(88.837% 0.0001 271.152);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
@@ -125,4 +125,15 @@
 
 ::-webkit-scrollbar {
   display: none; /* Hides the scrollbar in Chrome, Safari, and Opera */
+}
+
+@utility color-base {
+  color: var(--foreground);
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6, p, span {
+    color: var(--foreground);
+    @apply transition-colors duration-300;
+  }
 }

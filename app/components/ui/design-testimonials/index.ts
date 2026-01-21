@@ -1,0 +1,1 @@
+export { default as DesignTestimonials } from './DesignTestimonials.vue'

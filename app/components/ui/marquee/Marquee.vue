@@ -17,16 +17,16 @@ withDefaults(
 
 <template>
   <div
-    class="group flex [gap:var(--gap)] overflow-hidden p-2 [--duration:40s] [--gap:1rem]"
+    class="group flex w-full gap-(--gap) overflow-hidden p-2 [--duration:40s] [--gap:2rem]"
     :class="[vertical ? 'flex-col' : 'flex-row', $props.class]"
   >
     <div
       v-for="index in repeat"
       :key="index"
-      class="flex shrink-0 justify-around [gap:var(--gap)]"
+      class="flex shrink-0 items-center gap-(--gap)"
       :class="[
         vertical ? 'animate-marquee-vertical flex-col' : 'animate-marquee flex-row',
-        pauseOnHover ? 'group-hover:[animation-play-state:paused]' : '',
+        pauseOnHover ? 'group-hover:paused' : '',
       ]"
       :style="{
         animationDirection: reverse ? 'reverse' : 'normal',

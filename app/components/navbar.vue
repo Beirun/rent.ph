@@ -2,7 +2,7 @@
 const scrollPosY = ref(0)
 const navbarClass = computed(() => {
   if (scrollPosY.value >= 30)
-    return 'w-11/12 h-4/5 border-2 rounded-full bg-[#c5d6f7]/30 dark:bg-[#133982]/30 px-8 backdrop-blur-xs'
+    return 'w-11/12 h-4/5 border-2 rounded-full bg-[#fafafa]/30 dark:bg-[#2e2e2e]/30 px-8 backdrop-blur-xs'
   else return 'w-full h-full px-12'
 })
 const ypos = () => {
@@ -39,10 +39,10 @@ const anchors = [
 ]
 </script>
 <template>
-  <div class="fixed top-0 z-100 flex items-center justify-center h-20 w-full">
+  <div class="fixed top-0 z-50 flex items-center justify-center h-20 w-full">
     <div
       :class="[
-        'transition-all duration-400  flex justify-between items-center py-4 border-[#205ed7]/50',
+        'transition-all duration-400  flex justify-between items-center py-4 border-[#e8e8e8]/50 dark:border-[#4d4d4d]/50',
         navbarClass,
       ]"
     >
@@ -50,7 +50,7 @@ const anchors = [
         src="/rentph-logo.png"
         class="h-12 drop-shadow-lg drop-shadow-[#eecfa6]/80 dark:drop-shadow-[#e0af6e]/40"
       />
-      <div class="flex h-full gap-12 items-center">
+      <div class="h-full gap-12 items-center hidden xl:flex">
         <NuxtLink
           v-for="anchor in anchors"
           :to="anchor.link"
@@ -62,11 +62,12 @@ const anchors = [
           ></span>
         </NuxtLink>
       </div>
-      <div class="flex h-full gap-4 items-center">
+      <div class="hidden xl:flex h-full gap-4 items-center">
         <DarkModeSwitch></DarkModeSwitch>
         <Button @click="ypos" variant="ghost">Login</Button>
         <Button variant="default">Register</Button>
       </div>
+      <AppSidebar :anchors="anchors" />
     </div>
   </div>
 </template>
