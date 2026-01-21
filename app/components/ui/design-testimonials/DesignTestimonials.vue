@@ -12,7 +12,6 @@ interface TestimonialItem {
   quote: string;
   author: string;
   role: string;
-  company: string;
   image: string;
 }
 
@@ -67,7 +66,7 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
 </script>
 
 <template>
-  <div class="bg-background flex min-h-screen items-center justify-center overflow-hidden">
+  <div class="bg-background flex min-h-screen justify-center items-center overflow-hidden">
     <div
       ref="containerRef"
       class="relative w-full max-w-5xl"
@@ -106,7 +105,7 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
       </Motion>
 
       <!-- Main content -->
-      <div class="relative flex">
+      <div class="relative flex w-full">
         <!-- Left column -->
         <div class="border-border flex flex-col items-center justify-center border-r pr-16">
           <Motion
@@ -133,29 +132,9 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
 
         <!-- Center content -->
         <div class="flex-1 py-12 pl-16">
-          <!-- Company badge -->
-          <!-- <AnimatePresence mode="wait">
-            <Motion
-              :key="activeIndex"
-              as="div"
-              class="mb-8"
-              :initial="{ opacity: 0, x: -20 }"
-              :animate="{ opacity: 1, x: 0 }"
-              :exit="{ opacity: 0, x: 20 }"
-              :transition="{ duration: 0.4 }"
-            >
-              <span
-                v-if="current"
-                class="text-muted-foreground border-border inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs"
-              >
-                <span class="bg-accent h-1.5 w-1.5 rounded-full" />
-                {{ current.company }}
-              </span>
-            </Motion>
-          </AnimatePresence> -->
 
           <!-- Quote -->
-          <div class="relative mb-12 min-h-35">
+          <div class="relative mb-12 min-h-35 w-full">
             <AnimatePresence mode="wait">
               <Motion
                 v-if="current"
@@ -305,7 +284,6 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
             :key="i"
             class="mx-8"
           >
-            <!-- {{ testimonials.map((t) => t.company).join(" • ") }} • -->
               Rent.ph •
           </span>
         </Motion>
