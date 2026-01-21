@@ -7,8 +7,8 @@ import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
       <Navbar />
     </ClientOnly>
     <Hero />
-    <div class="h-screen w-screen p-8 grid grid-cols-5 gap-y-4 place-items-center">
-      <CardListing v-for="_ in new Array(10)"></CardListing>
+    <div class="min-h-screen w-screen p-8 flex flex-wrap justify-evenly gap-y-4">
+      <CardListing v-for="_ in new Array(8)"></CardListing>
     </div>
     <ClientOnly>
       <PartnersAndSponsors />
