@@ -33,9 +33,9 @@ const heroBg = computed(() => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem>1</SelectItem>
-              <SelectItem>1</SelectItem>
-              <SelectItem>1</SelectItem>
+              <SelectItem value="1">1</SelectItem>
+              <SelectItem value="1">1</SelectItem>
+              <SelectItem value="1">1</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -48,9 +48,9 @@ const heroBg = computed(() => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem>1</SelectItem>
-              <SelectItem>1</SelectItem>
-              <SelectItem>1</SelectItem>
+              <SelectItem value="1">1</SelectItem>
+              <SelectItem value="1">1</SelectItem>
+              <SelectItem value="1">1</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
