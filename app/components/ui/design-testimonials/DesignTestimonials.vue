@@ -106,7 +106,7 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
       <!-- Main content -->
       <div class="relative flex w-full">
         <!-- Left column -->
-        <div class="border-border flex flex-col items-center justify-center border-r pr-16">
+        <div class="flex flex-col items-center justify-center pr-16">
           <Motion
             as="span"
             class="text-muted-foreground font-mono text-xs tracking-widest uppercase"
@@ -115,7 +115,6 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
             :animate="{ opacity: 1 }"
             :transition="{ delay: 0.3 }"
           >
-            {{ title }}
           </Motion>
 
           <!-- Vertical progress line -->

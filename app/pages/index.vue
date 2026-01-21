@@ -8,8 +8,10 @@ import Testimonials from '~/components/testimonials.vue'
       <Navbar />
     </ClientOnly>
     <Hero />
-    <div class="min-h-screen w-screen p-8 flex flex-wrap justify-evenly gap-y-4">
-      <CardListing v-for="_ in new Array(8)"></CardListing>
+    <div class="min-h-screen w-screen p-8">
+      <div class="flex flex-wrap justify-evenly gap-y-12 gap-x-2">
+        <CardListing v-for="_ in new Array(8)"></CardListing>
+      </div>
     </div>
     <ClientOnly>
       <PartnersAndSponsors />
