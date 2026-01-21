@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Multimarquee from '~/components/multiMarquee.vue'
+import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
 </script>
 <template>
   <div class="w-screen min-h-screen">
@@ -7,7 +7,9 @@ import Multimarquee from '~/components/multiMarquee.vue'
       <Navbar />
     </ClientOnly>
     <Hero />
-    <Multimarquee />
+    <ClientOnly>
+      <PartnersAndSponsors />
+    </ClientOnly>
     <div class="h-screen w-screen"></div>
   </div>
 </template>
