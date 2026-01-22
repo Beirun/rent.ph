@@ -25,7 +25,7 @@ const abouts = [
 </script>
 
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-10 justify-center lg:justify-start p-25 bg-[#FAFAFA]">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-10 justify-center lg:justify-start p-25">
         <div v-for="about in abouts" :key="about.img" class="flex flex-col items-center text-center gap-6 ">
             <NuxtImg :src="about.img" class="h-30 w-30" />
             <h3 class="font-bold text-xl text-gray-700 dark:text-gray-300"> {{ about.title }}</h3>
