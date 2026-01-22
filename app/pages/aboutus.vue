@@ -10,8 +10,12 @@ import Testimonials from '~/components/testimonials.vue'
         <div>
             <AboutusHero />
             <AboutStorySection />
-        </div>
+            <AboutCaresSection />
+            <testimonials />
+        </div>git
 
-
+        <ClientOnly>
+            <Footer />
+        </ClientOnly>
     </div>
 </template>
