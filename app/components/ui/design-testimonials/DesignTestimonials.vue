@@ -66,25 +66,23 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
 </script>
 
 <template>
-  <div class="bg-background my-8 flex justify-center items-center overflow-hidden">
+  <div class="my-8 h-auto flex min-h-[50rem] justify-center overflow-hidden">
     <div ref="containerRef" class="relative w-full max-w-5xl" @mousemove="handleMouseMove">
       <!-- Oversized background image -->
       <Motion as="div"
-        class="absolute top-1/2 -left-16 z-0 -translate-y-1/2 w-[32rem] h-[32rem] select-none cursor-crosshair group/image"
+        class="absolute lg:top-[20rem] sm:top-[12rem] -left-16 z-0 -translate-y-1/2 lg: lg:w-[32rem] md:w-[25rem] sm:w-[20rem] select-none cursor-crosshair group/image"
         :style="{ x: numberX, y: numberY }" :while-hover="{
-          zIndex: 40,
           scale: 1.02,
         }" :transition="{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }">
         <AnimatePresence mode="wait">
           <Motion :key="activeIndex" as="div"
-            class="h-full w-full overflow-hidden rounded-3xl shadow-2xl transition-all duration-700 ease-out"
+            class="h-full w-full overflow-hidden rounded-3xl transition-all duration-700 ease-out"
             :initial="{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }"
-            :animate="{ opacity: 0.1, scale: 1, filter: 'blur(0px)' }"
+            :animate="{ opacity: 0.5, scale: 1, filter: 'blur(0px)' }"
             :exit="{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }"
             :transition="{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }">
             <img v-if="current" :src="current.image"
-              class="h-full w-full object-cover grayscale group-hover/image:grayscale-0 transition-all duration-700"
-              alt="Testimonial background" />
+              class="h-full w-full object-cover grayscale transition-all duration-700" alt="Testimonial background" />
           </Motion>
         </AnimatePresence>
       </Motion>
@@ -187,14 +185,14 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
       </div>
 
       <!-- Bottom ticker -->
-      <div class="pointer-events-none absolute right-0 -bottom-20 left-0 overflow-hidden opacity-[0.08]">
+      <!-- <div class="pointer-events-none absolute right-0 -bottom-20 left-0 overflow-hidden opacity-[0.08]">
         <Motion as="div" class="flex text-6xl font-bold tracking-tight whitespace-nowrap" :animate="{ x: [0, -1000] }"
           :transition="{ duration: 20, repeat: Infinity, ease: 'linear' }">
           <span v-for="i in 10" :key="i" class="mx-8">
             Rent.ph •
           </span>
         </Motion>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
