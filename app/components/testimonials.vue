@@ -34,7 +34,7 @@ const testimonials = [
 ]
 </script>
 <template>
-    <div class="px-12 py-80">
+    <div class="px-12 py-80 bg-[#FAFAFA]">
         <div class="flex flex-col w-full">
             <h1 class="text-4xl font-bold">What Our Clients Say About Us</h1>
             <p class="uppercase pt-4 dark:text-gray-500 ">Testimonials</p>

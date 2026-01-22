@@ -66,7 +66,7 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
 </script>
 
 <template>
-  <div class="bg-background flex min-h-screen justify-center items-center overflow-hidden">
+  <div class="bg-[##fafafa] flex min-h-screen justify-center items-center overflow-hidden ">
     <div
       ref="containerRef"
       class="relative w-full max-w-5xl"
@@ -75,7 +75,7 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
       <!-- Oversized background image -->
       <Motion
         as="div"
-        class="absolute top-1/2 -left-16 z-0 -translate-y-1/2 w-[32rem] h-[32rem] select-none cursor-crosshair group/image"
+        class="absolute top-1/2 -left-16 z-0 -translate-y-1/2 w-[32rem] h-[32rem] select-none cursor-crosshair group/image bg-[#FAFAFA]"
         :style="{ x: numberX, y: numberY }"
         :while-hover="{ 
           zIndex: 40,

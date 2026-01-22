@@ -7,7 +7,7 @@ const rstats = [
 </script>
 
 <template>
-    <div class="h-screen w-full">
+    <div class="h-screen w-full bg-[#FAFAFA]">
         <div
             class="flex flex-col lg:flex-row
                    h-screen
