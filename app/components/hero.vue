@@ -2,15 +2,15 @@
 const colorMode = useColorMode()
 const heroBg = computed(() => {
   if (colorMode.preference === 'light') {
-    return ` bg-[linear-gradient(to_top,rgba(255,255,255),transparent_15%),url('/hero.jpg')]`
+    return ` bg-[linear-gradient(to_top,rgba(255,255,255,1),transparent_25%),url('/hero.jpg')]`
   } else {
-    return `bg-[linear-gradient(to_top,rgba(0,0,0,0.7)_0%,transparent_15%),url('/hero-dark.jpg')]`
+    return `bg-[linear-gradient(to_top,rgba(10,10,10,1)_0%,transparent_25%),url('/hero-dark.jpg')]`
   }
 })
 </script>
 <template>
   <div :class="[
-    'h-[95vh] bg-top bg-cover w-screen flex flex-col items-center justify-center gap-5',
+    'h-[115vh] bg-top bg-cover w-screen flex flex-col items-center justify-center gap-5',
     heroBg,
   ]">
     <div class="text-[#FE8E0A] text-8xl font-black">Rent Your Space</div>

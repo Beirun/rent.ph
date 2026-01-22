@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
+import PropertiesAndListings from '~/components/propertiesAndListings.vue';
 import Testimonials from '~/components/testimonials.vue'
 </script>
 <template>
@@ -8,14 +9,9 @@ import Testimonials from '~/components/testimonials.vue'
       <Navbar />
     </ClientOnly>
     <Hero />
-    <div class="min-h-screen w-screen p-10">
-      <h1 class="text-4xl py-10 font-bold">Properties and Listings</h1>
-
-      <div class=""></div>
-      <div class="grid grid-cols-4 gap-y-12 gap-x-2">
-        <CardListing v-for="_ in new Array(8)" orientation="vertical"></CardListing>
-      </div>
-    </div>
+    <ClientOnly>
+      <PropertiesAndListings />
+    </ClientOnly>
     <!-- <ClientOnly>
       <PartnersAndSponsors />
     </ClientOnly> -->
