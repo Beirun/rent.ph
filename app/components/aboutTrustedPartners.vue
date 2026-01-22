@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import { Marquee } from './ui/marquee'
 import ReviewCard from './ui/marquee/ReviewCard.vue'
 
-// 1. Define the shape of your partner data
 interface Partner {
   name: string
   img: string
@@ -38,12 +37,12 @@ const selectPartner = (partner: Partner) => {
 </script>
 
 <template>
-  <div class="p-10 bg-[#fafafa]">
+  <div class="p-10 ">
     <h1 class="text-4xl font-semibold">Partners & Sponsors</h1>
     <p>Click a logo to view more details.</p>
   </div>
 
-  <div class="bg-[#fafafa] relative flex h-50 w-screen flex-col items-center justify-center overflow-hidden mb-5 gap-y- ">
+  <div class=" relative flex h-50 w-screen flex-col items-center justify-center overflow-hidden mb-5 gap-y-5 ">
     <Marquee pause-on-hover class="[--duration:20s]">
       <ReviewCard 
         v-for="review in reviews" 
