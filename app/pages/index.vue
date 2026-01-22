@@ -8,9 +8,12 @@ import Testimonials from '~/components/testimonials.vue'
       <Navbar />
     </ClientOnly>
     <Hero />
-    <div class="min-h-screen w-screen p-8">
-      <div class="flex flex-wrap justify-evenly gap-y-12 gap-x-2">
-        <CardListing v-for="_ in new Array(8)"></CardListing>
+    <div class="min-h-screen w-screen p-10">
+      <h1 class="text-4xl py-10 font-bold">Properties and Listings</h1>
+
+      <div class=""></div>
+      <div class="grid grid-cols-4 gap-y-12 gap-x-2">
+        <CardListing v-for="_ in new Array(8)" orientation="vertical"></CardListing>
       </div>
     </div>
     <ClientOnly>
