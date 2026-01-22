@@ -45,9 +45,9 @@
   font-family: Poppins;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(21.779% 0.00002 271.152);
+  --foreground: rgb(26, 26, 26);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(14.479% 0.00002 271.152);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
