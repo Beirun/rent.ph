@@ -43,6 +43,8 @@
 
 :root {
   font-family: Poppins;
+  --primary-orange: rgb(254, 142, 10);
+  --primary-blue: rgb(32, 93, 214);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: rgb(26, 26, 26);
@@ -79,6 +81,8 @@
 
 .dark {
   font-family: Poppins;
+  --primary-orange: rgb(254, 142, 10);
+  --primary-blue: rgb(32, 93, 214);
   --background: oklch(0.145 0 0);
   --foreground: oklch(88.837% 0.0001 271.152);
   --card: oklch(0.205 0 0);
@@ -129,6 +133,14 @@
 
 @utility color-base {
   color: var(--foreground);
+}
+
+@utility bg-primary-orange {
+  background-color: var(--primary-orange);
+}
+
+@utility bg-primary-blue {
+  background-color: var(--primary-blue);
 }
 
 @layer base {
