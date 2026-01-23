@@ -34,7 +34,9 @@ const heartActive = ref(props.heartActive)
       </div>
 
       <div class="text-xl font-medium text-[#262626] dark:text-[#e8e8e8]/80">
-        $850,000<span class="text-sm font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60">/month</span>
+        $850,000<span class="text-sm font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60"
+          >/month</span
+        >
       </div>
 
       <div class="text-base font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60">
@@ -62,7 +64,8 @@ const heartActive = ref(props.heartActive)
         <div class="flex gap-3 items-center">
           <Avatar class="size-8">
             <AvatarImage
-              src="https://fastly.picsum.photos/id/479/100/100.jpg?hmac=2bYIJatdhVz-KV7QeLE6e4uFuTocBVeVuMAH1wklub8">
+              src="https://fastly.picsum.photos/id/479/100/100.jpg?hmac=2bYIJatdhVz-KV7QeLE6e4uFuTocBVeVuMAH1wklub8"
+            >
             </AvatarImage>
             <AvatarFallback>RN</AvatarFallback>
           </Avatar>

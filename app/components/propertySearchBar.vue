@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 <template>
   <div
-    class="flex bg-[#fafafa] dark:bg-[#212121] p-6 rounded-lg gap-4 border dark:border-gray-800 border-gray-200 drop-shadow-md w-full max-w-6xl mx-auto"
+    class="flex bg-[#fafafa] dark:bg-[#212121] p-6 rounded-lg gap-4 border dark:border-gray-800 border-gray-200 drop-shadow-md w-full max-w-8xl mx-auto"
   >
     <div class="flex flex-col gap-4 flex-1">
       <Label for="location">Keyword</Label>
