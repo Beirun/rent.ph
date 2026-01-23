@@ -106,7 +106,7 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
         <!-- Center content -->
         <div class="flex-1 py-12 pl-16">
           <!-- Quote -->
-          <div class="relative mb-12 min-h-80 w-full">
+          <div class="relative min-h-80 w-full">
             <AnimatePresence mode="wait">
               <Motion v-if="current" :key="activeIndex" as="blockquote"
                 class="text-foreground lg:text-4xl md:text-3xl sm:text-xl leading-[1.15] font-light tracking-tight"
@@ -149,7 +149,7 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
                     <p class="text-foreground text-lg font-semibold tracking-tight">
                       {{ current.author }}
                     </p>
-                    <p class="text-muted-foreground text-sm font-medium">{{ current.role }}</p>
+                    <p class="text-foreground text-sm font-medium">{{ current.role }}</p>
                   </div>
                 </div>
               </Motion>

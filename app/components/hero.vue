@@ -18,7 +18,8 @@ const heroBg = computed(() => {
     <div class="text-black/60 dark:text-white/60 text-xl font-medium">
       Discover the perfect property in your ideal location
     </div>
-    <div class="flex bg-[#fafafa] dark:bg-[#212121] p-8 rounded-lg gap-4 border dark:border-gray-800 border-gray-200">
+    <div
+      class="flex bg-[#fafafa] dark:bg-[#212121] mt-12 p-8 rounded-lg gap-4 border dark:border-gray-800 border-gray-200">
       <div class="flex flex-col gap-4">
         <Label for="location">Location</Label>
         <Select id="location">
