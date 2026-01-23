@@ -67,7 +67,7 @@ const heroBg = computed(() => {
         </div>
         <div class="flex h-full items-end">
           <FancyButton
-            class="gap-2 px-6 h-12 rounded-full border-0 from-[var(--primary-orange)] to-[var(--color-orange-700)] dark:from-[var(--primary-orange)] dark:to-[var(--color-orange-700)]"
+            class="gap-2 px-6 h-12 rounded-full border-0 from-orange-300 to-orange-700 dark:from-orange-300 dark:to-orange-700"
             glowColor="var(--color-orange-400)">
             <div class="flex items-center">
               <Icon name="lucide:search" class="bg-[#fafafa] dark:bg-[#121212]" />
