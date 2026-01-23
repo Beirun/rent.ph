@@ -35,11 +35,11 @@ const testimonialsData = [
 // Add an 'expanded' property to each testimonial
 const testimonials = ref(testimonialsData.map(t => ({ ...t, expanded: false })))
 
-const toggleExpand = (index: number) => {
-  const item = testimonials.value[index]
-  if (!item) return
-  item.expanded = !item.expanded
-}
+// const toggleExpand = (index: number) => {
+//   const item = testimonials.value[index]
+//   if (!item) return
+//   item.expanded = !item.expanded
+// }
 
 </script>
 
@@ -55,17 +55,10 @@ const toggleExpand = (index: number) => {
         v-for="(testimonial, index) in testimonials" 
         :key="index"
         :class="[
-          'flex flex-col gap-4 bg-[#fafafa] dark:bg-zinc-900 p-6 w-80 rounded-xl shadow-sm border border-gray-100 dark:border-zinc-800',
-          testimonial.expanded ? 'h-70' : 'h-70'
+          'flex flex-col gap-4 bg-[#fafafa] dark:bg-zinc-900 p-6 w-80 rounded-xl shadow-sm border border-gray-100 dark:border-zinc-800 transform-transition duration-300 hover:scale-110',
         ]"
       >
-        <div class="flex items-center gap-4">
-          <NuxtImg :src="testimonial.image" class="size-12 rounded-full object-cover" />
-          <div class="flex flex-col">
-            <span class="font-bold text-gray-900 dark:text-gray-300">{{ testimonial.author }}</span>
-            <span class="text-xs text-gray-500">{{ testimonial.role }}</span>
-          </div>
-        </div>
+
 
         <div class="flex-1 overflow-hidden">
           <p 
@@ -73,8 +66,15 @@ const toggleExpand = (index: number) => {
               'text-gray-600 dark:text-gray-400 text-sm leading-relaxed text-justify ',
             ]"
           >
-            " {{ testimonial.quote }} "
+            <span class="font-balck text-4xl" >"</span>  {{ testimonial.quote }} "
           </p>
+        </div>
+        <div class="flex items-center gap-4">
+          <NuxtImg :src="testimonial.image" class="size-12 rounded-full object-cover" />
+          <div class="flex flex-col">
+            <span class="font-bold text-gray-900 dark:text-gray-400">{{ testimonial.author }}</span>
+            <span class="text-xs text-gray-500">{{ testimonial.role }}</span>
+          </div>
         </div>
 
         <!-- <div class="mt-auto flex flex-end">

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
-    heartActive: boolean
-    orientation: string
+    heartActive?: boolean
+    orientation?: string
 }
 const props = withDefaults(defineProps<Props>(), {
     heartActive: false,
