@@ -13,7 +13,7 @@ const heartActive = ref(props.heartActive)
 
 <template>
     <div v-if="orientation === 'vertical'"
-        class="rounded-xl cursor-pointer w-100 h-130 flex flex-col shadow-lg relative bg-[url('/rebecca.png')] bg-cover bg-bottom transition-all duration-500 ease-in-out hover:bg-top hover:z-50">
+        class="rounded-xl cursor-pointer w-100 h-130 flex flex-col shadow-lg relative bg-[url('/rebecca.png')] bg-cover bg-bottom">
         <div class="h-full w-full rounded-t-lg">
             <button @click="heartActive = !heartActive"
                 class="absolute top-4 right-4 size-10 bg-[#fafafa] rounded-full flex justify-center items-center active:scale-95 hover:scale-105 transition-transform duration-200 z-10">
@@ -25,8 +25,8 @@ const heartActive = ref(props.heartActive)
                 613 Listings
             </span>
         </div>
-        <div class="h-full w-full bg-gradient-to-t from-white to-transparent flex p-4 flex-col justify-center gap-2">
-            <div class="text-2xl font-medium text-[#262626] dark:text-[#e8e8e8]/80">
+        <div class="h-full w-full bg-gradient-to-t from-white to-transparent dark:from-black dark:to-transparent flex p-4 flex-col justify-center gap-2">
+            <div class="text-2xl font-medium text-black dark:text-[#e8e8e8]/80">
                 Rebecca Ferguson
             </div>
             <div class="text-base font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60">
@@ -60,18 +60,6 @@ const heartActive = ref(props.heartActive)
         </button>
 
         <div class="h-full w-full flex p-4 flex-col gap-2 justify-between">
-            <div class="flex flex-col gap-1">
-                <div class="text-2xl font-medium text-[#262626] dark:text-[#e8e8e8]/80">
-                    Modern Family Home
-                </div>
-                <div class="text-xl font-medium text-[#262626] dark:text-[#e8e8e8]/80">
-                    $850,000<span class="text-sm font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60">/month</span>
-                </div>
-                <div class="text-base font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60">
-                    123 Oak Street, Downtown
-                </div>
-            </div>
-
             <div class="flex gap-2 items-center">
                 <div class="flex">
                     <Icon v-for="_ in new Array(5)" :key="_" name="radix-icons:star-filled" class="bg-yellow-500" />
@@ -80,14 +68,6 @@ const heartActive = ref(props.heartActive)
             </div>
 
             <div class="flex justify-between items-center">
-                <div class="flex gap-3 items-center">
-                    <Avatar class="size-8">
-                        <AvatarImage
-                            src="https://fastly.picsum.photos/id/479/100/100.jpg?hmac=2bYIJatdhVz-KV7QeLE6e4uFuTocBVeVuMAH1wklub8" />
-                        <AvatarFallback>RN</AvatarFallback>
-                    </Avatar>
-                    <span class="text-sm text-[#262626]/90 dark:text-[#e8e8e8]/70">Bryl Darel Gorgonio</span>
-                </div>
                 <div>
                     <Button variant="link">View Details</Button>
                 </div>

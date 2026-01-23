@@ -25,8 +25,8 @@ const handlePageChange = (page: number) => {
                 <AgentSearchBar />
             </ClientOnly>
 
-            <div class="mt-12 flex flex-wrap gap-5 gap-y-5 justify-center">
-                <Agentscard v-for="n in new Array(8)" :key="n" orientation="vertical" class="w-[calc(25%-1rem)]" />
+            <div class="mt-12 flex flex-wrap gap-4 gap-y-5 justify-center">
+                <Agentscard v-for="n in new Array(4)" :key="n" orientation="vertical" class="w-[calc(25%-1rem)]" />
             </div>
             <div class="flex justify-center">
                 <pagination :current-page="currentPage" :total-pages="totalPages" @page-change="handlePageChange" />
