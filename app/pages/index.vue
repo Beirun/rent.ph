@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
+import PropertiesAndListings from '~/components/propertiesAndListings.vue';
 import Testimonials from '~/components/testimonials.vue'
 </script>
 <template>
@@ -8,14 +9,12 @@ import Testimonials from '~/components/testimonials.vue'
       <Navbar />
     </ClientOnly>
     <Hero />
-    <div class="min-h-screen w-screen p-8">
-      <div class="flex flex-wrap justify-evenly gap-y-12 gap-x-2">
-        <CardListing v-for="_ in new Array(8)"></CardListing>
-      </div>
-    </div>
     <ClientOnly>
-      <PartnersAndSponsors />
+      <PropertiesAndListings />
     </ClientOnly>
+    <!-- <ClientOnly>
+      <PartnersAndSponsors />
+    </ClientOnly> -->
     <ClientOnly>
       <Testimonials />
     </ClientOnly>

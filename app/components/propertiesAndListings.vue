@@ -1,0 +1,15 @@
+<script setup lang="ts">
+import CardListing from './cardListing.vue';
+
+</script>
+<template>
+    <div class="px-12 mt-20">
+        <div class="flex flex-col w-full">
+            <h1 class="text-4xl font-bold">Our Most Popular Listings</h1>
+            <p class="uppercase pt-4 text-gray-300 dark:text-gray-500 ">Properties and Listings</p>
+        </div>
+        <div class="grid grid-cols-4 gap-y-12 gap-x-2 mt-20">
+            <CardListing v-for="_ in new Array(8)" orientation="vertical"></CardListing>
+        </div>
+    </div>
+</template>

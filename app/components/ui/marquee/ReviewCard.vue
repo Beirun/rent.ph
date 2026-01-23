@@ -8,6 +8,6 @@ defineProps<Props>()
 
 <template>
   <div class="flex shrink-0 items-center justify-center">
-    <img :src="img" class="h-32 w-32 object-contain" alt="" />
+    <img :src="img" class="h-64 w-64 object-contain" alt="" />
   </div>
 </template>

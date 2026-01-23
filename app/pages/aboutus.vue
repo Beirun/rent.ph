@@ -1,7 +1,32 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
+import Testimonials from '~/components/testimonials.vue'
+</script>
 <template>
-    <div>
-        About Us
-    </div>
-</template>
+    <div class="w-screen min-h-screen ">
+        <ClientOnly>
+            <Navbar />
+        </ClientOnly>
+        <div>
+            <ClientOnly>
+                <AboutusHero />
+            </ClientOnly>
+            <ClientOnly>
+                <AboutStorySection />
+            </ClientOnly>
+            <ClientOnly>
+                <AboutCaresSection />
+            </ClientOnly>
+            <ClientOnly>
+                <testimonials />
+            </ClientOnly>
+            <ClientOnly>
+                <AboutTrustedPartners />
+            </ClientOnly>
+            </div>
 
+                <ClientOnly>
+                    <Footer />
+                </ClientOnly>
+        </div>
+</template>

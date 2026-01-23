@@ -66,39 +66,23 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
 </script>
 
 <template>
-  <div class="bg-background flex min-h-screen justify-center items-center overflow-hidden">
-    <div
-      ref="containerRef"
-      class="relative w-full max-w-5xl"
-      @mousemove="handleMouseMove"
-    >
+  <div class="my-8 h-auto flex min-h-[50rem] justify-center overflow-hidden">
+    <div ref="containerRef" class="relative w-full max-w-5xl" @mousemove="handleMouseMove">
       <!-- Oversized background image -->
-      <Motion
-        as="div"
-        class="absolute top-1/2 -left-16 z-0 -translate-y-1/2 w-[32rem] h-[32rem] select-none cursor-crosshair group/image"
-        :style="{ x: numberX, y: numberY }"
-        :while-hover="{ 
-          zIndex: 40,
+      <Motion as="div"
+        class="absolute lg:top-[20rem] sm:top-[12rem] -left-16 z-0 -translate-y-1/2 lg: lg:w-[32rem] md:w-[25rem] sm:w-[20rem] select-none cursor-crosshair group/image"
+        :style="{ x: numberX, y: numberY }" :while-hover="{
           scale: 1.02,
-        }"
-        :transition="{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }"
-      >
+        }" :transition="{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }">
         <AnimatePresence mode="wait">
-          <Motion
-            :key="activeIndex"
-            as="div"
-            class="h-full w-full overflow-hidden rounded-3xl shadow-2xl transition-all duration-700 ease-out"
+          <Motion :key="activeIndex" as="div"
+            class="h-full w-full overflow-hidden rounded-3xl transition-all duration-700 ease-out"
             :initial="{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }"
-            :animate="{ opacity: 0.1, scale: 1, filter: 'blur(0px)' }"
+            :animate="{ opacity: 0.5, scale: 1, filter: 'blur(0px)' }"
             :exit="{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }"
-            :transition="{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }"
-          >
-            <img 
-              v-if="current"
-              :src="current.image" 
-              class="h-full w-full object-cover grayscale group-hover/image:grayscale-0 transition-all duration-700" 
-              alt="Testimonial background" 
-            />
+            :transition="{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }">
+            <img v-if="current" :src="current.image"
+              class="h-full w-full object-cover grayscale transition-all duration-700" alt="Testimonial background" />
           </Motion>
         </AnimatePresence>
       </Motion>
@@ -107,24 +91,15 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
       <div class="relative flex w-full">
         <!-- Left column -->
         <div class="flex flex-col items-center justify-center pr-16">
-          <Motion
-            as="span"
-            class="text-muted-foreground font-mono text-xs tracking-widest uppercase"
-            :style="{ writingMode: 'vertical-rl', textOrientation: 'mixed' }"
-            :initial="{ opacity: 0 }"
-            :animate="{ opacity: 1 }"
-            :transition="{ delay: 0.3 }"
-          >
+          <Motion as="span" class="text-muted-foreground font-mono text-xs tracking-widest uppercase"
+            :style="{ writingMode: 'vertical-rl', textOrientation: 'mixed' }" :initial="{ opacity: 0 }"
+            :animate="{ opacity: 1 }" :transition="{ delay: 0.3 }">
           </Motion>
 
           <!-- Vertical progress line -->
           <div class="bg-border relative mt-8 h-32 w-px">
-            <Motion
-              as="div"
-              class="bg-foreground absolute top-0 left-0 w-full origin-top"
-              :animate="{ height: progressHeight }"
-              :transition="{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }"
-            />
+            <Motion as="div" class="bg-foreground absolute top-0 left-0 w-full origin-top"
+              :animate="{ height: progressHeight }" :transition="{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }" />
           </div>
         </div>
 
@@ -134,21 +109,11 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
           <!-- Quote -->
           <div class="relative mb-12 min-h-35 w-full">
             <AnimatePresence mode="wait">
-              <Motion
-                v-if="current"
-                :key="activeIndex"
-                as="blockquote"
-                class="text-foreground text-4xl leading-[1.15] font-light tracking-tight md:text-5xl"
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <Motion
-                  v-for="(word, i) in current.quote.split(' ')"
-                  :key="`${activeIndex}-${i}`"
-                  as="span"
-                  class="mr-[0.3em] inline-block"
-                  :variants="{
+              <Motion v-if="current" :key="activeIndex" as="blockquote"
+                class="text-foreground lg:text-4xl md:text-3xl sm:text-xl leading-[1.15] font-light tracking-tight"
+                initial="hidden" animate="visible" exit="exit">
+                <Motion v-for="(word, i) in current.quote.split(' ')" :key="`${activeIndex}-${i}`" as="span"
+                  class="mr-[0.3em] inline-block" :variants="{
                     hidden: { opacity: 0, y: 20, rotateX: 90 },
                     visible: {
                       opacity: 1,
@@ -165,8 +130,7 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
                       y: -10,
                       transition: { duration: 0.2, delay: i * 0.02 },
                     },
-                  }"
-                >
+                  }">
                   {{ word }}
                 </Motion>
               </Motion>
@@ -176,24 +140,11 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
           <!-- Author row -->
           <div class="flex items-end justify-between">
             <AnimatePresence mode="wait">
-              <Motion
-                v-if="current"
-                :key="activeIndex"
-                as="div"
-                class="flex items-center gap-4"
-                :initial="{ opacity: 0, y: 20 }"
-                :animate="{ opacity: 1, y: 0 }"
-                :exit="{ opacity: 0, y: -20 }"
-                :transition="{ duration: 0.4, delay: 0.2 }"
-              >
-                <Motion
-                  as="div"
-                  class="bg-foreground h-px w-8"
-                  :initial="{ scaleX: 0 }"
-                  :animate="{ scaleX: 1 }"
-                  :transition="{ duration: 0.6, delay: 0.3 }"
-                  :style="{ originX: 0 }"
-                />
+              <Motion v-if="current" :key="activeIndex" as="div" class="flex items-center gap-4"
+                :initial="{ opacity: 0, y: 20 }" :animate="{ opacity: 1, y: 0 }" :exit="{ opacity: 0, y: -20 }"
+                :transition="{ duration: 0.4, delay: 0.2 }">
+                <Motion as="div" class="bg-foreground h-px w-8" :initial="{ scaleX: 0 }" :animate="{ scaleX: 1 }"
+                  :transition="{ duration: 0.6, delay: 0.3 }" :style="{ originX: 0 }" />
                 <div class="flex items-center gap-4">
                   <div>
                     <p class="text-foreground text-lg font-semibold tracking-tight">{{ current.author }}</p>
@@ -205,61 +156,27 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
 
             <!-- Navigation -->
             <div class="flex items-center gap-4">
-              <Motion
-                as="button"
+              <Motion as="button"
                 class="group border-border relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border"
-                :while-tap="{ scale: 0.95 }"
-                @click="goPrev"
-              >
-                <Motion
-                  as="div"
-                  class="bg-foreground absolute inset-0"
-                  :initial="{ x: '-100%' }"
-                  :transition="{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }"
-                />
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  class="text-foreground group-hover:text-foreground/30 relative z-10 transition-colors"
-                >
-                  <path
-                    d="M10 12L6 8L10 4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                :while-tap="{ scale: 0.95 }" @click="goPrev">
+                <Motion as="div" class="bg-foreground absolute inset-0" :initial="{ x: '-100%' }"
+                  :transition="{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }" />
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="none"
+                  class="text-foreground group-hover:text-foreground/30 relative z-10 transition-colors">
+                  <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+                    strokeLinejoin="round" />
                 </svg>
               </Motion>
 
-              <Motion
-                as="button"
+              <Motion as="button"
                 class="group border-border relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border"
-                :while-tap="{ scale: 0.95 }"
-                @click="goNext"
-              >
-                <Motion
-                  as="div"
-                  class="bg-foreground absolute inset-0"
-                  :initial="{ x: '100%' }"
-                  :transition="{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }"
-                />
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  class="text-foreground group-hover:text-foreground/30 relative z-10 transition-colors"
-                >
-                  <path
-                    d="M6 4L10 8L6 12"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                :while-tap="{ scale: 0.95 }" @click="goNext">
+                <Motion as="div" class="bg-foreground absolute inset-0" :initial="{ x: '100%' }"
+                  :transition="{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }" />
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="none"
+                  class="text-foreground group-hover:text-foreground/30 relative z-10 transition-colors">
+                  <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+                    strokeLinejoin="round" />
                 </svg>
               </Motion>
             </div>
@@ -268,24 +185,14 @@ const progressHeight = computed(() => `${((activeIndex.value + 1) / testimonials
       </div>
 
       <!-- Bottom ticker -->
-      <div
-        class="pointer-events-none absolute right-0 -bottom-20 left-0 overflow-hidden opacity-[0.08]"
-      >
-        <Motion
-          as="div"
-          class="flex text-6xl font-bold tracking-tight whitespace-nowrap"
-          :animate="{ x: [0, -1000] }"
-          :transition="{ duration: 20, repeat: Infinity, ease: 'linear' }"
-        >
-          <span
-            v-for="i in 10"
-            :key="i"
-            class="mx-8"
-          >
-              Rent.ph •
+      <!-- <div class="pointer-events-none absolute right-0 -bottom-20 left-0 overflow-hidden opacity-[0.08]">
+        <Motion as="div" class="flex text-6xl font-bold tracking-tight whitespace-nowrap" :animate="{ x: [0, -1000] }"
+          :transition="{ duration: 20, repeat: Infinity, ease: 'linear' }">
+          <span v-for="i in 10" :key="i" class="mx-8">
+            Rent.ph •
           </span>
         </Motion>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
