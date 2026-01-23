@@ -40,26 +40,17 @@ const anchors = [
 </script>
 <template>
   <div class="fixed top-0 z-50 flex items-center justify-center h-22  w-full">
-    <div
-      :class="[
-        'transition-all duration-400  flex justify-between items-center py-4 border-[#e8e8e8]/50 dark:border-[#4d4d4d]/50',
-        navbarClass,
-      ]"
-    >
-      <NuxtImg
-        src="/rentph-logo.png"
-        class="h-8"
-      />
+    <div :class="[
+      'transition-all duration-400  flex justify-between items-center py-4 border-[#e8e8e8]/50 dark:border-[#4d4d4d]/50',
+      navbarClass,
+    ]">
+      <NuxtImg src="/rentph-logo.png" class="h-8" />
       <div class="h-full gap-12 items-center hidden xl:flex">
-        <NuxtLink
-          v-for="anchor in anchors"
-          :to="anchor.link"
-          class="relative group pb-1 text-sm dark:hover:text-[#2b68df] hover:text-[#1b4fb5] drop-shadow-md dark:drop-shadow-black/40"
-        >
+        <NuxtLink v-for="anchor in anchors" :to="anchor.link"
+          class="relative group pb-1 text-base dark:hover:text-[#2b68df] hover:text-[#1b4fb5] drop-shadow-md dark:drop-shadow-black/40">
           {{ anchor.label }}
           <span
-            class="absolute left-1/2 -translate-x-1/2 -bottom-0.5 h-0.5 w-full bg-[#205ed7] origin-center scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-          ></span>
+            class="absolute left-1/2 -translate-x-1/2 -bottom-0.5 h-0.5 w-full bg-[#205ed7] origin-center scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
         </NuxtLink>
       </div>
       <div class="hidden xl:flex h-full gap-4 items-center">

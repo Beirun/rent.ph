@@ -9,8 +9,9 @@ const heroBg = computed(() => {
 })
 </script>
 <template>
+  <!-- Adjust padding bottom or top to move hero center elements -->
   <div :class="[
-    'h-[115vh] bg-top bg-cover w-screen flex flex-col items-center justify-center gap-5',
+    'h-[115vh] bg-top bg-cover w-screen flex flex-col items-center justify-center gap-5 pb-52',
     heroBg,
   ]">
     <div class="text-[#FE8E0A] text-8xl font-black">Rent Your Space</div>
