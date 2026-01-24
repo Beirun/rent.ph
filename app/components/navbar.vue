@@ -16,10 +16,7 @@ const anchors = [
     link: '/',
     label: 'Home',
   },
-  {
-    link: '/aboutus',
-    label: 'About Us',
-  },
+
   {
     link: '/property',
     label: 'Properties',
@@ -35,6 +32,10 @@ const anchors = [
   {
     link: '/contact',
     label: 'Contact Us',
+  },
+  {
+    link: '/aboutus',
+    label: 'About Us',
   },
 ]
 </script>

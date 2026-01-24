@@ -20,7 +20,7 @@ const handlePageChange = (page: number) => {
             <navbar />
         </ClientOnly>
         <div class="container mx-auto px-10 pt-30 pb-20">
-            <h1 class="text-4xl font-semibold mb-8">Property for Rent</h1>
+            <h1 class="text-4xl font-semibold mb-8">Rent Managers</h1>
             <ClientOnly>
                 <AgentSearchBar />
             </ClientOnly>

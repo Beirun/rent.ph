@@ -16,7 +16,10 @@ import Testimonials from '~/components/testimonials.vue'
       <PartnersAndSponsors />
     </ClientOnly> -->
     <ClientOnly>
-      <Testimonials />
+      <TestimonialsCard />
+    </ClientOnly>
+    <ClientOnly>
+      <Backlinks/>
     </ClientOnly>
     <ClientOnly>
       <Footer />
