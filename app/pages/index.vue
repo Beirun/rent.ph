@@ -15,8 +15,13 @@ import Testimonials from '~/components/testimonials.vue'
     <!-- <ClientOnly>
       <PartnersAndSponsors />
     </ClientOnly> -->
+    <div class="flex items-center justify-center" >
+      <ClientOnly>
+        <TestimonialsCard />
+      </ClientOnly>
+    </div>
     <ClientOnly>
-      <Testimonials />
+      <Backlinks />
     </ClientOnly>
     <ClientOnly>
       <Footer />

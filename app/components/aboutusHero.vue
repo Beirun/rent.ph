@@ -32,7 +32,7 @@ const rstats = [
                         :key="stat.label"
                         class="flex flex-col gap-2 sm:gap-4 items-center"  
                     >
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold dark:text-gray-300">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#fe8e0a]">
                             {{ stat.count }}
                         </h2>
                         <p class="text-gray-800 text-base sm:text-lg lg:text-xl dark:text-gray-300">

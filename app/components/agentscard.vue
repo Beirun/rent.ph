@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
-    heartActive: boolean
-    orientation: string
+    heartActive?: boolean
+    orientation?: string
 }
 const props = withDefaults(defineProps<Props>(), {
     heartActive: false,
@@ -13,7 +13,11 @@ const heartActive = ref(props.heartActive)
 
 <template>
     <div v-if="orientation === 'vertical'"
-        class="rounded-xl cursor-pointer w-100 h-130 flex flex-col shadow-lg relative bg-[url('/rebecca.png')] bg-cover bg-bottom">
+        class="rounded-xl cursor-pointer w-100 h-130 flex flex-col relative
+       bg-[url('/rebecca.png')] bg-cover bg-bottom
+       shadow-lg shadow-black/15
+       hover:shadow-2xl hover:-translate-y-1
+       transition-all duration-300">
         <div class="h-full w-full rounded-t-lg">
             <button @click="heartActive = !heartActive"
                 class="absolute top-4 right-4 size-10 bg-[#fafafa] rounded-full flex justify-center items-center active:scale-95 hover:scale-105 transition-transform duration-200 z-10">
@@ -25,7 +29,7 @@ const heartActive = ref(props.heartActive)
                 613 Listings
             </span>
         </div>
-        <div class="h-full w-full bg-gradient-to-t from-white to-transparent dark:from-black dark:to-transparent flex p-4 flex-col justify-center gap-2">
+        <div class="h-full w-full bg-gradient-to-t from-[#fafafa] to-transparent dark:from-black dark:to-transparent flex p-4 lg:pt-20 flex-col justify-center gap-2">
             <div class="text-2xl font-medium text-black dark:text-[#e8e8e8]/80">
                 Rebecca Ferguson
             </div>

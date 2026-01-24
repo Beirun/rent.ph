@@ -38,9 +38,9 @@ const selectPartner = (partner: Partner) => {
 </script>
 
 <template>
-  <div class="p-10">
-    <h1 class="text-4xl font-semibold">Partners & Sponsors</h1>
-    <p>Click a logo to view more details.</p>
+  <div class="p-10 ">
+    <h1 class="text-4xl font-semibold">Our Trusted Partners</h1>
+    <p class="uppercase pt-4 text-gray-400 dark:text-gray-500">CLICK LOGO FOR MORE DETAILS.</p>
   </div>
 
   <div
