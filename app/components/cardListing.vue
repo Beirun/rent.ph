@@ -19,7 +19,6 @@ const shareProperty = () => {
   } else {
     // Fallback: copy to clipboard
     navigator.clipboard.writeText(window.location.href)
-    // You could add a toast notification here
   }
 }
 </script>
