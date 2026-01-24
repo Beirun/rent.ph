@@ -45,7 +45,7 @@ const placeDescriptions = [
       />
 
       <div
-        class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-0"
+        class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-100 transition-opacity duration-300 group-hover:opacity-0"
       />
 
       <div
