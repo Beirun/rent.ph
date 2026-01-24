@@ -38,15 +38,15 @@ const stories = [
 
                 <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 justify-center lg:justify-start">
                     <div v-for="story in stories" :key="story.title" class="flex items-start gap-4">
-                            <Icon :name="story.Icon" class="w-8 h-8 text-blue-600 mt-1 fill-blue-600/20" />
+                            <Icon :name="story.Icon" class="w-8 h-8 text-[#fe8e0a] mt-1 fill-blue-600/20" />
 
                         <div class="flex flex-col">
 
-                            <h4 class="text-lg font-semibold">
+                            <h4 class="text-lg text-[#fe8e0a] font-semibold">
                                 {{ story.title }}
                             </h4>
 
-                            <p class="text-gray-600 dark:text-gray-300">
+                            <p class="text-gray-600 text-[#fe8e0a] dark:text-gray-300">
                                 {{ story.label }}
                             </p>
                         </div>
