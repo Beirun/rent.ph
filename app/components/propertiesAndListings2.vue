@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import CardListing from './cardListing.vue'
+import cardListingPropertiesPage from './cardListingPropertiesPage.vue'
 
 const scrollContainer = ref<HTMLElement | null>(null)
 const showLeftArrow = ref(false)
@@ -59,7 +59,7 @@ onUnmounted(() => {
         ref="scrollContainer" 
         class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
       >
-        <CardListing 
+        <cardListingPropertiesPage
           v-for="i in 8" 
           :key="i"
           orientation="vertical" 
@@ -97,7 +97,7 @@ onUnmounted(() => {
         ref="scrollContainer" 
         class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
       >
-        <CardListing 
+        <cardListingPropertiesPage 
           v-for="i in 3" 
           :key="i"
           orientation="vertical" 
@@ -135,7 +135,7 @@ onUnmounted(() => {
         ref="scrollContainer" 
         class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
       >
-        <CardListing 
+        <cardListingPropertiesPage 
           v-for="i in 8" 
           :key="i"
           orientation="vertical" 
@@ -172,7 +172,7 @@ onUnmounted(() => {
         ref="scrollContainer" 
         class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
       >
-        <CardListing 
+        <cardListingPropertiesPage 
           v-for="i in 8" 
           :key="i"
           orientation="vertical" 
@@ -209,7 +209,7 @@ onUnmounted(() => {
         ref="scrollContainer" 
         class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
       >
-        <CardListing 
+        <cardListingPropertiesPage 
           v-for="i in 7" 
           :key="i"
           orientation="vertical" 
