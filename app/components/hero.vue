@@ -18,7 +18,6 @@ onMounted(() => {
   const subtitleElement = subtitleRef.value
   if (!titleElement || !subtitleElement) return
 
-  // Entrance animation for "Rent Your Space"
   gsap.fromTo(
     titleElement,
     {
@@ -36,7 +35,6 @@ onMounted(() => {
     },
   )
 
-  // Entrance animation for subtitle
   gsap.fromTo(
     subtitleElement,
     {
