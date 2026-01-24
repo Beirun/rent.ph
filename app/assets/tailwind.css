@@ -79,7 +79,7 @@
 
 .dark {
   font-family: Poppins;
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.1822 0 0);
   --foreground: oklch(88.837% 0.0001 271.152);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -132,7 +132,14 @@
 }
 
 @layer base {
-  h1, h2, h3, h4, h5, h6, p, span {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span {
     color: var(--foreground);
     @apply transition-colors duration-300;
   }

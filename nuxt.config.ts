@@ -5,13 +5,30 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['./app/assets/tailwind.css'],
+
   vite: {
     plugins: [tailwindcss()],
   },
   image: {
     // Options
   },
-  modules: ['@nuxt/image', '@nuxtjs/color-mode', 'v-gsap-nuxt', 'shadcn-nuxt', '@nuxt/fonts', '@nuxt/icon'],
+  modules: [
+    '@nuxt/image',
+    '@nuxtjs/color-mode',
+    'v-gsap-nuxt',
+    'shadcn-nuxt',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+  ],
+  fonts: {
+    families: [
+      {
+        name: 'Poppins',
+        provider: 'google',
+        weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      },
+    ],
+  },
   shadcn: {
     /**
      * Prefix for all the imported component.
