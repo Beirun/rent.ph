@@ -44,13 +44,13 @@ const testimonials = ref(testimonialsData.map(t => ({ ...t, expanded: false })))
 </script>
 
 <template>
-  <div class="px-12 mt-28 mb-28 w-[98%]">
+  <div class="px-12 mt-28 mb-28  w-[98%]">
     <div class="flex flex-col w-full mb-12">
       <h1 class="text-4xl font-bold">What Our Clients Say About Us</h1>
       <p class="uppercase pt-4 text-gray-400 dark:text-gray-500">Testimonials</p>
     </div>
 
-    <div class="flex flex-wrap gap-4 justify-between">
+    <div class="flex w-full gap-4 justify-between">
       <div 
         v-for="(testimonial, index) in testimonials" 
         :key="index"
@@ -58,8 +58,6 @@ const testimonials = ref(testimonialsData.map(t => ({ ...t, expanded: false })))
           'flex flex-col gap-4 bg-[#fafafa] dark:bg-zinc-900 p-6 w-80 rounded-xl shadow-sm border border-gray-100 dark:border-zinc-800 transform-transition duration-300 hover:scale-110',
         ]"
       >
-
-
         <div class="flex-1 overflow-hidden">
           <p 
             :class="[
