@@ -4,7 +4,9 @@ const truncate = (string: string) => {
 }
 </script>
 <template>
-  <div class="h-175 flex flex-col w-100 rounded-lg shadow-lg overflow-hidden">
+  <div
+    class="h-175 flex flex-col w-100 rounded-lg shadow-lg overflow-hidden bg-[#fafafa] dark:bg-[#212121]"
+  >
     <div class="w-full aspect-square bg-[url('/blog-news.jpg')] bg-cover"></div>
     <div class="h-full w-full p-8 flex flex-col gap-4">
       <div class="flex gap-6 text-sm">
@@ -20,7 +22,7 @@ const truncate = (string: string) => {
         Post-Holiday Budget Reset: A Smart January Money Guide for Filipino Renters
       </div>
       <div class="flex">
-        <div class="leading-6 text-sm text-black/60 text-ellipsis">
+        <div class="leading-6 text-sm text-black/60 dark:text-white/60 text-ellipsis">
           {{
             truncate(`Renting in 2026 is about more than just a monthly fee—it’s about peace of mind. From
           rising utility costs to the need for a home office, your budget needs to work harder than
