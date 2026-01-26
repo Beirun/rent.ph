@@ -13,7 +13,7 @@ const emit = defineEmits<{
 const pages = computed(() => {
   const pages = []
   const maxVisible = 5
-  
+
   if (props.totalPages <= maxVisible) {
     for (let i = 1; i <= props.totalPages; i++) {
       pages.push(i)
@@ -41,7 +41,7 @@ const pages = computed(() => {
       pages.push(props.totalPages)
     }
   }
-  
+
   return pages
 })
 
@@ -59,7 +59,7 @@ const changePage = (page: number | string) => {
       size="sm"
       :disabled="currentPage === 1"
       @click="changePage(currentPage - 1)"
-      class="h-10 w-10 p-0"
+      class="size-8 md:size-10 p-0 text-[11px] md:text-base"
     >
       <Icon name="lucide:chevron-left" />
     </Button>
@@ -71,7 +71,7 @@ const changePage = (page: number | string) => {
       size="sm"
       :disabled="page === '...'"
       @click="changePage(page)"
-      class="h-10 w-10 p-0"
+      class="size-8 md:size-10 p-0 text-[11px] md:text-base"
     >
       {{ page }}
     </Button>
@@ -81,7 +81,7 @@ const changePage = (page: number | string) => {
       size="sm"
       :disabled="currentPage === totalPages"
       @click="changePage(currentPage + 1)"
-      class="h-10 w-10 p-0"
+      class="size-8 md:size-10 p-0 text-[11px] md:text-base"
     >
       <Icon name="lucide:chevron-right" />
     </Button>

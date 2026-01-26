@@ -5,9 +5,9 @@ import RadiantText from '~/components/ui/radiant-text/RadiantText.vue'
 const colorMode = useColorMode()
 const heroBg = computed(() => {
   if (colorMode.preference === 'light') {
-    return ` bg-[linear-gradient(to_top,rgba(255,255,255,1),transparent_15%),url('/hero.jpg')]`
+    return ` bg-[url('/hero.jpg')]`
   } else {
-    return `bg-[linear-gradient(to_top,rgba(18,18,18,1)_0%,transparent_15%),url('/hero-dark.jpg')]`
+    return `bg-[url('/hero-dark.jpg')]`
   }
 })
 
@@ -32,7 +32,7 @@ onMounted(() => {
       y: 0,
       duration: 1.5,
       ease: 'power3.out',
-      delay: 0.25,
+      delay: 2,
     },
   )
   gsap.fromTo(
@@ -46,7 +46,7 @@ onMounted(() => {
       y: 0,
       duration: 3,
       ease: 'power2.out',
-      delay: 0.5,
+      delay: 2.25,
     },
   )
   gsap.fromTo(
@@ -60,7 +60,7 @@ onMounted(() => {
       y: 0,
       duration: 1.2,
       ease: 'power2.out',
-      delay: 0.75,
+      delay: 2.5,
     },
   )
 })

@@ -12,7 +12,6 @@ const changeMode = () => {
   colorMode.preference = colorMode.preference === 'light' ? 'dark' : 'light'
 }
 </script>
-
 <template>
   <Button variant="ghost" @click="changeMode">
     <Icon

@@ -8,9 +8,9 @@ const handlePageChange = (page: number) => {
 }
 </script>
 <template>
-  <div class="w-screen py-10 flex flex-col items-center">
-    <div class="flex text-3xl font-semibold w-9/10 py-10">All Blogs</div>
-    <div class="flex w-9/10 gap-10">
+  <div class="w-screen py-5 md:py-10 flex flex-col items-center">
+    <div class="flex text-3xl font-semibold w-9/10 py-8 md:py-10">All Blogs</div>
+    <div class="flex xl:flex-row flex-col w-9/10 gap-6 md:gap-10">
       <NewsCard v-for="_ in new Array(4)"> </NewsCard>
     </div>
     <div class="flex justify-center">
