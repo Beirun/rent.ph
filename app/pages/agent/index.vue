@@ -78,18 +78,18 @@
             <ClientOnly>
                 <navbar />
             </ClientOnly>
-            <div class="container mx-auto px-10 pt-30 pb-20">
+            <div class="container mx-auto px-4 md:px-10 pt-30 pb-20">
                 <h1 class="text-4xl font-semibold mb-8">Rent Managers</h1>
                 <ClientOnly>
                     <AgentSearchBar />
                 </ClientOnly>
 
-                <div class="mt-12 flex flex-wrap gap-4 gap-y-5 justify-center">
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                     <agentscard v-for="manager in managers" 
                     :key="manager.id" 
                     v-bind="manager"
                     orientation="vertical"
-                    class="w-[calc(25%-1rem)]" />
+                    class="w-full" />
                 </div>
 
                 <div class="flex justify-center mt-12">
