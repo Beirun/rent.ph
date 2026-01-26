@@ -1,33 +1,46 @@
 <script setup lang="ts">
 interface Props {
+  id: string | number
+  photo: string
+  name: string
+  price: number | string
+  location: string
+  reviews: string
+  specifications: any[]
   heartActive?: boolean
   orientation?: string
 }
+
 const props = withDefaults(defineProps<Props>(), {
   heartActive: false,
   orientation: 'vertical',
 })
+
 const heartActive = ref(props.heartActive)
 
-const shareProperty = () => {
-  if (navigator.share) {
-    navigator.share({
-      title: 'Modern Family Home',
-      text: 'Check out this beautiful property!',
-      url: window.location.href,
-    })
-  } else {
-    // Fallback: copy to clipboard
-    navigator.clipboard.writeText(window.location.href)
-  }
+// The function that "carries" the data to [id].vue
+const goToProperty = () => {
+  navigateTo({
+    path: `/property/${props.id}`,
+    query: {
+      name: props.name,
+      photo: props.photo,
+      price: props.price,
+      location: props.location,
+      reviews: props.reviews,
+      specs: JSON.stringify(props.specifications)
+    }
+  })
 }
+
+
+
 </script>
 
 <template>
-  <div
-    v-if="orientation === 'vertical'"
-    class="rounded-xl w-64 flex flex-col shadow-md relative bg-white dark:bg-[#1e1e1e] overflow-hidden"
-  >
+
+  <div v-if="orientation === 'vertical'" @click="goToProperty"
+    class="rounded-xl w-64 flex flex-col shadow-md relative bg-[#fafafa] dark:bg-[#1e1e1e] overflow-hidden">
     <div class="h-32 w-full bg-[url('/img.png')] bg-cover bg-center relative">
       <button
         @click="heartActive = !heartActive"
@@ -46,19 +59,13 @@ const shareProperty = () => {
     </div>
 
     <div class="p-2.5 flex flex-col gap-1">
-      <div class="text-sm font-meduim text-[#262626] dark:text-[#e8e8e8]/80 truncate">
-        Modern Family Home
-      </div>
-      <div class="text-sm font-medium text-[#205ed7]">
-        $850,000<span class="text-[10px] font-normal opacity-70">/month</span>
-      </div>
-
+      <div class="text-sm font-meduim text-[#262626] dark:text-[#e8e8e8]/80 truncate">{{name}}</div>
+      <div class="text-sm font-medium text-[#205ed7]">{{ price.toLocaleString() }}<span class="text-[10px] font-normal opacity-70">/month</span></div>
+      
       <div class="flex items-center gap-2 text-[10px] text-gray-500 dark:text-gray-400 mt-1">
-        <div class="flex items-center gap-0.5"><Icon name="lucide:bed" class="size-3" /> 4</div>
-        <div class="flex items-center gap-0.5"><Icon name="lucide:bath" class="size-3" /> 3</div>
-        <div class="flex items-center gap-0.5">
-          <Icon name="lucide:ruler-dimension-line" class="size-3" /> 2.4k sqft
-        </div>
+        <div class="flex items-center gap-0.5"><Icon name="lucide:bed" class="size-3" /> {{ specifications[0]?.bedrooms }}</div>
+        <div class="flex items-center gap-0.5"><Icon name="lucide:bath" class="size-3" /> {{ specifications[0]?.bathrooms }} </div>
+        <div class="flex items-center gap-0.5"><Icon name="lucide:ruler-dimension-line" class="size-3" />  {{ specifications[0]?.size }} sqft</div>
       </div>
 
       <div class="flex gap-2 items-center mt-1">
@@ -90,10 +97,7 @@ const shareProperty = () => {
               class="size-3 text-gray-700 dark:text-gray-300"
             />
           </button>
-          <button
-            @click="shareProperty"
-            class="size-6 rounded-full bg-gray-100 dark:bg-[#2e2e2e] flex items-center justify-center"
-          >
+          <button class="size-6 rounded-full bg-gray-100 dark:bg-[#2e2e2e] flex items-center justify-center">
             <Icon name="radix-icons:share-2" class="size-3" />
           </button>
           <a
@@ -155,10 +159,7 @@ const shareProperty = () => {
           </div>
         </div>
         <div class="flex gap-1">
-          <button
-            @click="shareProperty"
-            class="size-7 rounded-full bg-gray-100 dark:bg-[#2e2e2e] flex items-center justify-center"
-          >
+          <button class="size-7 rounded-full bg-gray-100 dark:bg-[#2e2e2e] flex items-center justify-center">
             <Icon name="radix-icons:share-2" class="size-3.5" />
           </button>
         </div>
