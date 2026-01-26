@@ -5,9 +5,7 @@
       <p class="uppercase pt-4 text-gray-400 dark:text-gray-500">Top Performers This Month</p>
     </div>
 
-    <!-- Leaderboard Cards -->
     <div class="flex flex-col md:flex-row gap-6 md:gap-12 mt-10 max-w-7xl mx-auto items-center md:items-start justify-center">
-      <!-- Agent Card -->
       <div
         v-for="agent in topAgents"
         :key="agent.rank"
@@ -26,12 +24,10 @@
             'shadow-lg'
           ]"
         >
-          <!-- Portrait Image Section -->
           <div class="h-3/5 w-full relative rounded-t-2xl overflow-hidden">
             <div :style="{ backgroundImage: `url(${agent.avatar})` }"
               class="absolute inset-0 bg-cover bg-center object-cover"></div>
 
-            <!-- Rank Badge Icon -->
             <div
               class="absolute top-4 right-4 w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
               :class="getBadgeConfig(agent.rank).bgColor"
@@ -43,7 +39,6 @@
               />
             </div>
 
-            <!-- Rank Badge Label -->
             <span
               class="absolute top-0 left-0 py-1.5 px-4 text-sm text-[#fafafa] rounded-tl-2xl rounded-br-2xl shadow-sm"
               :class="[
@@ -57,7 +52,6 @@
             </span>
           </div>
 
-          <!-- Simple Content Section -->
           <div class="h-2/5 w-full flex p-4 flex-col justify-between bg-white dark:bg-[#1e1e1e] rounded-b-2xl">
             <div class="text-lg font-medium text-[#262626] dark:text-[#e8e8e8]/80 text-center">{{ agent.name }}</div>
             <div class="flex justify-between items-center">

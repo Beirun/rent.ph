@@ -105,7 +105,6 @@ const toggleMore = (section: 'realEstate' | 'popularSearches' | 'propertyForSale
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Real Estate Market Section -->
       <div class="flex flex-col gap-4">
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Real Estate Market</h3>
         <div class="flex flex-col gap-2">
@@ -127,7 +126,6 @@ const toggleMore = (section: 'realEstate' | 'popularSearches' | 'propertyForSale
         </div>
       </div>
 
-      <!-- Popular Searches Section -->
       <div class="flex flex-col gap-4">
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Popular Searches</h3>
         <div class="flex flex-col gap-2">
@@ -149,7 +147,6 @@ const toggleMore = (section: 'realEstate' | 'popularSearches' | 'propertyForSale
         </div>
       </div>
 
-      <!-- Property for Sale Section -->
       <div class="flex flex-col gap-4">
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Property for Sale</h3>
         <div class="flex flex-col gap-2">
@@ -171,7 +168,6 @@ const toggleMore = (section: 'realEstate' | 'popularSearches' | 'propertyForSale
         </div>
       </div>
 
-      <!-- Property for Rent Section -->
       <div class="flex flex-col gap-4">
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Property for Rent</h3>
         <div class="flex flex-col gap-2">

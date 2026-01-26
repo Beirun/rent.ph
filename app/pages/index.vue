@@ -14,9 +14,6 @@ import Testimonials from '~/components/testimonials.vue'
     <ClientOnly>
       <PropertiesAndListings />
     </ClientOnly>
-    <!-- <ClientOnly>
-      <PartnersAndSponsors />
-    </ClientOnly> -->
     <ClientOnly>
       <LandingPopularRegionSection />
     </ClientOnly>
