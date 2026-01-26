@@ -2,7 +2,7 @@
 <template>
   <div class="w-screen flex justify-center pb-5 md:py-10">
     <div
-      class="flex md:flex-row md:h-100 md:max-h-90 flex-col w-9/10 rounded-lg shadow-lg overflow-hidden bg-[#fafafa] dark:bg-[#212121] border border-[#e8e8e8]/50 dark:border-[#2e2e2e]"
+      class="flex md:flex-row md:h-100 md:max-h-90 flex-col w-9/10 rounded-lg shadow-lg overflow-hidden bg-white dark:bg-[#212121] border border-[#e8e8e8]/50 dark:border-[#2e2e2e]"
     >
       <div class="h-full aspect-square bg-[url('/blog-header.jpg')] bg-cover"></div>
       <div class="w-full justify-between p-6 xl:p-8 flex flex-col gap-2 xl:gap-4">
