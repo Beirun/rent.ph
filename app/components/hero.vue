@@ -73,16 +73,19 @@ onMounted(() => {
     ]"
   >
     <div ref="titleRef" class="flex justify-center text-center px-4">
-      <RadiantText 
+      <RadiantText
         class="text-[#FE8E0A] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold"
-        :duration="8"
+        :duration="15"
         :radiant-width="120"
       >
         Rent Your Space
       </RadiantText>
     </div>
 
-    <div ref="subtitleRef" class="text-black/60 dark:text-white/60 text-base md:text-xl font-medium text-center px-4 max-w-2xl">
+    <div
+      ref="subtitleRef"
+      class="text-black/60 dark:text-white/60 text-base md:text-xl font-medium text-center px-4 max-w-2xl"
+    >
       Discover the perfect property in your ideal location
     </div>
     <div
@@ -124,8 +127,8 @@ onMounted(() => {
       </div>
       <div class="flex h-full items-end">
         <Button class="gap-2 px-4 md:px-6 h-10 md:h-12 w-full md:w-auto">
-          <Icon name="lucide:search" class="bg-[#fafafa] dark:bg-[#121212]" />
-          <span class="text-sm md:text-base">Search</span>
+          <Icon name="lucide:search" class="bg-[#121212] dark:bg-[#fafafa]" />
+          <span class="text-sm md:text-base text-[#121212] dark:text-[#fafafa]">Search</span>
         </Button>
       </div>
     </div>
