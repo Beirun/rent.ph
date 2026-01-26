@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxt/fonts',
     '@nuxt/icon',
+    '@pinia/nuxt',
   ],
   fonts: {
     families: [
