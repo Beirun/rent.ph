@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import LandingLeaderboard from '~/components/landingLeaderboard.vue'
+import LandingPopularRegionSection from '~/components/landingPopularRegionSection.vue'
 import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
-import PropertiesAndListings from '~/components/propertiesAndListings.vue';
+import PropertiesAndListings from '~/components/propertiesAndListings.vue'
 import Testimonials from '~/components/testimonials.vue'
 </script>
 <template>
@@ -12,14 +14,16 @@ import Testimonials from '~/components/testimonials.vue'
     <ClientOnly>
       <PropertiesAndListings />
     </ClientOnly>
-    <!-- <ClientOnly>
-      <PartnersAndSponsors />
-    </ClientOnly> -->
-    <div class="flex items-center justify-center" >
+    <ClientOnly>
+      <LandingPopularRegionSection />
+    </ClientOnly>
+    <LandingLeaderboard />
+    <div class="flex items-center justify-center">
       <ClientOnly>
         <TestimonialsCard />
       </ClientOnly>
     </div>
+
     <ClientOnly>
       <Backlinks />
     </ClientOnly>

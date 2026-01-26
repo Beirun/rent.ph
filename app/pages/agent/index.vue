@@ -1,17 +1,60 @@
 <script setup lang="ts">
-import propertySearchBar from '~/components/propertySearchBar.vue'
 import navbar from '~/components/navbar.vue'
 import pagination from '~/components/pagination.vue'
-import PropertiesPage from '~/components/propertiesPage.vue'
-
+import agentscard from '~/components/agentscard.vue'
+import { number } from 'motion-v'
 const currentPage = ref(1)
 const totalPages = ref(10)
 
 const handlePageChange = (page: number) => {
     currentPage.value = page
-    // Here you would typically fetch new data for the selected page
     console.log('Changed to page:', page)
 }
+const managers = [
+    {
+        id: 1,
+        phone: 123456789,
+        name: 'Rebecca Ferguson',
+        email: 'rebecca@rent.com',
+        photo: '/rebecca.png',
+        location: 'Downtown, Oak Street',
+        status: '613 Listings',
+        reviews: '5 • 12 Reviews',
+    },
+    {
+        id: 2,
+        phone: 123456789,
+        name: 'Tom Cruise',
+        email: 'tom@rent.com',
+        photo: '/img.png',
+        location: 'Manila, PH',
+        status: '120 Listings',
+        reviews: '5 • 12 Reviews',
+
+    },
+    {
+        id: 3,
+        phone: 123456789,
+        name: 'Henry Cavill',
+        email: 'henry@rent.com',
+        photo: '/javie-gemini.png',
+        location: 'Cebu City',
+        status: '45 Listings',
+        reviews: '5 • 12 Reviews',
+
+    },
+    {
+        id: 4,
+        phone: 123456789,
+        name: 'Simon Pegg',
+        email: 'simon@rent.com',
+        photo: '/elaine-gemini.png',
+        location: 'Davao City',
+        status: '12 Listings',
+        reviews: '5 • 12 Reviews',
+
+    },
+]
 </script>
 
 <template>
@@ -26,9 +69,11 @@ const handlePageChange = (page: number) => {
             </ClientOnly>
 
             <div class="mt-12 flex flex-wrap gap-4 gap-y-5 justify-center">
-                <Agentscard v-for="n in new Array(4)" :key="n" orientation="vertical" class="w-[calc(25%-1rem)]" />
+                <agentscard v-for="manager in managers" :key="manager.id" v-bind="manager" orientation="vertical"
+                    class="w-[calc(25%-1rem)]" />
             </div>
-            <div class="flex justify-center">
+
+            <div class="flex justify-center mt-12">
                 <pagination :current-page="currentPage" :total-pages="totalPages" @page-change="handlePageChange" />
             </div>
         </div>

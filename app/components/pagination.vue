@@ -54,7 +54,6 @@ const changePage = (page: number | string) => {
 
 <template>
   <div class="flex justify-center items-center gap-2 mt-8">
-    <!-- Previous Button -->
     <Button
       variant="outline"
       size="sm"
@@ -64,8 +63,7 @@ const changePage = (page: number | string) => {
     >
       <Icon name="lucide:chevron-left" />
     </Button>
-
-    <!-- Page Numbers -->
+    
     <Button
       v-for="page in pages"
       :key="page"
@@ -77,8 +75,7 @@ const changePage = (page: number | string) => {
     >
       {{ page }}
     </Button>
-
-    <!-- Next Button -->
+    
     <Button
       variant="outline"
       size="sm"
