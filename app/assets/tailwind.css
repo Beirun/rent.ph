@@ -44,7 +44,7 @@
 :root {
   font-family: Poppins;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.9865 0.0066 286.28);
   --foreground: rgb(26, 26, 26);
   --card: oklch(1 0 0);
   --card-foreground: oklch(14.479% 0.00002 271.152);
