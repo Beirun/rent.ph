@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
+import RadiantText from '~/components/ui/radiant-text/RadiantText.vue'
 
 const colorMode = useColorMode()
 const heroBg = computed(() => {
@@ -20,7 +21,6 @@ onMounted(() => {
   const searchElement = searchRef.value
   if (!titleElement || !subtitleElement || !searchElement) return
 
-  // Entrance animation for "Rent Your Space"
   gsap.fromTo(
     titleElement,
     {
@@ -35,7 +35,6 @@ onMounted(() => {
       delay: 0.25,
     },
   )
-  // Entrance animation for subtitle
   gsap.fromTo(
     subtitleElement,
     {
@@ -67,28 +66,36 @@ onMounted(() => {
 })
 </script>
 <template>
-  <!-- Adjust padding bottom or top to move hero center elements -->
   <div
     :class="[
-      'h-[75vh] bg-position-[100%_25%] bg-cover w-screen flex flex-col items-center justify-center gap-5',
+      'h-[75vh] md:h-[80vh] bg-position-[100%_25%] bg-cover w-screen flex flex-col items-center justify-center gap-4 md:gap-5 px-4 md:px-0',
       heroBg,
     ]"
   >
-    <div ref="titleRef" class="text-[#FE8E0A] text-8xl font-extrabold">Rent Your Space</div>
-    <div ref="subtitleRef" class="text-black/60 dark:text-white/60 text-xl font-medium">
+    <div ref="titleRef" class="flex justify-center text-center px-4">
+      <RadiantText 
+        class="text-[#FE8E0A] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold"
+        :duration="8"
+        :radiant-width="120"
+      >
+        Rent Your Space
+      </RadiantText>
+    </div>
+
+    <div ref="subtitleRef" class="text-black/60 dark:text-white/60 text-base md:text-xl font-medium text-center px-4 max-w-2xl">
       Discover the perfect property in your ideal location
     </div>
     <div
       ref="searchRef"
-      class="flex bg-[#fafafa] dark:bg-[#212121] mt-12 p-8 rounded-lg gap-4 border dark:border-gray-800 border-gray-200"
+      class="flex flex-col md:flex-row bg-[#fafafa] dark:bg-[#212121] mt-8 md:mt-12 p-4 md:p-8 rounded-lg gap-4 border dark:border-gray-800 border-gray-200 w-full max-w-4xl mx-auto"
     >
-      <div class="flex flex-col gap-4">
-        <Label for="location">Location</Label>
+      <div class="flex flex-col gap-2 md:gap-4 flex-1">
+        <Label for="location" class="text-sm md:text-base">Location</Label>
         <Select id="location">
-          <SelectTrigger class="w-100 py-5">
+          <SelectTrigger class="w-full py-3 md:py-5">
             <SelectValue>
               <Icon name="lucide:map-pin" />
-              <Label>Select/Enter a City</Label>
+              <Label class="text-sm md:text-base">Select/Enter a City</Label>
             </SelectValue>
           </SelectTrigger>
           <SelectContent>
@@ -100,11 +107,11 @@ onMounted(() => {
           </SelectContent>
         </Select>
       </div>
-      <div class="flex flex-col gap-4">
-        <Label for="type">Type</Label>
+      <div class="flex flex-col gap-2 md:gap-4 flex-1">
+        <Label for="type" class="text-sm md:text-base">Type</Label>
         <Select id="type">
-          <SelectTrigger class="w-75 py-5">
-            <SelectValue placeholder="Any" />
+          <SelectTrigger class="w-full py-3 md:py-5">
+            <SelectValue placeholder="Any" class="text-sm md:text-base" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -116,9 +123,9 @@ onMounted(() => {
         </Select>
       </div>
       <div class="flex h-full items-end">
-        <Button class="gap-2 px-6 h-12">
+        <Button class="gap-2 px-4 md:px-6 h-10 md:h-12 w-full md:w-auto">
           <Icon name="lucide:search" class="bg-[#fafafa] dark:bg-[#121212]" />
-          Search
+          <span class="text-sm md:text-base">Search</span>
         </Button>
       </div>
     </div>
