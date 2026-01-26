@@ -24,6 +24,7 @@ const overlay = ref()
 const logo = ref()
 
 onMounted(() => {
+  const { setIsSplashScreenLoaded } = useGSAPStore()
   const el = overlay.value
   const logoEl = logo.value
   const maxR = Math.max(window.innerWidth, window.innerHeight)
@@ -70,6 +71,7 @@ onMounted(() => {
       },
     },
   )
+  setIsSplashScreenLoaded(true)
 })
 </script>
 <template>

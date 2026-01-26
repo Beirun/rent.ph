@@ -17,7 +17,7 @@ const subtitleRef = ref<HTMLElement>()
 const searchRef = ref<HTMLElement>()
 
 onMounted(() => {
-  const { isFirstLoad, setIsFirstLoad } = useGSAPStore()
+  const { isFirstLoad, setIsFirstLoad, isSplashScreenLoaded } = useGSAPStore()
   if (isFirstLoad) {
     const titleElement = titleRef.value
     const subtitleElement = subtitleRef.value
@@ -35,7 +35,7 @@ onMounted(() => {
         y: 0,
         duration: 1.5,
         ease: 'power3.out',
-        delay: 2,
+        delay: 2 + (isSplashScreenLoaded ? -1.75 : 0),
       },
     )
     gsap.fromTo(
@@ -49,7 +49,7 @@ onMounted(() => {
         y: 0,
         duration: 3,
         ease: 'power2.out',
-        delay: 2.25,
+        delay: 2.25 + (isSplashScreenLoaded ? -1.75 : 0),
       },
     )
     gsap.fromTo(
@@ -63,7 +63,7 @@ onMounted(() => {
         y: 0,
         duration: 1.2,
         ease: 'power2.out',
-        delay: 2.5,
+        delay: 2.5 + (isSplashScreenLoaded ? -1.75 : 0),
       },
     )
     setIsFirstLoad(false)
