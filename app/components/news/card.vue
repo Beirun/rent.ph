@@ -5,7 +5,7 @@ const truncate = (string: string) => {
 </script>
 <template>
   <div
-    class="grow flex flex-row xl:flex-col w-full xl:w-100 h-25 md:h-55 xl:h-auto rounded-lg shadow-lg overflow-hidden bg-[#fafafa] dark:bg-[#212121] border border-[#e8e8e8]/50 dark:border-[#2e2e2e]"
+    class="grow flex flex-row xl:flex-col w-full xl:w-100 h-25 md:h-55 xl:h-auto rounded-lg shadow-lg overflow-hidden bg-white dark:bg-[#212121] border border-[#e8e8e8]/50 dark:border-[#2e2e2e]"
   >
     <div class="xl:w-full aspect-square bg-[url('/blog-news.jpg')] bg-cover"></div>
     <div class="h-full w-full p-2 md:p-8 flex flex-col gap-0.5 md:gap-4">
