@@ -1,24 +1,24 @@
 <script setup lang="ts"></script>
 <template>
   <div
-    class="flex bg-[#fafafa] dark:bg-[#212121] p-6 rounded-lg gap-4 border dark:border-gray-800 border-gray-200 drop-shadow-md w-full max-w-8xl mx-auto"
+    class="flex flex-col md:flex-row bg-white dark:bg-[#212121] p-4 md:p-6 rounded-lg gap-4 border dark:border-gray-800 border-gray-200 drop-shadow-md w-full max-w-8xl mx-auto"
   >
-    <div class="flex flex-col gap-4 flex-1">
-      <Label for="location">Keyword</Label>
+    <div class="flex flex-col gap-2 md:gap-4 flex-1">
+      <Label for="location" class="text-sm md:text-base">Keyword</Label>
       <Input
         name="keyword"
-        class="w-full py-2 pl-3 border border-dark-100 rounded-md text-sm h-10.5"
+        class="w-full py-3 md:py-5 pl-3 border border-dark-100 rounded-md text-sm h-10 md:h-12"
         icon="i-lucide-search"
         placeholder="Keyword"
       />
     </div>
-    <div class="flex flex-col gap-4 flex-1">
-      <Label for="location">Location</Label>
+    <div class="flex flex-col gap-2 md:gap-4 flex-1">
+      <Label for="location" class="text-sm md:text-base">Location</Label>
       <Select id="location">
-        <SelectTrigger class="w-full py-5">
+        <SelectTrigger class="w-full py-3 md:py-5">
           <SelectValue>
             <Icon name="lucide:map-pin" />
-            <Label>Select/Enter a City</Label>
+            <Label class="text-sm md:text-base">Select/Enter a City</Label>
           </SelectValue>
         </SelectTrigger>
         <SelectContent>
@@ -30,11 +30,11 @@
         </SelectContent>
       </Select>
     </div>
-    <div class="flex flex-col gap-4 flex-1">
-      <Label for="type">Type</Label>
+    <div class="flex flex-col gap-2 md:gap-4 flex-1">
+      <Label for="type" class="text-sm md:text-base">Type</Label>
       <Select id="type">
-        <SelectTrigger class="w-full py-5">
-          <SelectValue placeholder="Any" />
+        <SelectTrigger class="w-full py-3 md:py-5">
+          <SelectValue placeholder="Any" class="text-sm md:text-base" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -45,11 +45,11 @@
         </SelectContent>
       </Select>
     </div>
-    <div class="flex flex-col gap-4 flex-1">
-      <Label for="PriceRange">Price Range</Label>
+    <div class="flex flex-col gap-2 md:gap-4 flex-1">
+      <Label for="PriceRange" class="text-sm md:text-base">Price Range</Label>
       <Select id="PriceRange">
-        <SelectTrigger class="w-full py-5">
-          <SelectValue placeholder="Any" />
+        <SelectTrigger class="w-full py-3 md:py-5">
+          <SelectValue placeholder="Any" class="text-sm md:text-base" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -61,10 +61,10 @@
       </Select>
     </div>
 
-    <div class="flex items-end">
-      <Button class="gap-2 px-8 py-5.25 min-w-[120px]">
-        <Icon name="lucide:search" class="bg-[#fafafa] dark:bg-[#121212]" />
-        Search
+    <div class="flex h-full items-end">
+      <Button class="gap-2 px-4 md:px-6 h-10 md:h-12 w-full md:w-auto">
+        <Icon name="lucide:search" class="bg-white dark:bg-[#121212]" />
+        <span class="text-sm md:text-base">Search</span>
       </Button>
     </div>
   </div>

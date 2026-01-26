@@ -7,7 +7,7 @@ const isCurrentRoute = (path: string) => {
 const scrollPosY = ref(0)
 const navbarClass = computed(() => {
   if (scrollPosY.value >= 30)
-    return 'w-11/12 h-4/5 rounded-[2rem] bg-[#fafafa]/30 dark:bg-[#2e2e2e]/30 px-4 md:px-8 backdrop-blur-xs'
+    return 'w-11/12 h-4/5 rounded-[2rem] bg-white/30 dark:bg-[#2e2e2e]/30 px-4 md:px-8 backdrop-blur-xs'
   else return 'w-full h-full px-2 md:px-6 lg:px-10 xl:px-12'
 })
 const ypos = () => {

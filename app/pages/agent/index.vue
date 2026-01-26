@@ -76,7 +76,7 @@ import { number } from 'motion-v'
             <ClientOnly>
                 <navbar />
             </ClientOnly>
-            <div class="container mx-auto px-10 pt-30 pb-20">
+            <div class="container mx-auto px-4 md:px-10 pt-30 pb-20">
                 <h1 class="text-4xl font-semibold mb-8">Rent Managers</h1>
                 <ClientOnly>
                     <AgentSearchBar />
