@@ -8,15 +8,16 @@ import propertiesAndListings2 from '~/components/propertiesAndListings2.vue'
 const currentPage = ref(1)
 const totalPages = ref(10)
 
-// 1. ADD YOUR DATA ARRAY HERE
 const properties = [
   {
     id: 1,
+    type: 'Apartment',
     name: 'Modern Family Home',
-    photo: '/img.png', // Ensure this path is correct in your public folder
+    photo: '/hero.jpg',
     price: 850000,
     reviews: '5 • 12 Reviews',
-    agent: 'Bryl Daren',
+    agent: 'Rebecca Ferguson',
+    agentphoto: '/img.png',
     location: '123 Oak Street, Cebu City',
     specifications: [
       { bedrooms: 4, bathroom: 3, size: 2.4 }
@@ -24,58 +25,68 @@ const properties = [
   },
   {
     id: 2,
+    type: 'House',
     name: 'Luxury Condo Unit',
-    photo: '/img.png',
+    photo: '/aboutimg.png',
     price: 1200000,
     reviews: '4.8 • 20 Reviews',
     agent: 'Kobe Amaro',
+    agentphoto: '/rebecca.png',
     location: 'IT Park, Cebu City',
     specifications: [
       { bedrooms: 2, bathroom: 2, size: 1.2 }
     ]
   },
   {
-    id: 2,
-    name: 'Luxury Condo Unit',
-    photo: '/img.png',
+    id: 3,
+    type: 'Motel',
+    name: ' Condo Unit',
+    photo: '/aboutimg2.png',
     price: 1200000,
     reviews: '4.8 • 20 Reviews',
-    agent: 'Kobe Amaro',
+    agent: 'Btryl Daren',
+    agentphoto: '/rebecca.png',
     location: 'IT Park, Cebu City',
     specifications: [
       { bedrooms: 2, bathroom: 2, size: 1.2 }
     ]
   },
   {
-    id: 2,
-    name: 'Luxury Condo Unit',
-    photo: '/img.png',
+    id: 4,
+    type: 'Penthouse',
+    name: 'Luxury Unit',
+    photo: '/hero.jpg',
     price: 1200000,
     reviews: '4.8 • 20 Reviews',
-    agent: 'Kobe Amaro',
+    agent: 'Bernerd Orion',
+    agentphoto: '/rebecca.png',
     location: 'IT Park, Cebu City',
     specifications: [
       { bedrooms: 2, bathroom: 2, size: 1.2 }
     ]
   },
   {
-    id: 2,
-    name: 'Luxury Condo Unit',
-    photo: '/img.png',
+    id: 5,
+    name: 'Sogo Unit',
+    type: 'Hotel',
+    photo: '/hero-dark.jpg',
     price: 1200000,
     reviews: '4.8 • 20 Reviews',
     agent: 'Kobe Amaro',
+    agentphoto: '/rebecca.png',
     location: 'IT Park, Cebu City',
     specifications: [
       { bedrooms: 2, bathroom: 2, size: 1.2 }
     ]
   }, {
-    id: 2,
+    id: 6,
+    type: 'Condo',
     name: 'Luxury Condo Unit',
     photo: '/img.png',
     price: 1200000,
     reviews: '4.8 • 20 Reviews',
     agent: 'Kobe Amaro',
+    agentphoto: '/rebecca.png',
     location: 'IT Park, Cebu City',
     specifications: [
       { bedrooms: 2, bathroom: 2, size: 1.2 }

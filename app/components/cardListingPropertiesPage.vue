@@ -1,11 +1,14 @@
 <script setup lang="ts">
 interface Props {
   id: string | number
+  type: string
   photo: string
   name: string
   price: number | string
   location: string
+  agent: string
   reviews: string
+  agentphoto: string
   specifications: any[]
   heartActive?: boolean
   orientation?: string
@@ -24,8 +27,11 @@ const goToProperty = () => {
     path: `/property/${props.id}`,
     query: {
       name: props.name,
+      type: props.type,
       photo: props.photo,
       price: props.price,
+      agent: props.agent,
+      agentphoto: props.agentphoto,
       location: props.location,
       reviews: props.reviews,
       specs: JSON.stringify(props.specifications)
@@ -41,31 +47,33 @@ const goToProperty = () => {
 
   <div v-if="orientation === 'vertical'" @click="goToProperty"
     class="rounded-xl w-64 flex flex-col shadow-md relative bg-[#fafafa] dark:bg-[#1e1e1e] overflow-hidden">
-    <div class="h-32 w-full bg-[url('/img.png')] bg-cover bg-center relative">
-      <button
-        @click="heartActive = !heartActive"
-        class="absolute top-2 right-2 size-7 bg-white/90 dark:bg-[#3e3e3e]/90 rounded-full flex justify-center items-center active:scale-95 transition-transform shadow-sm"
-      >
-        <Icon
-          :name="!heartActive ? 'radix-icons:heart' : 'radix-icons:heart-filled'"
-          :class="['size-4', heartActive ? 'text-red-500' : 'text-gray-700 dark:text-gray-300']"
-        />
+    <div class="h-32 w-full bg-cover bg-center relative" :style="{ backgroundImage: `url(${photo})` }">
+      <button @click.stop="heartActive = !heartActive"
+        class="absolute top-2 right-2 size-7 bg-[#fafafa]/90 dark:bg-[#3e3e3e]/90 rounded-full flex justify-center items-center active:scale-95 transition-transform shadow-sm">
+        <Icon :name="!heartActive ? 'radix-icons:heart' : 'radix-icons:heart-filled'"
+          :class="['size-4', heartActive ? 'text-red-500' : 'text-gray-700 dark:text-gray-300']" />
       </button>
-      <span
-        class="absolute top-0 left-0 py-1 px-3 text-[10px] uppercase text-[#fafafa] bg-[#205ed7] rounded-br-xl"
-      >
-        House And Lot
+
+      <span class="absolute top-0 left-0 py-1 px-3 text-[10px] uppercase text-[#fafafa] bg-[#205ed7] rounded-br-xl">
+        {{ type }}
       </span>
     </div>
 
     <div class="p-2.5 flex flex-col gap-1">
-      <div class="text-sm font-meduim text-[#262626] dark:text-[#e8e8e8]/80 truncate">{{name}}</div>
-      <div class="text-sm font-medium text-[#205ed7]">{{ price.toLocaleString() }}<span class="text-[10px] font-normal opacity-70">/month</span></div>
-      
+      <div class="text-sm font-meduim text-[#262626] dark:text-[#e8e8e8]/80 truncate">{{ name }}</div>
+      <div class="text-sm font-medium text-[#205ed7]">₱{{ price.toLocaleString() }}<span
+          class="text-[10px] font-normal opacity-70">/month</span></div>
+
       <div class="flex items-center gap-2 text-[10px] text-gray-500 dark:text-gray-400 mt-1">
-        <div class="flex items-center gap-0.5"><Icon name="lucide:bed" class="size-3" /> {{ specifications[0]?.bedrooms }}</div>
-        <div class="flex items-center gap-0.5"><Icon name="lucide:bath" class="size-3" /> {{ specifications[0]?.bathrooms }} </div>
-        <div class="flex items-center gap-0.5"><Icon name="lucide:ruler-dimension-line" class="size-3" />  {{ specifications[0]?.size }} sqft</div>
+        <div class="flex items-center gap-0.5">
+          <Icon name="radix-icons:dashboard" class="size-3" /> {{ specifications[0]?.bedrooms }}
+        </div>
+        <div class="flex items-center gap-0.5">
+          <Icon name="lucide:bath" class="size-3" /> {{ specifications[0]?.bathroom }}
+        </div>
+        <div class="flex items-center gap-0.5">
+          <Icon name="lucide:ruler-dimension-line" class="size-3" /> {{ specifications[0]?.size }} sqft
+        </div>
       </div>
 
       <div class="flex gap-2 items-center mt-1">
@@ -80,12 +88,10 @@ const goToProperty = () => {
       >
         <div class="flex gap-1.5 items-center">
           <Avatar class="size-5">
-            <AvatarImage
-              src="https://fastly.picsum.photos/id/479/100/100.jpg?hmac=2bYIJatdhVz-KV7QeLE6e4uFuTocBVeVuMAH1wklub8"
-            />
+            <NuxtImg :src="agentphoto" />
             <AvatarFallback class="text-[8px]">BD</AvatarFallback>
           </Avatar>
-          <span class="text-[10px] font-medium opacity-80">Bryl Darel</span>
+          <span class="text-[10px] font-medium opacity-80">{{ agent }}</span>
         </div>
         <div class="flex gap-1">
           <button
@@ -100,12 +106,10 @@ const goToProperty = () => {
           <button class="size-6 rounded-full bg-gray-100 dark:bg-[#2e2e2e] flex items-center justify-center">
             <Icon name="radix-icons:share-2" class="size-3" />
           </button>
-          <a
-            href="https://wa.me/?text=Check%20out%20this%20property%3A%20Modern%20Family%20Home%20-%20%24850%2C000%2Fmonth"
+          <a href="https://wa.me/?text=Check%20out%20this%20property%3A%20Modern%20Family%20Home%20-%20%24850%2C000%2Fmonth"
             target="_blank"
             class="size-6 rounded-full bg-green-500 flex items-center justify-center hover:bg-green-600 transition-colors"
-            title="Contact on WhatsApp"
-          >
+            title="Contact on WhatsApp">
             <Icon name="radix-icons:chat-bubble" class="size-3 text-white" />
           </a>
         </div>
@@ -113,10 +117,8 @@ const goToProperty = () => {
     </div>
   </div>
 
-  <div
-    v-else
-    class="h-36 w-full max-w-md flex shadow-md relative bg-white dark:bg-[#1e1e1e] rounded-xl overflow-hidden"
-  >
+  <div v-else
+    class="h-36 w-full max-w-md flex shadow-md relative bg-[#fafafa] dark:bg-[#1e1e1e] rounded-xl overflow-hidden">
     <div class="h-full w-32 bg-[url('/img.png')] bg-cover bg-center relative flex-shrink-0">
       <span
         class="absolute top-0 left-0 py-0.5 px-2 text-[9px] font-bold text-[#fafafa] bg-[#205ed7] rounded-br-lg"
@@ -131,10 +133,8 @@ const goToProperty = () => {
             Modern Family Home
           </div>
           <button @click="heartActive = !heartActive" class="flex-shrink-0">
-            <Icon
-              :name="!heartActive ? 'radix-icons:heart' : 'radix-icons:heart-filled'"
-              :class="['size-4', heartActive ? 'text-red-500' : 'text-gray-400']"
-            />
+            <Icon :name="!heartActive ? 'radix-icons:heart' : 'radix-icons:heart-filled'"
+              :class="['size-4', heartActive ? 'text-red-500' : 'text-gray-400']" />
           </button>
         </div>
         <div class="text-xs text-gray-500 truncate">123 Oak Street, Downtown</div>
@@ -148,12 +148,7 @@ const goToProperty = () => {
           </div>
           <div class="flex items-center gap-1">
             <div class="flex">
-              <Icon
-                v-for="n in 5"
-                :key="n"
-                name="radix-icons:star-filled"
-                class="size-2.5 text-yellow-500"
-              />
+              <Icon v-for="n in 5" :key="n" name="radix-icons:star-filled" class="size-2.5 text-yellow-500" />
             </div>
             <span class="text-[9px] opacity-60">(12)</span>
           </div>
