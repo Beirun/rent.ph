@@ -31,7 +31,7 @@ const anchors = [
     label: 'Rent Managers',
   },
   {
-    link: '/news',
+    link: '/blogs',
     label: 'Blog',
   },
   {
