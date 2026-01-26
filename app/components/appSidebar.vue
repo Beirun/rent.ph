@@ -13,10 +13,7 @@ defineProps<{
     <SheetContent class="xl:hidden w-70 flex">
       <SheetHeader>
         <div class="flex justify-center">
-          <NuxtImg
-            src="/rentph-logo.png"
-            class="h-12 drop-shadow-lg drop-shadow-[#eecfa6]/80 dark:drop-shadow-[#e0af6e]/40"
-          />
+          <NuxtImg src="/rentph-logo.png" class="h-12" />
         </div>
       </SheetHeader>
       <div class="flex h-full flex-col p-4 gap-8">
