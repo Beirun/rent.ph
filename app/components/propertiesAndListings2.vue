@@ -2,238 +2,39 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import cardListingPropertiesPage from './cardListingPropertiesPage.vue'
 
-const scrollContainer = ref<HTMLElement | null>(null)
-const showLeftArrow = ref(false)
-const showRightArrow = ref(true)
-
-// Function to calculate visibility of arrows
-const updateArrows = () => {
-  if (scrollContainer.value) {
-    const { scrollLeft, scrollWidth, clientWidth } = scrollContainer.value
-        showLeftArrow.value = scrollLeft > 10
-        showRightArrow.value = scrollLeft + clientWidth < scrollWidth - 10
-  }
-}
-
-const scroll = (direction: 'left' | 'right') => {
-  if (scrollContainer.value) {
-    const scrollAmount = 350 
-    scrollContainer.value.scrollBy({
-      left: direction === 'right' ? scrollAmount : -scrollAmount,
-      behavior: 'smooth',
-    })
-  }
-}
-
-onMounted(() => {
-  const el = scrollContainer.value
-  if (el) {
-    el.addEventListener('scroll', updateArrows)
-    updateArrows()
-  }
-})
-
-onUnmounted(() => {
-  scrollContainer.value?.removeEventListener('scroll', updateArrows)
-})
 </script>
-
 <template>
-  <div class="px-12 flex flex-col mt-15 max-w-[98%] mx-auto">
-    <div class="flex flex-col w-full">
-      <h1 class="text-2xl font-bold">Popular Listings</h1>
-      <p class="uppercase text-sm text-gray-400 dark:text-gray-500">Top picks from our community</p>
-    </div>
+  <div class="px-12 flex flex-col mt-15 max-w-full mx-auto">
+    
+    <PropertyCarousel 
+      title="Popular Listings" 
+      subtitle="Top picks from our community" 
+      :items-count="8" 
+    />
 
-    <div class="relative group">
-      
-      <button 
-        v-if="showLeftArrow"
-        @click="scroll('left')"
-        class="absolute -left-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all ease-in ease-out active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-left" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
+    <PropertyCarousel 
+      title="Recently Visited" 
+      subtitle="Pick up where you left off" 
+      :items-count="3" 
+    />
 
-      <div 
-        ref="scrollContainer" 
-        class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
-      >
-        <cardListingPropertiesPage
-          v-for="i in 8" 
-          :key="i"
-          orientation="vertical" 
-          class="snap-start shrink-0"
-        />
-      </div>
+    <PropertyCarousel 
+      title="Listings Near You" 
+      subtitle="Properties right around the corner" 
+      :items-count="8" 
+    />
 
-      <button 
-        v-if="showRightArrow"
-        @click="scroll('right')"
-        class="absolute -right-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-right" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
-      
-    </div>
+    <PropertyCarousel 
+      title="New Listings" 
+      subtitle="Freshest properties added to our platform" 
+      :items-count="8" 
+    />
 
-    <!--------------------------------------------------------------------------------------------------->
-    <div class="flex flex-col w-full mt-15">
-      <h1 class="text-2xl font-bold">Recently Visited</h1>
-      <p class="uppercase text-sm text-gray-400 dark:text-gray-500">Pick up where you left off</p>
-    </div>
+    <PropertyCarousel 
+      title="Budget Friendly" 
+      subtitle="High-quality homes that fit your wallet perfectly" 
+      :items-count="7" 
+    />
 
-    <div class="relative group">
-      
-      <button 
-        v-if="showLeftArrow"
-        @click="scroll('left')"
-        class="absolute -left-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all ease-in ease-out active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-left" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
-
-      <div 
-        ref="scrollContainer" 
-        class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
-      >
-        <cardListingPropertiesPage 
-          v-for="i in 3" 
-          :key="i"
-          orientation="vertical" 
-          class="snap-start shrink-0"
-        />
-      </div>
-
-      <button 
-        v-if="showRightArrow"
-        @click="scroll('right')"
-        class="absolute -right-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-right" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
-      
-    </div>
-
-    <!----------------------------------------------------------------------------------------->
-    <div class="flex flex-col w-full mt-15">
-        <h1 class="text-2xl font-bold">Listings Near You</h1>
-        <p class="uppercase text-sm text-gray-400 dark:text-gray-500">Properties right around the corner</p>
-    </div>
-
-    <div class="relative group">
-      
-      <button 
-        v-if="showLeftArrow"
-        @click="scroll('left')"
-        class="absolute -left-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all ease-in ease-out active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-left" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
-
-      <div 
-        ref="scrollContainer" 
-        class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
-      >
-        <cardListingPropertiesPage 
-          v-for="i in 8" 
-          :key="i"
-          orientation="vertical" 
-          class="snap-start shrink-0"
-        />
-      </div>
-
-      <button 
-        v-if="showRightArrow"
-        @click="scroll('right')"
-        class="absolute -right-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-right" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
-    </div>
-
-  <!------------------------------------------------------------------------------------------------------->
-    <div class="flex flex-col w-full mt-15">
-        <h1 class="text-2xl font-bold">New Listings</h1>
-        <p class="uppercase text-sm text-gray-400 dark:text-gray-500">freshest properties added to our platform</p>
-    </div>
-
-    <div class="relative group">
-      
-      <button 
-        v-if="showLeftArrow"
-        @click="scroll('left')"
-        class="absolute -left-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all ease-in ease-out active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-left" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
-
-      <div 
-        ref="scrollContainer" 
-        class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
-      >
-        <cardListingPropertiesPage 
-          v-for="i in 8" 
-          :key="i"
-          orientation="vertical" 
-          class="snap-start shrink-0"
-        />
-      </div>
-
-      <button 
-        v-if="showRightArrow"
-        @click="scroll('right')"
-        class="absolute -right-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-right" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
-    </div>
-
-    <!--------------------------------------------------------------------------------------->
-    <div class="flex flex-col w-full mt-15">
-        <h1 class="text-2xl font-bold">Budget Friendly</h1>
-        <p class="uppercase text-sm text-gray-400 dark:text-gray-500">high-quality homes that fit your wallet perfectly</p>
-    </div>
-
-    <div class="relative group">
-      
-      <button 
-        v-if="showLeftArrow"
-        @click="scroll('left')"
-        class="absolute -left-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all ease-in ease-out active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-left" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
-
-      <div 
-        ref="scrollContainer" 
-        class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
-      >
-        <cardListingPropertiesPage 
-          v-for="i in 7" 
-          :key="i"
-          orientation="vertical" 
-          class="snap-start shrink-0"
-        />
-      </div>
-
-      <button 
-        v-if="showRightArrow"
-        @click="scroll('right')"
-        class="absolute -right-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all active:scale-95"
-      >
-        <Icon name="radix-icons:arrow-right" class="size-6 text-gray-700 dark:text-gray-200" />
-      </button>
-    </div>
   </div>
 </template>
-
-<style scoped>
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-</style>
