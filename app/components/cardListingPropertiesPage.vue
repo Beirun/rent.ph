@@ -88,7 +88,7 @@ const goToProperty = () => {
   <div
     v-if="orientation === 'vertical'"
     @click="goToProperty"
-    class="rounded-xl w-64 flex flex-col shadow-md relative bg-[#fafafa] dark:bg-[#1e1e1e] overflow-hidden"
+    class="rounded-xl w-64 flex flex-col shadow-md relative bg-[#fafafa] dark:bg-[#1e1e1e] overflow-hidden cursor-pointer"
   >
     <div
       class="h-32 w-full bg-cover bg-center relative"
