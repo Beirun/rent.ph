@@ -1,333 +1,194 @@
 <script setup lang="ts">
     const route = useRoute()
     const { id } = route.params
-
-    const relatedBlogs = [
-        {
-            id: 1
-        },
-        {
-            id: 2
-        },
-    ]
 </script>
 <template>
-    <div id="HeadSection">
-        <p>How Much Rent Can You Really Afford in 2026? A Practical Budgeting Guide for Filipino Renters</p>
-        <div id="DetailsSection">
-            <div>
-                <Icon name="lucide:calendar-clock"/>
-                <p>01/26/2026</p>
+    <div class="w-screen min-h-screen">
+        <ClientOnly>
+            <navbar />
+        </ClientOnly>
+            <div id="HeadSection" class="justify-items-center">
+                <p class="text-5xl pt-50 font-bold w-1/2 text-center">How Much Rent Can You Really Afford in 2026? A Practical Budgeting Guide for Filipino Renters</p>    
+                <div id="DetailsSection" class="flex flex-row gap-5 mt-5">
+                    <div class="flex flex-row gap-3 items-center">
+                        <Icon name="lucide:calendar-clock" />
+                        <p>01/26/2026</p>
+                    </div>
+                    <p>|</p>
+                    <div class="flex flex-row gap-3 items-center">
+                        <Icon name="lucide:eye" />
+                        <p>376 views</p>
+                    </div>
+                </div>
             </div>
-            <div>
-                <Icon name="lucide:eye" />
-                <p>376 views</p>
+            <div id="SocialSection mx-auto" class="justify-items-center mt-10">
+                <img src="/blog-news.jpg" alt="" class="w-150 h-150">
+                <div class="justify-start items-center w-215 flex flex-row gap-3 mt-20">
+                    <p>Share</p>
+                    <Icon name="lucide:facebook" class="text-blue-500"/>
+                    <Icon name="ic:baseline-whatsapp" class="text-green-500"/>
+                    <Icon name="lucide:link"/>
+                </div>
+            </div>
+            <div class="max-w-4xl mx-auto px-4 py-8 text-gray-900 font-sans leading-relaxed">
+
+                <div class="mb-8">
+                <h1 class="text-3xl font-bold mb-6 text-black">
+                    How Much Rent Can You Really Afford in 2026?
+                </h1>
+                <p class="mb-4">
+                    Renting a home in the Philippines has never been a simple decision—but in 2026, it’s more important than ever to get your budget right. With rising living costs, changing work setups, and higher expectations for comfort and safety, many Filipinos are asking the same question:
+                </p>
+                <p class="font-bold text-xl italic mb-4">
+                    “How much rent can I really afford?”
+                </p>
+                <p>
+                    The good news? You don’t need to be a finance expert to figure it out. This guide breaks down rent affordability in a simple, realistic way.
+                </p>
+                </div>
+
+                <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Why Rent Budgeting Matters More in 2026</h2>
+                <p class="mb-4">
+                    In previous years, renters often focused only on monthly rent. But in 2026, affordability goes beyond just paying the landlord. Careful planning matters because:
+                </p>
+                <ul class="list-disc ml-6 mb-4 space-y-2">
+                    <li><strong>Utility costs</strong> continue to rise.</li>
+                    <li><strong>Transportation expenses</strong> vary by location.</li>
+                    <li><strong>Remote and hybrid work</strong> affect housing needs.</li>
+                    <li><strong>Emergency savings</strong> are no longer optional.</li>
+                </ul>
+                <p class="font-semibold">
+                    Note: Choosing a rent that’s too high can quickly lead to stress, debt, or having to move again sooner than planned.
+                </p>
+                </div>
+
+                <hr class="my-8 border-gray-300" />
+
+                <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">The 30% Rule: A Good Starting Point</h2>
+                <p class="mb-4">
+                    A common guideline is the 30% rule, which suggests spending no more than 30% of your monthly income on rent.
+                </p>
+                <div class="mb-4 pl-4 border-l-4 border-gray-300">
+                    <p><strong>Monthly income:</strong> ₱30,000</p>
+                    <p><strong>Ideal rent budget:</strong> ₱9,000</p>
+                </div>
+                <p>
+                    This rule is helpful—but it doesn’t work perfectly for everyone. In the Philippines, factors like extended family support, side hustles, and shared housing often change the equation.
+                </p>
+                </div>
+
+                <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">A More Realistic Filipino Rent Formula</h2>
+                <p class="mb-6">Instead of focusing on rent alone, consider your total monthly living expenses.</p>
+
+                <div class="space-y-6">
+                    <div>
+                    <h3 class="font-bold text-lg">Step 1: List Your Monthly Income</h3>
+                    <p>Include salary (net take-home pay) and conservative estimates of freelance/side income.</p>
+                    </div>
+
+                    <div>
+                    <h3 class="font-bold text-lg">Step 2: List Essential Expenses</h3>
+                    <ul class="list-disc ml-6 mt-2">
+                        <li>Food & groceries</li>
+                        <li>Transportation</li>
+                        <li>Utilities (electricity, water, internet)</li>
+                        <li>Mobile load or plan</li>
+                        <li>Insurance & healthcare</li>
+                        <li>Debt payments (loans, credit cards)</li>
+                    </ul>
+                    </div>
+
+                    <div>
+                    <h3 class="font-bold text-lg">Step 3: Add Savings (Non-Negotiable)</h3>
+                    <p>Aim for an emergency fund, short-term goals, and future housing plans.</p>
+                    </div>
+
+                    <div>
+                    <h3 class="font-bold text-lg">Step 4: What’s Left Is Your Rent Budget</h3>
+                    <p>If rent leaves you with nothing to save, it’s not affordable—no matter how nice the place looks.</p>
+                    </div>
+                </div>
+                </div>
+
+                <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Hidden Costs Many Renters Forget</h2>
+                <p class="mb-4">Rent isn’t your only housing expense. Before committing, factor in:</p>
+                <ul class="list-disc ml-6 space-y-1">
+                    <li>Security deposit & advance rent (usually 1–2 months each)</li>
+                    <li>Association dues (for condos and gated communities)</li>
+                    <li>Parking fees</li>
+                    <li>Furnishing costs</li>
+                    <li>Moving expenses</li>
+                </ul>
+                </div>
+
+                <div class="mb-10">
+                <h2 class="text-2xl font-bold mb-4">Rent Budget Examples for 2026</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse border border-gray-300">
+                    <thead class="bg-gray-100">
+                        <tr>
+                        <th class="border border-gray-300 px-4 py-2 font-bold">Persona</th>
+                        <th class="border border-gray-300 px-4 py-2 font-bold">Income Range</th>
+                        <th class="border border-gray-300 px-4 py-2 font-bold">Ideal Rent</th>
+                        <th class="border border-gray-300 px-4 py-2 font-bold">Best Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td class="border border-gray-300 px-4 py-2 font-semibold">Single Professional</td>
+                        <td class="border border-gray-300 px-4 py-2">₱25,000–₱35,000</td>
+                        <td class="border border-gray-300 px-4 py-2">₱7,000–₱10,000</td>
+                        <td class="border border-gray-300 px-4 py-2">Studio, bedspace, shared</td>
+                        </tr>
+                        <tr>
+                        <td class="border border-gray-300 px-4 py-2 font-semibold">Couple / Young Family</td>
+                        <td class="border border-gray-300 px-4 py-2">₱45,000–₱70,000</td>
+                        <td class="border border-gray-300 px-4 py-2">₱12,000–₱18,000</td>
+                        <td class="border border-gray-300 px-4 py-2">1–2 BR apartment, townhouse</td>
+                        </tr>
+                        <tr>
+                        <td class="border border-gray-300 px-4 py-2 font-semibold">Remote Worker</td>
+                        <td class="border border-gray-300 px-4 py-2">Variable</td>
+                        <td class="border border-gray-300 px-4 py-2">Flexible</td>
+                        <td class="border border-gray-300 px-4 py-2">Prioritize strong internet</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                </div>
+
+                <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Signs You’re Renting Beyond Your Means</h2>
+                <ul class="list-none space-y-2">
+                    <li>🚩 You struggle to pay rent before every payday</li>
+                    <li>🚩 You rely on loans or credit for basic expenses</li>
+                    <li>🚩 You have no savings at the end of the month</li>
+                    <li>🚩 You delay bills to cover rent</li>
+                </ul>
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-gray-300">
+                <h2 class="text-2xl font-bold mb-4">How RentPH Makes Rent Budgeting Easier</h2>
+                <p class="mb-6">
+                    RentPH isn’t just a listing site—it’s a renter’s guide. With RentPH, you can filter homes by budget, see transparent pricing, and access renter-friendly guides.
+                </p>
+                <p class="italic font-medium mb-6">
+                    In 2026, smart renters don’t ask, “What’s the nicest place I can get?” They ask, “What home supports the life I want to build?”
+                </p>
+                <p class="font-bold">
+                    <RouterLink to="/" class="text-blue-600 underline hover:text-blue-800">
+                        Click here to find a place that fits your budget on RentPH.
+                    </RouterLink>
+                </p>
+            </div>
+
+            <div id="RelatedBlogsScetion">
             </div>
         </div>
-    </div>
-    <div id="SocialSection">
-        <img src="/blog-news.jpg" alt="">
-        <div>
-            <p>Share</p>
-            <Icon name="lucide:facebook" />
-            <Icon name="ic:baseline-whatsapp" />
-            <Icon name="lucide:link" />
-        </div>
-    </div>
-    <div id="ArticleSection">
-        Renting a home in the Philippines has never been a simple decision—but in 2026, it’s more important than ever to get your budget right.
-
-        With rising living costs, changing work setups, and higher expectations for comfort and safety, many Filipinos are asking the same question:
-
-        “How much rent can I really afford?”
-
-        The good news? You don’t need to be a finance expert to figure it out. This guide breaks down rent affordability in a simple, realistic way—so you can find a home that fits your lifestyle and your wallet. And if you want extra guidance, platforms like RentPH make the process even easier by helping you match your budget with the right rental options.
-
-        
-
-        Why Rent Budgeting Matters More in 2026
-
-        In previous years, renters often focused only on monthly rent. But in 2026, affordability goes beyond just paying the landlord.
-
-        Here’s why careful planning matters:
-
-
-        Utility costs continue to rise
-
-
-        
-        Transportation expenses vary by location
-
-
-        
-        Remote and hybrid work affect housing needs
-
-
-        
-        Emergency savings are no longer optional
-
-
-        Choosing a rent that’s too high can quickly lead to stress, debt, or having to move again sooner than planned.
-
-        
-
-        The 30% Rule: A Good Starting Point (But Not the Whole Story)
-
-        A common guideline is the 30% rule, which suggests spending no more than 30% of your monthly income on rent.
-
-        Example:
-
-
-        Monthly income: ₱30,000
-
-
-        
-        Ideal rent budget: ₱9,000
-
-
-        This rule is helpful—but it doesn’t work perfectly for everyone.
-
-        In the Philippines, factors like extended family support, side hustles, and shared housing often change the equation.
-
-        
-
-        A More Realistic Filipino Rent Formula
-
-        Instead of focusing on rent alone, consider your total monthly living expenses.
-
-        Step 1: List Your Monthly Income
-
-        Include:
-
-
-        Salary (net take-home pay)
-
-
-        
-        Freelance or side income (use conservative estimates)
-
-
-        Step 2: List Essential Expenses
-
-
-        Food & groceries
-
-
-        
-        Transportation
-
-
-        
-        Utilities (electricity, water, internet)
-
-
-        
-        Mobile load or plan
-
-
-        
-        Insurance & healthcare
-
-
-        
-        Debt payments (loans, credit cards)
-
-
-        Step 3: Add Savings (Non-Negotiable)
-
-        Aim for:
-
-
-        Emergency fund
-
-
-        
-        Short-term goals
-
-
-        
-        Future housing plans
-
-
-        Step 4: What’s Left Is Your Rent Budget
-
-        If rent leaves you with nothing to save, it’s not affordable—no matter how nice the place looks.
-
-        
-
-        Hidden Costs Many Renters Forget
-
-        Rent isn’t your only housing expense. Before committing, factor in:
-
-
-        Security deposit & advance rent (usually 1–2 months each)
-
-
-        
-        Association dues (for condos and gated communities)
-
-
-        
-        Parking fees
-
-
-        
-        Furnishing costs
-
-
-        
-        Moving expenses
-
-
-        
-        Maintenance or minor repairs
-
-
-        RentPH helps renters avoid surprises by clearly listing fees upfront—saving time and money.
-
-        
-
-        Rent Budget Examples for 2026
-
-        Single Professional (₱25,000–₱35,000 income)
-
-
-        Ideal rent: ₱7,000–₱10,000
-
-
-        
-        Best options: Studio apartments, shared units, bedspaces near work
-
-
-        Couple or Young Family (₱45,000–₱70,000 combined income)
-
-
-        Ideal rent: ₱12,000–₱18,000
-
-
-        
-        Best options: 1–2 bedroom apartments, townhouses
-
-
-        Remote Worker or Freelancer
-
-
-        Ideal rent: Depends on stability of income
-
-
-        
-        Tip: Keep rent flexible and prioritize strong internet and quiet space
-
-
-        
-
-        Location Can Make or Break Your Budget
-
-        A cheaper unit far from work can end up costing more due to:
-
-
-        Daily transportation
-
-
-        
-        Longer commute times
-
-
-        
-        Food expenses outside the home
-
-
-        Sometimes, paying slightly higher rent closer to work or essentials is actually more affordable in the long run.
-
-        RentPH allows you to compare rentals by location, helping you balance price and convenience.
-
-        
-
-        Lifestyle vs. Affordability: Be Honest With Yourself
-
-        Ask yourself:
-
-
-        Do I really need a condo with amenities?
-
-
-        
-        Am I willing to share a space to save money?
-
-
-        
-        Can I live slightly farther from the city center?
-
-
-        Renting within your means doesn’t mean settling—it means choosing wisely.
-
-        
-
-        Signs You’re Renting Beyond Your Means
-
-        🚩 You struggle to pay rent before every payday
-        🚩 You rely on loans or credit for basic expenses
-        🚩 You have no savings at the end of the month
-        🚩 You delay bills to cover rent
-
-        If these feel familiar, it may be time to adjust your rent budget.
-
-        
-
-        How RentPH Makes Rent Budgeting Easier
-
-        RentPH isn’t just a listing site—it’s a renter’s guide.
-
-        With RentPH, you can:
-
-
-        Filter homes by budget, location, and home type
-
-
-        
-        See transparent rental pricing
-
-
-        
-        Access renter-friendly guides and tips
-
-
-        
-        Find homes that match your realistic affordability, not just your wish list
-
-
-        Whether you’re renting for the first time or planning a move in 2026, RentPH helps you avoid costly mistakes.
-
-        
-
-        Final Thoughts: Affordable Rent Is Peace of Mind
-
-        The right rent amount gives you:
-
-
-        Financial stability
-
-
-        
-        Freedom to save
-
-
-        
-        Room for emergencies
-
-
-        
-        Less stress every month
-
-
-        In 2026, smart renters don’t ask, “What’s the nicest place I can get?”
-        They ask, “What home supports the life I want to build?”
-
-        
-
-        If you’re ready to find a place that fits your budget and lifestyle, RentPH is here to help you every step of the way.
-    </div>
-    <div id="RelatedBlogsScetion">
     </div>
 </template>
 
