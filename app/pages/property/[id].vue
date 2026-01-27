@@ -122,7 +122,7 @@ const goBack = () => navigateTo('/property')
                         </div>
 
                         <button
-                            class="w-full bg-zinc-900 dark:bg-white dark:text-black text-white py-4 rounded-2xl font-bold shadow-2xl hover:scale-[1.02] transition-transform">
+                            class="w-full bg-[#fe8e0a] dark:text-black text-white py-4 rounded-2xl font-bold shadow-2xl hover:scale-[1.02] transition-transform">
                             Request a tour
                             <p class="text-[10px] font-normal opacity-60">Earliest at 11:00 tomorrow</p>
                         </button>
@@ -133,7 +133,7 @@ const goBack = () => navigateTo('/property')
             <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-1">
                     <div
-                        class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-lg border border-gray-100 dark:border-gray-800 p-8">
+                        class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-lg border border-gray-100  dark:border-gray-800 p-8">
                         <h3 class="text-lg font-bold mb-6">Update Search</h3>
                         <div class="space-y-6">
                             <div>

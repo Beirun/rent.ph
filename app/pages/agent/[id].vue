@@ -1,21 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const route = useRoute()
-const { id } = route.params
 const { name, phone, email, photo, location, status, reviews, about, reviewList } = route.query
 
-const activeTab = ref('Intro')
+// State to track if the user wants to see all reviews
+const showAllReviews = ref(false)
 
-const goBack = () => {
-  navigateTo('/agent')
-}
-
-// Helper to parse reviews if they come as a JSON string
 const parsedReviews = computed(() => {
   if (!reviewList) return []
   return typeof reviewList === 'string' ? JSON.parse(reviewList) : reviewList
 })
+
+// Logic to limit the display to 4 items unless toggled
+const displayedReviews = computed(() => {
+  if (showAllReviews.value) return parsedReviews.value
+  return parsedReviews.value.slice(0, 4)
+})
+
+const goBack = () => {
+  navigateTo('/agent')
+}
 </script>
 
 <template>
@@ -23,155 +28,138 @@ const parsedReviews = computed(() => {
     <Navbar />
   </ClientOnly>
 
-  <div class="min-h-screen w-full bg-gray-100 flex items-center mt-[4em] flex-col justify-center dark:bg-[#18191a] pb-10">
-
-    <div class="bg-white w-[98%] dark:bg-[#242526] shadow-sm">
-      <div class="w-full mx-auto">
-        <div
-          class="relative h-48 md:h-80 w-full bg-gray-200 dark:bg-gray-700 rounded-b-xl flex flex-col items-center justify-center text-white p-6 overflow-hidden">
-
-          <button @click="goBack"
-            class="absolute top-4 flex items-center dark:text-white-300 justify-center gap-2 left-4 cursor-pointer bg-black/10 hover:bg-blue/20 text-white p-2 rounded-md transition-all z-20">
-            <Icon name="lucide:arrow-left" class="size-5 dark:text-white-400" />
-            Back to rent managers
-          </button>
-
-          <div class="flex flex-col items-center space-y-2 select-none">
-            <div class="flex items-center gap-4">
-              <NuxtImg src="/rentph-logo.png" alt="RentPH Logo" class="h-16 md:h-20 object-contain" />
-            </div>
-            <p class="text-sm md:text-lg font-medium opacity-90 dark:text-white-400 uppercase tracking-[0.2em]">
-              Philippines #1 Property Rental website
-            </p>
-          </div>
-
-          <div
-            class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
-          </div>
-        </div>
-
-        <div
-          class="px-4 pb-4 flex justify-center flex-col md:flex-row items-center -mt-12 md:-mt-16 gap-4 relative z-10">
-          <div class="relative">
-            <div :style="{ backgroundImage: `url(${photo})` }"
-              class="size-32 md:size-60 bg-cover bg-center rounded-full border-4 border-white dark:border-[#242526] shadow-md bg-gray-200">
-            </div>
-            <!-- <div
-              class="absolute bottom-3 right-4 p-1 bg-[#1877f2] w-10 rounded-full border-2 border-white dark:border-[#242526]">
-              <Icon name="lucide:check" class="size-5 text-center text-white" />
-            </div> -->
-          </div>
-
-          <div class="flex-1 gap-3 pb-2 mt-6 text-center md:text-left">
-            <h1 class="text-4xl font-bold text-black dark:text-gray-300">{{ name }}</h1>
-            <div class="flex items-center gap-4 ">
-              <Icon v-for="_ in 5" name="radix-icons:star-filled" class="size-3.5 text-yellow-500" />
-              <p class="text-gray-500 dark:text-gray-400 font-medium">{{ reviews }}</p>
-            </div>
-            <p class="text-gray-500 dark:text-gray-400 font-medium">Total Listings: {{ status }}</p>
-            <div>
-              <p class="text-gray-500 dark:text-gray-400 font-medium">My Achievments: </p>
-            </div>
-          </div>
-
-          <div class="flex gap-2 pb-2">
-            <button
-              class="bg-green-500 text-white px-6 py-2 rounded-md font-bold flex items-center gap-2 hover:bg-green-800 transition-all shadow-sm">
-              <Icon name="lucide:message-circle" class="size-5 text-white" />
-              Message
-            </button>
-          </div>
-        </div>
-
-
+  <div class="h-screen bg-white dark:bg-[#0f1011] pt-20 overflow-hidden">
+    <div class="max-w-8xl mx-auto px-6 lg:px-12 h-full flex flex-col">
+      
+      <div class="py-6 shrink-0">
+        <button @click="goBack" class="flex items-center gap-2 text-gray-500 hover:text-black dark:hover:text-white transition-all group">
+          <Icon name="lucide:chevron-left" class="size-5 group-hover:-translate-x-1 transition-transform" />
+          <span class="text-sm font-medium cursor-pointer tracking-wide uppercase">Back to Agents</span>
+        </button>
       </div>
-    </div>
 
-    <div class="w-full mx-auto px-4 mt-4 grid grid-cols-1 md:grid-cols-5 gap-4">
-
-      <div class="md:col-span-2 w-full space-y-4">
-        <div class="bg-white dark:bg-[#242526] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-zinc-800">
-          <div
-            class="border-t border-gray-200 dark:border-zinc-800 mx-4 mt-2 flex gap-4 text-gray-500 dark:text-gray-400 font-semibold py-1">
-            <div @click="activeTab = 'Intro'"
-              :class="{ 'border-b-4 border-[#1877f2] text-[#1877f2]': activeTab === 'Intro' }"
-              class="px-4 py-3 cursor-pointer transition-all">
-              Intro
-            </div>
-            <div @click="activeTab = 'About'"
-              :class="{ 'border-b-4 border-[#1877f2] text-[#1877f2]': activeTab === 'About' }"
-              class="px-4 py-3 hover:bg-gray-100 dark:hover:bg-zinc-800 cursor-pointer transition-all">
-              About Me
-            </div>
-            <div @click="activeTab = 'Reviews'"
-              :class="{ 'border-b-4 border-[#1877f2] text-[#1877f2]': activeTab === 'Reviews' }"
-              class="px-4 py-3 hover:bg-gray-100 dark:hover:bg-zinc-800 cursor-pointer transition-all">
-              Reviews
-            </div>
-          </div>
-
-          <div class="md:col-span-2 w-full space-y-4">
-            <div
-              class="bg-white dark:bg-[#242526] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-zinc-800">
-
-              <div v-if="activeTab === 'Intro'">
-                <h2 class="text-xl font-bold text-black dark:text-white mb-4">Intro</h2>
-                <div class="space-y-4 text-[15px]">
-                  <div class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                    <Icon name="lucide:map-pin" class="size-5 text-gray-400" />
-                    <span>Lives in <b>{{ location }}</b></span>
-                  </div>
-                  <div class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                    <Icon name="lucide:mail" class="size-5 text-gray-400" />
-                    <span>Contact: <b>{{ email }}</b></span>
-                  </div>
-                  <div class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                    <Icon name="lucide:phone" class="size-5 text-gray-400" />
-                    <span>Mobile: <b>{{ phone }}</b></span>
-                  </div>
-                  <div class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                    <Icon name="lucide:fingerprint" class="size-5 text-gray-400" />
-                    <span>Verified Agent ID: <b>{{ id }}</b></span>
+      <div class="flex-1 flex flex-col lg:flex-row gap-16 overflow-hidden pb-10">
+        
+        <aside class="lg:w-1/3 shrink-0 overflow-y-auto no-scrollbar hidden-scroll">
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-[#1a1b1e] rounded-3xl p-8 shadow-lg border-2 border-gray-100 dark:border-gray-800">
+              <div class="flex flex-col items-center text-center">
+                <div class="relative mb-6">
+                  <div 
+                    :style="{ backgroundImage: `url(${photo})` }"
+                    class="size-32 sm:size-40 rounded-full bg-cover bg-center ring-1 ring-gray-100 dark:ring-gray-700 shadow-xl"
+                  />
+                  <div class="absolute bottom-2 text-center right-2 bg-blue-600 text-white p-1.5 rounded-full shadow-lg border-2 border-white dark:border-[#1a1b1e]">
+                    <Icon name="lucide:check" class="size-5 text-white text-bold" />
                   </div>
                 </div>
-              </div>
 
-              <div v-if="activeTab === 'About'">
-                <h2 class="text-xl font-bold text-black dark:text-white mb-4">About Me</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {{ about || 'No bio available.' }}
-                </p>
-              </div>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-[#fafafa] mb-1">{{ name }}</h1>
+                <div class="flex items-center gap-2 text-gray-500 text-sm mb-6">
+                  <Icon name="lucide:award" class="size-4" />
+                  <span>Verified Professional</span>
+                </div>
 
-              <div v-if="activeTab === 'Reviews'">
-                <h2 class="text-xl font-bold text-black dark:text-white mb-4">Client Reviews</h2>
-                <div v-if="parsedReviews.length" class="space-y-4">
-                  <div v-for="(rev, index) in parsedReviews" :key="index"
-                    class="border-b border-gray-100 dark:border-zinc-800 pb-3 last:border-0">
-                    <p class="font-bold text-sm dark:text-white">{{ rev.user }}</p>
-                    <div class="flex gap-1 my-1">
-                      <Icon v-for="i in rev.rating" name="radix-icons:star-filled" class="size-3 text-yellow-500" />
-                    </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 italic">"{{ rev.comment }}"</p>
+            <div class="grid grid-cols-3 w-full py-8 border-y border-gray-100 dark:border-gray-800 mb-6 text-center gap-y-8">
+                
+                <div class="flex flex-col">
+                  <span class="text-2xl font-black text-black dark:text-[#fafafa]">{{ reviews || '0' }}</span>
+                  <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Reviews</span>
+                </div>
+
+                <div class="flex flex-col border-x border-gray-100 dark:border-gray-800">
+                  <span class="text-2xl font-bold text-[#262626] dark:text-[#FAFAFA] flex items-center justify-center gap-1">
+                    4.9 <Icon name="radix-icons:star-filled" class="size-4 text-[#fe8e0a]" />
+                  </span>
+                  <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Rating</span>
+                </div>
+
+                <div class="flex flex-col">
+                  <span class="text-2xl font-bold text-[#262626] dark:text-[#FAFAFA]">{{ status || '0' }}</span>
+                  <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Listings</span>
+                </div>
+
+                <div class="col-span-3 flex flex-col items-center justify-center gap-4 pt-4 border-t border-gray-50 dark:border-gray-800/50">
+                  <span class="text-xs uppercase tracking-[0.2em] font-black text-black dark:text-white">Professional Badges</span>
+                  
+                  <div class="flex items-center justify-center gap-4 flex-wrap">
+                    <NuxtImg 
+                      v-for="n in 5" 
+                      :key="n" 
+                      src="/trophy.png" 
+                      class="w-12 h-12 object-contain brightness-110" 
+                      alt="Award Badge"
+                    />
                   </div>
                 </div>
-                <p v-else class="text-gray-500">No reviews yet.</p>
-              </div>
 
+              </div>
+                <button class="w-full bg-blue-600  text-[#fafafa] py-4 rounded-xl font-semibold hover:opacity-80 transition-opacity">
+                  Contact Agent
+                </button>
+ 
+              </div>
             </div>
           </div>
+        </aside>
 
-        </div>
+        <main class="flex-1 overflow-y-auto pr-4 custom-scrollbar pb-20">
+          
+          <section class="mb-16">
+            <h2 class="text-4xl font-bold mb-8 tracking-tight">About {{ name }}</h2>
+            <div class="flex flex-col gap-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
+               <p class="text-justify italic">{{ about || 'Dedicated to providing excellence in the real estate industry.'}}</p>
+            </div>
+          </section>
+
+          <section class="mb-20">
+            <div class="flex items-center justify-between mb-10">
+              <h2 class="text-2xl font-bold uppercase tracking-widest">Client Reviews</h2>
+              <div class="h-px flex-1 mx-8 bg-gray-100 dark:bg-gray-800" />
+            </div>
+            
+            <div v-if="displayedReviews.length" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+              <div v-for="(rev, index) in displayedReviews" :key="index" class="p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-gray-50/30 dark:bg-transparent">
+                <div class="flex items-center gap-4 mb-4">
+                   <div class="size-10 rounded-full bg-[#fe8e0a] text-white flex items-center justify-center text-xs font-bold uppercase">
+                      {{ rev.user.charAt(0) }}
+                   </div>
+                   <p class="font-bold text-sm">{{ rev.user }}</p>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 italic">"{{ rev.comment }}"</p>
+                <div class="flex gap-0.5">
+                  <Icon v-for="i in 5" :key="i" name="radix-icons:star-filled" :class="['size-3', i <= rev.rating ? 'text-black dark:text-white' : 'text-gray-200']" />
+                </div>
+              </div>
+            </div>
+
+            <div v-if="parsedReviews.length > 4" class="flex justify-center">
+              <button 
+                @click="showAllReviews = !showAllReviews"
+                class="px-8 py-3 border border-black dark:border-white rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#fe8e0a] hover:text-white dark:hover:bg-white dark:hover:text-black transition-all"
+              >
+                {{ showAllReviews ? 'Show Less' : `View All ${parsedReviews.length} Reviews` }}
+              </button>
+            </div>
+          </section>
+
+          <section>
+            <div class="flex items-center justify-between mb-10">
+              <h2 class="text-2xl font-bold uppercase tracking-widest">Active Listings</h2>
+              <div class="h-px flex-1 mx-8 bg-gray-100 dark:bg-gray-800" />
+            </div>
+            <PropertiesAndListings />
+          </section>
+
+        </main>
       </div>
-
-      <div class="md:col-span-3">
-        <div class="bg-white dark:bg-[#242526] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-zinc-800">
-          <div class="flex flex-col items-center gap-2">
-            <PropertiesAndListings/>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </template>
+
+<style scoped>
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+</style>
