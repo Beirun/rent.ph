@@ -3,10 +3,11 @@
     const { id } = route.params
 </script>
 <template>
-    <div class="w-screen min-h-screen">
+    <div id="wholePage" class="w-screen h-auto bg-[url(/blogBackGround.png)] bg-contain bg-no-repeat">
         <ClientOnly>
             <navbar />
         </ClientOnly>
+        <div id="scrollAraa" class="sticky">
             <div id="HeadSection" class="justify-items-center">
                 <p class="text-5xl pt-50 font-bold w-1/2 text-center">How Much Rent Can You Really Afford in 2026? A Practical Budgeting Guide for Filipino Renters</p>    
                 <div id="DetailsSection" class="flex flex-row gap-5 mt-5">
@@ -188,6 +189,9 @@
 
             <div id="RelatedBlogsScetion">
             </div>
+
+            </div>
+            
         </div>
     </div>
 </template>
