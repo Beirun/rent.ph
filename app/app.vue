@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import gsap from 'gsap'
 const colorMode = useColorMode()
+useHead({ title: 'Rent.ph | Rental Properties in the Philippines' })
+
 onMounted(() => {
   const nightValue = 1000 * 60 * 60 * 18
   const now = new Date()
