@@ -33,11 +33,19 @@
             #RentPH #PhilippineRealEstate #BudgetingTips2026
           </div>
         </div>
-        <div class="flex items-center gap-2">
-          <Button variant="link" class="p-0">
-            <span class="text-[#205ed7] dark:text-[#0454A1]">Read More</span>
-            <Icon name="radix-icons:arrow-right" class="bg-[#205ed7] dark:bg-[#0454A1]" />
-          </Button>
+        <div>
+          <div>
+              <Icon name="lucide:facebook" class="color-blue-500"/>
+              <Icon name="lucide:instagram" class="color-pink-500"/>
+              <Icon name="ic-baseline:whatsapp" class="color-green-500"/>
+              <Icon name="lucide:link" />
+          </div>
+          <div class="flex items-center gap-2 justify-end">
+            <Button variant="link" class="p-0">
+              <span class="text-[#205ed7] dark:text-[#0454A1]">Read More</span>
+              <Icon name="radix-icons:arrow-right" class="bg-[#205ed7] dark:bg-[#0454A1]" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
