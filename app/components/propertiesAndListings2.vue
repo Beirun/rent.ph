@@ -12,10 +12,11 @@ const props = defineProps<{
       subtitle="Top picks from our community" 
       :items="properties" 
     />
+    <!-- jasdkajsd -->
     <PropertyCarousel 
       title="Popular Listings" 
       subtitle="Top picks from our community" 
-      :items="properties" 
+      :items="properties"
     />
         <PropertyCarousel 
       title="Popular Listings" 
