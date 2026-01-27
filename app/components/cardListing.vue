@@ -56,7 +56,7 @@ const shareProperty = () => {
 <template>
   <div
     v-if="orientation === 'vertical'"
-    class="rounded-xl justify-between w-80 h-90 flex flex-col shadow-lg relative bg-whtie dark:bg-[#1e1e1e]"
+    class="rounded-xl justify-between w-80 h-90 flex flex-col shadow-lg relative bg-whtie dark:bg-[#1e1e1e] cursor-pointer"
   >
     <div
       class="h-1/2 w-full rounded-t-lg bg-cover bg-bottom relative"
@@ -89,7 +89,7 @@ const shareProperty = () => {
         }}<span class="text-xs font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60">/month</span>
       </div>
 
-      <div class="text-sm font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60">
+      <div class="text-sm font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60 truncate">
         {{ property?.address || 'Address not available' }}
       </div>
 
