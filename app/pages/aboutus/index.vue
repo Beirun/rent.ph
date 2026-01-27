@@ -11,7 +11,7 @@ import Testimonials from '~/components/testimonials.vue'
         <AboutusHero />
       </ClientOnly>
       <ClientOnly>
-        <AboutStorySection />
+        <awards />
       </ClientOnly>
       <ClientOnly>
         <AboutCaresSection />

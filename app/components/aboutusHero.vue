@@ -13,17 +13,16 @@ const rstats = [
                    h-screen
                    items-center
                    justify-center
-                   gap-10 lg:gap-16
+                   gap-10 lg:gap-10
                    px-6 lg:px-20"
         >
                 <div class="flex flex-col justify-between gap-10 lg:gap-20 mt-30 lg:mt-0 text-center lg:text-left">
-                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold w-full lg:w-200">
-                    About Our Real Estate Journey
+                <h1 class="text-4xl sm:text-5xl text-[#262626] dark:text-white/80 lg:text-7xl font-bold w-full lg:w-200">
+                    Philippines #1 Property Rental Website
                 </h1>
 
                 <span class="text-base sm:text-lg lg:text-xl w-full lg:w-160 text-gray-600 dark:text-gray-300">
-                    For over 15 years, we've been helping families and individuals find their perfect home.
-                    Our commitment to excellence and personalized service sets us apart.
+                    Awarded 2024 International Realtor of the year by National Association of Realtors
                 </span>
 
                 <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 justify-center lg:justify-start">
@@ -44,8 +43,8 @@ const rstats = [
 
             <div class="w-full lg:w-auto">
                 <NuxtImg
-                    src="/aboutimg.png"
-                    class="w-full h-[35vh] sm:h-[45vh] lg:h-[60vh] rounded-lg object-cover"
+                    src="/filAwards.png"
+                    class="w-[90%] h-[35vh] sm:h-[45vh] lg:h-[60vh] rounded-lg object-cover"
                 />
             </div>
         </div>
