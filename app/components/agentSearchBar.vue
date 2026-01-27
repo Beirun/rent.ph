@@ -1,9 +1,10 @@
 <script setup lang="ts"></script>
 <template>
   <div
-    class="flex flex-col md:flex-row bg-white dark:bg-[#212121] p-4 md:p-6 rounded-lg gap-4 border dark:border-gray-800 border-gray-200 drop-shadow-md w-full max-w-8xl mx-auto"
+    class="bg-white dark:bg-[#212121] p-4 md:p-6 rounded-lg gap-4 border dark:border-gray-800 border-gray-200 drop-shadow-md w-full max-w-8xl mx-auto"
   >
-    <div class="flex flex-col gap-2 md:gap-4 flex-1">
+    <div class="flex flex-col md:flex-row gap-4 items-end">
+      <div class="flex flex-col gap-2 flex-1">
         <Label for="location" class="text-sm md:text-base">Enter Name</Label>
         <Input
           name="keyword"
@@ -12,7 +13,7 @@
           placeholder="Name"
         />
       </div>
-      <div class="flex flex-col gap-2 md:gap-4 flex-1">
+      <div class="flex flex-col gap-2 flex-1">
         <Label for="location" class="text-sm md:text-base">Province</Label>
         <Select id="location">
           <SelectTrigger class="w-full py-3 md:py-5">
@@ -30,7 +31,7 @@
           </SelectContent>
         </Select>
       </div>
-      <div class="flex flex-col gap-2 md:gap-4 flex-1">
+      <div class="flex flex-col gap-2 flex-1">
         <Label for="location" class="text-sm md:text-base">City</Label>
         <Select id="location">
           <SelectTrigger class="w-full py-3 md:py-5">
@@ -48,11 +49,10 @@
           </SelectContent>
         </Select>
       </div>
-      <div class="flex h-full items-end">
-        <Button class="gap-2 px-4 md:px-6 h-10 md:h-12 w-full md:w-auto">
-          <Icon name="lucide:search" class="bg-[#fafafa] dark:bg-[#121212]" />
-          <span class="text-sm md:text-base">Search</span>
-        </Button>
-      </div>
+      <Button class="gap-2 px-4 md:px-6 h-10 md:h-12 whitespace-nowrap">
+        <Icon name="lucide:search" />
+        <span class="text-sm md:text-base">Search</span>
+      </Button>
+    </div>
   </div>
 </template>

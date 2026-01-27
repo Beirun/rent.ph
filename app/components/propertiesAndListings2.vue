@@ -1,5 +1,6 @@
 <script setup lang="ts">
-// If you are passing properties from index.vue
+import { Skeleton } from './ui/skeleton'
+
 const props = defineProps<{
   properties: any[]
 }>()
@@ -7,32 +8,75 @@ const props = defineProps<{
 
 <template>
   <div class="px-12 flex flex-col mt-15 max-w-full mx-auto">
-    <PropertyCarousel 
-      title="Popular Listings" 
-      subtitle="Top picks from our community" 
-      :items="properties" 
-    />
-    <!-- jasdkajsd -->
-    <PropertyCarousel 
-      title="Popular Listings" 
-      subtitle="Top picks from our community" 
-      :items="properties"
-    />
-        <PropertyCarousel 
-      title="Popular Listings" 
-      subtitle="Top picks from our community" 
-      :items="properties" 
-    />
-        <PropertyCarousel 
-      title="Popular Listings" 
-      subtitle="Top picks from our community" 
-      :items="properties" 
-    />
-        <PropertyCarousel 
-      title="Popular Listings" 
-      subtitle="Top picks from our community" 
-      :items="properties" 
-    />
-    
+    <div v-if="properties.length === 0" class="space-y-8">
+      <div v-for="i in 5" :key="i" class="space-y-4">
+        <div class="flex flex-col w-full mt-15">
+          <h1 class="text-2xl font-bold">Popular Listings</h1>
+          <p class="uppercase text-sm text-gray-400 dark:text-gray-500">
+            Top picks from our community
+          </p>
+        </div>
+        <div class="relative group">
+          <div
+            class="flex gap-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-4 px-2"
+          >
+            <div v-for="j in 8" :key="j" class="w-64 flex flex-col gap-4 snap-start shrink-0">
+              <Skeleton class="h-32 w-full rounded-t-lg" />
+              <div class="p-2.5 flex flex-col gap-1">
+                <Skeleton class="h-4 w-3/4" />
+                <Skeleton class="h-4 w-1/2" />
+                <div class="flex gap-2">
+                  <Skeleton class="h-3 w-8" />
+                  <Skeleton class="h-3 w-8" />
+                  <Skeleton class="h-3 w-12" />
+                </div>
+                <div class="flex gap-1">
+                  <Skeleton class="h-3.5 w-3.5" v-for="k in 5" :key="k" />
+                </div>
+                <div class="flex justify-between items-center mt-2 pt-2">
+                  <div class="flex gap-1.5 items-center">
+                    <Skeleton class="h-5 w-5 rounded-full" />
+                    <Skeleton class="h-3 w-16" />
+                  </div>
+                  <div class="flex gap-1">
+                    <Skeleton class="h-6 w-6 rounded-full" />
+                    <Skeleton class="h-6 w-6 rounded-full" />
+                    <Skeleton class="h-6 w-6 rounded-full" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div v-else class="space-y-8">
+      <PropertyCarousel
+        title="Popular Listings"
+        subtitle="Top picks from our community"
+        :items="properties"
+      />
+      <!-- jasdkajsd -->
+      <PropertyCarousel
+        title="Popular Listings"
+        subtitle="Top picks from our community"
+        :items="properties"
+      />
+      <PropertyCarousel
+        title="Popular Listings"
+        subtitle="Top picks from our community"
+        :items="properties"
+      />
+      <PropertyCarousel
+        title="Popular Listings"
+        subtitle="Top picks from our community"
+        :items="properties"
+      />
+      <PropertyCarousel
+        title="Popular Listings"
+        subtitle="Top picks from our community"
+        :items="properties"
+      />
+    </div>
+  </div>
 </template>

@@ -5,6 +5,8 @@ const overlay = ref()
 const logo = ref()
 
 onBeforeMount(() => window.scrollTo(0, 0))
+useHead({ title: 'Rent.ph | Rental Properties in the Philippines' })
+
 onMounted(() => {
   const nightValue = 1000 * 60 * 60 * 18
   const now = new Date()

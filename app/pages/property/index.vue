@@ -1,103 +1,54 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import propertySearchBar from '~/components/propertySearchBar.vue'
 import navbar from '~/components/navbar.vue'
 import pagination from '~/components/pagination.vue'
 import PropertiesPage from '~/components/propertiesPage.vue'
 import propertiesAndListings2 from '~/components/propertiesAndListings2.vue'
 
+interface Property {
+  id: number
+  title: string
+  image: string
+  price: string
+  bed: number
+  bathroom: number
+  square: number
+  address: string
+  user_name: string
+  user_avatar?: string
+  agent_title: string
+  agent_phone: string
+  agent_email: string
+}
+
 const currentPage = ref(1)
 const totalPages = ref(10)
+const properties = ref<Property[]>([])
+const loading = ref(true)
 
-const properties = [
-  {
-    id: 1,
-    type: 'Apartment',
-    name: 'Modern Family Home',
-    photo: '/hero.jpg',
-    price: 850000,
-    reviews: '5 • 12 Reviews',
-    agent: 'Rebecca Ferguson',
-    agentphoto: '/img.png',
-    location: '123 Oak Street, Cebu City',
-    specifications: [
-      { bedrooms: 4, bathroom: 3, size: 2.4 }
-    ]
-  },
-  {
-    id: 2,
-    type: 'House',
-    name: 'Luxury Condo Unit',
-    photo: '/aboutimg.png',
-    price: 1200000,
-    reviews: '4.8 • 20 Reviews',
-    agent: 'Kobe Amaro',
-    agentphoto: '/rebecca.png',
-    location: 'IT Park, Cebu City',
-    specifications: [
-      { bedrooms: 2, bathroom: 2, size: 1.2 }
-    ]
-  },
-  {
-    id: 3,
-    type: 'Motel',
-    name: ' Condo Unit',
-    photo: '/aboutimg2.png',
-    price: 1200000,
-    reviews: '4.8 • 20 Reviews',
-    agent: 'Btryl Daren',
-    agentphoto: '/rebecca.png',
-    location: 'IT Park, Cebu City',
-    specifications: [
-      { bedrooms: 2, bathroom: 2, size: 1.2 }
-    ]
-  },
-  {
-    id: 4,
-    type: 'Penthouse',
-    name: 'Luxury Unit',
-    photo: '/hero.jpg',
-    price: 1200000,
-    reviews: '4.8 • 20 Reviews',
-    agent: 'Bernerd Orion',
-    agentphoto: '/rebecca.png',
-    location: 'IT Park, Cebu City',
-    specifications: [
-      { bedrooms: 2, bathroom: 2, size: 1.2 }
-    ]
-  },
-  {
-    id: 5,
-    name: 'Sogo Unit',
-    type: 'Hotel',
-    photo: '/hero-dark.jpg',
-    price: 1200000,
-    reviews: '4.8 • 20 Reviews',
-    agent: 'Kobe Amaro',
-    agentphoto: '/rebecca.png',
-    location: 'IT Park, Cebu City',
-    specifications: [
-      { bedrooms: 2, bathroom: 2, size: 1.2 }
-    ]
-  }, {
-    id: 6,
-    type: 'Condo',
-    name: 'Luxury Condo Unit',
-    photo: '/img.png',
-    price: 1200000,
-    reviews: '4.8 • 20 Reviews',
-    agent: 'Kobe Amaro',
-    agentphoto: '/rebecca.png',
-    location: 'IT Park, Cebu City',
-    specifications: [
-      { bedrooms: 2, bathroom: 2, size: 1.2 }
-    ]
-  },
-]
+const fetchProperties = async () => {
+  try {
+    const response = await fetch('https://rent.ph/api/properties')
+    const data = await response.json()
+    if (data.status === 'success') {
+      properties.value = data.data
+    }
+  } catch (error) {
+    console.error('Error fetching properties:', error)
+  } finally {
+    loading.value = false
+  }
+}
 
 const handlePageChange = (page: number) => {
   currentPage.value = page
   console.log('Changed to page:', page)
 }
+
+onMounted(() => {
+  fetchProperties()
+})
 </script>
 
 <template>
@@ -109,7 +60,7 @@ const handlePageChange = (page: number) => {
       <h1 class="text-4xl font-semibold mb-8">Property for Rent</h1>
       <ClientOnly>
         <propertySearchBar />
-        <PropertiesAndListings2 :properties="properties" />
+        <propertiesAndListings2 :properties="properties" />
       </ClientOnly>
 
       <!-- <div class="mt-12 space-y-6">

@@ -66,7 +66,7 @@ const selectPartner = (partner: Partner) => {
 
   <div
     v-if="selectedPartner"
-    class="mx-auto max-w-4xl p-10 mt-5 border-t border-gray-100 animate-in fade-in slide-in-from-bottom-4"
+    class="mx-auto max-w-4xl p-10 mt-5 bg-white/80 mb-10 border-t border-gray-100 animate-in fade-in slide-in-from-bottom-4"
   >
     <div class="flex items-center gap-6">
       <img
@@ -75,12 +75,12 @@ const selectPartner = (partner: Partner) => {
         class="h-20 w-auto object-contain"
       />
       <div>
-        <h2 class="text-2xl font-bold">{{ selectedPartner.name }}</h2>
-        <p class="text-gray-600 mt-2">{{ selectedPartner.description }}</p>
+        <h2 class="text-2xl dark:text-[#262626] font-bold">{{ selectedPartner.name }}</h2>
+        <p class="text-gray-600 dark:text-[#262626] mt-2">{{ selectedPartner.description }}</p>
       </div>
       <button
         @click="selectedPartner = null"
-        class="ml-auto text-sm text-gray-400 hover:text-black"
+        class="ml-auto dark:text-[#262626] text-sm text-gray-400 hover:text-black"
       >
         Close
       </button>
