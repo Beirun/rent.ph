@@ -73,8 +73,10 @@ const anchors = [
       </div>
       <div class="hidden xl:flex h-full gap-4 items-center">
         <DarkModeSwitch></DarkModeSwitch>
-        <Button @click="ypos" variant="ghost">Login</Button>
-        <Button variant="default">Register</Button>
+        <AccountForm>
+          <Button @click="ypos" variant="ghost">Login</Button>
+        </AccountForm>
+        <Button variant="default" class="text-[#121212] dark:text-[#fafafa]">Register</Button>
       </div>
       <AppSidebar :anchors="anchors" />
     </div>
