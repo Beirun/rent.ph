@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import gsap from 'gsap'
 const colorMode = useColorMode()
+const overlay = ref()
+const logo = ref()
+
+onBeforeMount(() => window.scrollTo(0, 0))
 useHead({ title: 'Rent.ph | Rental Properties in the Philippines' })
 
 onMounted(() => {
@@ -22,8 +26,6 @@ onMounted(() => {
     nightValue - currentValue > 0 ? nightValue - currentValue : 0,
   )
 })
-const overlay = ref()
-const logo = ref()
 
 onMounted(() => {
   const { setIsSplashScreenLoaded } = useGSAPStore()
