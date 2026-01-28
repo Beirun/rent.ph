@@ -7,7 +7,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="px-12 flex flex-col mt-15 max-w-full mx-auto">
+  <div class="px-12 flex flex-col mt-1 max-w-full mx-auto">
     <div v-if="properties.length === 0" class="space-y-8">
       <div v-for="i in 5" :key="i" class="space-y-4">
         <div class="flex flex-col w-full mt-15">

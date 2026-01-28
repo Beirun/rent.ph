@@ -27,6 +27,32 @@ const totalPages = ref(10)
 const properties = ref<Property[]>([])
 const loading = ref(true)
 
+
+const categories: Record<string, string> = {
+  'Farm Land' : '1',
+  'Condominium' : '1951',
+  'Studio': '730',
+  '1 Bedroom': '489',
+  '2 Bedroom' : '334',
+  '3 Bedroom' : '70',
+  'House and Lot' : '1464',
+  'Apartment' : '327',
+  'Lot Only' : '153',
+  'Bed Space' : '37',
+  'Town House' : '94',
+  'Dormitory' : '7',
+  'Commercial Spaces' : '653',
+  'Office Spaces': '254',
+  'Warehouse' : '227',
+  'Beach House' : '8',
+  'Conference Hall' : '1',
+  'Function Hall' : '1',
+  'Parking Space' : '9',
+  'Others' : '50'
+}
+
+
+
 const fetchProperties = async () => {
   try {
     const response = await fetch('https://rent.ph/api/properties')
@@ -56,24 +82,31 @@ onMounted(() => {
     <ClientOnly>
       <navbar />
     </ClientOnly>
-    <div class="container mx-auto px-10 pt-30 pb-20">
+    <div class=" w-full mx-5 px-10 pt-30 pb-20 justify-self-center">
       <h1 class="text-4xl font-semibold mb-8">Property for Rent</h1>
-      <ClientOnly>
-        <propertySearchBar />
-        <propertiesAndListings2 :properties="properties" />
-      </ClientOnly>
-
-      <!-- <div class="mt-12 space-y-6">
-        <PropertiesPage />
-
-        <div class="flex justify-center">
-          <pagination
-            :current-page="currentPage"
-            :total-pages="totalPages"
-            @page-change="handlePageChange"
-          />
+      <div class="flex flex-row">
+        <div id="categoriesSection" class="w-1/5 h-fit border-1 border-gray-200 rounded-lg bg-white shadow-lg p-10">
+          <h1 class="font-bold text-2xl">Categories</h1>
+            <div class="mt-10">
+              <template v-for="(listings, category, index) in categories" :key="category">
+                <div class="flex justify-between mt-5">
+                  <a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">
+                    <Icon name="material-symbols:arrow-right"/> {{ category }} 
+                  </a>
+                  <a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">
+                    {{ listings }} Properties
+                  </a>
+                </div>
+              </template>
+            </div>
         </div>
-      </div> -->
+        <div id="propertiesSection" class="w-4/5">
+          <ClientOnly>
+            <propertySearchBar />
+            <propertiesAndListings2 :properties="properties" />
+          </ClientOnly>
+        </div>
+      </div>
     </div>
     <ClientOnly>
       <Footer />

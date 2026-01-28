@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 <template>
   <div
-    class="bg-white dark:bg-[#212121] p-4 md:p-6 rounded-lg gap-4 border dark:border-gray-800 border-gray-200 drop-shadow-md w-full max-w-8xl mx-auto"
+    class="bg-white dark:bg-[#212121] p-4 md:p-6 rounded-lg gap-4 border dark:border-gray-800 border-gray-200 drop-shadow-md w-19/20 max-w-8xl mx-auto"
   >
     <div class="flex flex-col md:flex-row gap-4 items-end">
       <div class="flex flex-col gap-2 flex-1">
