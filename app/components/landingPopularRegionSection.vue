@@ -13,7 +13,7 @@ const images = [
 ]
 </script>
 <template>
-  <div class="px-10 flex flex-col mt-10 max-w-[98%] mx-auto">
+  <div class="px-10 flex flex-col mt-15 max-w-[98%] mx-auto">
     <h1 class="text-4xl font-bold">Popular Regions in the Philippines</h1>
     <p class="uppercase pt-4 text-gray-300 dark:text-gray-500 mb-10">
       Most popular destinations in the philippines

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LandingLeaderboard from '~/components/landingLeaderboard.vue'
+import LandingShowcase from '~/components/landingShowcase.vue'
 import LandingPopularRegionSection from '~/components/landingPopularRegionSection.vue'
 import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
 import PropertiesAndListings from '~/components/propertiesAndListings.vue'
@@ -17,7 +17,7 @@ import Testimonials from '~/components/testimonials.vue'
     <ClientOnly>
       <LandingPopularRegionSection />
     </ClientOnly>
-    <LandingLeaderboard />
+    <LandingShowcase />
     <div class="flex items-center justify-center">
       <ClientOnly>
         <TestimonialsCard />

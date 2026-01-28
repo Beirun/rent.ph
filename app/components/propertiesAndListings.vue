@@ -60,7 +60,7 @@ const fetchProperties = async () => {
 
 onMounted(async () => {
   await fetchProperties()
-  
+
   const el = scrollContainer.value
   if (el) {
     el.addEventListener('scroll', updateArrows)
@@ -74,7 +74,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="px-10 flex flex-col mt-10 max-w-[98%] mx-auto">
+  <div class="px-10 flex flex-col mt-15 max-w-[98%] mx-auto">
     <div class="flex flex-col w-full">
       <h1 class="text-4xl font-bold">Our Most Popular Listings</h1>
       <p class="uppercase pt-4 text-gray-400 dark:text-gray-500">Properties and Listings</p>
@@ -119,13 +119,13 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <CardListing 
+        <CardListing
           v-else
-          v-for="property in properties" 
+          v-for="property in properties"
           :key="property.id"
           :property="property"
-          orientation="vertical" 
-          class="snap-start shrink-0" 
+          orientation="vertical"
+          class="snap-start shrink-0"
         />
       </div>
 

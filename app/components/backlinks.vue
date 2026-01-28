@@ -3,12 +3,12 @@ const showMore = ref({
   realEstate: false,
   popularSearches: false,
   propertyForSale: false,
-  propertyForRent: false
+  propertyForRent: false,
 })
 
 const realEstateLinks = [
   'Metro Manila Real Estate',
-  'Cebu Real Estate', 
+  'Cebu Real Estate',
   'Davao Real Estate',
   'Quezon City Real Estate',
   'Makati Real Estate',
@@ -25,13 +25,13 @@ const realEstateLinks = [
   'Navotas Real Estate',
   'Malabon Real Estate',
   'Muntinlupa Real Estate',
-  'Pasay Real Estate'
+  'Pasay Real Estate',
 ]
 
 const popularSearchesLinks = [
   'Metro Manila Property for Sale',
   'Cebu Property for Sale',
-  'Davao Property for Sale', 
+  'Davao Property for Sale',
   'Quezon City Property for Sale',
   'Makati Property for Sale',
   'Taguig Property for Sale',
@@ -47,7 +47,7 @@ const popularSearchesLinks = [
   'Navotas Property for Sale',
   'Malabon Property for Sale',
   'Muntinlupa Property for Sale',
-  'Pasay Property for Sale'
+  'Pasay Property for Sale',
 ]
 
 const propertyForSaleLinks = [
@@ -68,7 +68,7 @@ const propertyForSaleLinks = [
   'Houses for Sale in Caloocan',
   'Condos for Sale in Pasay',
   'Townhouses for Sale in Taguig',
-  'Lots for Sale in Makati'
+  'Lots for Sale in Makati',
 ]
 
 const propertyForRentLinks = [
@@ -90,15 +90,17 @@ const propertyForRentLinks = [
   'Property for Rent in Navotas',
   'Property for Rent in Malabon',
   'Property for Rent in Muntinlupa',
-  'Property for Rent in Pasay'
+  'Property for Rent in Pasay',
 ]
 
-const toggleMore = (section: 'realEstate' | 'popularSearches' | 'propertyForSale' | 'propertyForRent') => {
+const toggleMore = (
+  section: 'realEstate' | 'popularSearches' | 'propertyForSale' | 'propertyForRent',
+) => {
   showMore.value[section] = !showMore.value[section]
 }
 </script>
 <template>
-  <div class="px-12 mt-10 mb-28 w-[98%]">
+  <div class="px-12 mt-15 mb-28 w-[98%]">
     <div class="flex flex-col w-full mb-12">
       <h1 class="text-4xl font-bold">Find your preferred place with one click</h1>
       <p class="uppercase pt-4 text-gray-400 dark:text-gray-500">BACKLINKS</p>
@@ -109,15 +111,15 @@ const toggleMore = (section: 'realEstate' | 'popularSearches' | 'propertyForSale
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Real Estate Market</h3>
         <div class="flex flex-col gap-2">
           <template v-for="(link, index) in realEstateLinks" :key="index">
-            <a 
-              v-if="index < 7 || showMore.realEstate" 
-              href="#" 
+            <a
+              v-if="index < 7 || showMore.realEstate"
+              href="#"
               class="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               {{ link }}
             </a>
           </template>
-          <button 
+          <button
             @click="toggleMore('realEstate')"
             class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline text-left"
           >
@@ -130,15 +132,15 @@ const toggleMore = (section: 'realEstate' | 'popularSearches' | 'propertyForSale
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Popular Searches</h3>
         <div class="flex flex-col gap-2">
           <template v-for="(link, index) in popularSearchesLinks" :key="index">
-            <a 
-              v-if="index < 7 || showMore.popularSearches" 
-              href="#" 
+            <a
+              v-if="index < 7 || showMore.popularSearches"
+              href="#"
               class="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               {{ link }}
             </a>
           </template>
-          <button 
+          <button
             @click="toggleMore('popularSearches')"
             class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline text-left"
           >
@@ -151,15 +153,15 @@ const toggleMore = (section: 'realEstate' | 'popularSearches' | 'propertyForSale
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Property for Sale</h3>
         <div class="flex flex-col gap-2">
           <template v-for="(link, index) in propertyForSaleLinks" :key="index">
-            <a 
-              v-if="index < 7 || showMore.propertyForSale" 
-              href="#" 
+            <a
+              v-if="index < 7 || showMore.propertyForSale"
+              href="#"
               class="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               {{ link }}
             </a>
           </template>
-          <button 
+          <button
             @click="toggleMore('propertyForSale')"
             class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline text-left"
           >
@@ -172,15 +174,15 @@ const toggleMore = (section: 'realEstate' | 'popularSearches' | 'propertyForSale
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Property for Rent</h3>
         <div class="flex flex-col gap-2">
           <template v-for="(link, index) in propertyForRentLinks" :key="index">
-            <a 
-              v-if="index < 7 || showMore.propertyForRent" 
-              href="#" 
+            <a
+              v-if="index < 7 || showMore.propertyForRent"
+              href="#"
               class="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               {{ link }}
             </a>
           </template>
-          <button 
+          <button
             @click="toggleMore('propertyForRent')"
             class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline text-left"
           >
