@@ -51,7 +51,7 @@ const testimonials = ref(testimonialsData.map((t) => ({ ...t, expanded: false })
   <div class="px-4 md:px-12 mt-15 w-[98%]">
     <div class="flex flex-col w-full mb-8 md:mb-12">
       <h1 class="text-4xl font-bold">What Our Clients Say About Us</h1>
-      <p class="uppercase pt-4 text-gray-400 dark:text-gray-500">Testimonials</p>
+      <p class="uppercase pt-4 text-gray-400 dark:text-gray-500">Testimonials from our Rent Mangers</p>
     </div>
 
     <div class="flex flex-col md:flex-row w-full gap-4 md:gap-6 justify-center items-stretch">

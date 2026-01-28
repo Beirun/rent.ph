@@ -11,24 +11,33 @@ import Testimonials from '~/components/testimonials.vue'
       <Navbar />
     </ClientOnly>
     <Hero />
-    <ClientOnly>
-      <PropertiesAndListings />
-    </ClientOnly>
-    <ClientOnly>
-      <LandingPopularRegionSection />
-    </ClientOnly>
-    <LandingShowcase />
-    <div class="flex items-center justify-center">
+    <div>
+      <ClientOnly>
+        <PropertiesAndListings />
+      </ClientOnly>
+    </div>
+    <div class="pt-15">
+      <ClientOnly>
+        <LandingPopularRegionSection />
+      </ClientOnly>
+    </div>
+    <div class="pt-15">
+      <LandingShowcase />
+    </div>
+    <div class="flex items-center justify-center pt-15">
       <ClientOnly>
         <TestimonialsCard />
       </ClientOnly>
     </div>
-
-    <ClientOnly>
-      <Backlinks />
-    </ClientOnly>
-    <ClientOnly>
-      <Footer />
-    </ClientOnly>
+    <div class="pt-15">
+      <ClientOnly>
+        <Backlinks />
+      </ClientOnly>
+    </div>
+    <div class="pt-15">
+      <ClientOnly>
+        <Footer />
+      </ClientOnly>
+    </div>
   </div>
 </template>

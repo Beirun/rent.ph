@@ -85,15 +85,15 @@ onMounted(() => {
     <div class=" w-full mx-5 px-10 pt-30 pb-20 justify-self-center">
       <h1 class="text-4xl font-semibold mb-8">Property for Rent</h1>
       <div class="flex flex-row">
-        <div id="categoriesSection" class="w-1/5 h-fit border-1 border-gray-200 rounded-lg bg-white shadow-lg p-10">
-          <h1 class="font-bold text-2xl">Categories</h1>
+        <div id="categoriesSection" class="w-1/5 h-fit border-1 border-gray-200 rounded-lg bg-white shadow-lg p-10 dark:bg-[#212121] dark:border-gray-800">
+          <h1 class="font-bold text-2xl dark:text-white">Categories</h1>
             <div class="mt-10">
               <template v-for="(listings, category, index) in categories" :key="category">
                 <div class="flex justify-between mt-5">
-                  <a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">
-                    <Icon name="material-symbols:arrow-right"/> {{ category }} 
+                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
+                    {{ category }} 
                   </a>
-                  <a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">
+                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
                     {{ listings }} Properties
                   </a>
                 </div>
