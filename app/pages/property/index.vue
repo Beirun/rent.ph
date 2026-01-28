@@ -21,7 +21,7 @@ interface Property {
   agent_phone: string
   agent_email: string
 }
-
+  
 const currentPage = ref(1)
 const totalPages = ref(10)
 const properties = ref<Property[]>([])
