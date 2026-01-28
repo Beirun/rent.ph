@@ -79,7 +79,7 @@
             <textarea
               name="keyword"
               id=""
-              rows="8 md:rows-12"
+              rows="12"
               autoresize
               class="w-full py-2 md:py-3 pl-3 border border-dark-100 rounded-xl text-sm"
               placeholder="Your Message"
