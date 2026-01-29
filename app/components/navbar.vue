@@ -52,7 +52,7 @@ const anchors = [
         navbarClass,
       ]"
     >
-      <NuxtImg @click="$router.push('/')" src="/rentph-logo.png" class="h-8" />
+      <NuxtImg @click="$router.push('/')" src="/rentlogo-official.png" class="h-12" />
       <div class="h-full gap-12 items-center hidden xl:flex">
         <NuxtLink
           v-for="anchor in anchors"
