@@ -1,4 +1,4 @@
-import type { Pagination } from '~/models/manager'
+import type { Pagination } from '~/models/pagination'
 
 const BASE_URL = 'https://rent.ph/api'
 
