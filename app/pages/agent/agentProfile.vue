@@ -104,7 +104,7 @@ const goEdit = () => {
                 <main class="flex-1 overflow-y-auto pr-4 custom-scrollbar pb-20">
 
                     <section class="mb-16">
-                        <h2 class="text-4xl font-bold mb-8 tracking-tight">About Mer</h2>
+                        <h2 class="text-4xl font-bold mb-8 tracking-tight">About Me</h2>
                         <div
                             class="flex flex-col gap-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
                             <p class="text-justify italic">

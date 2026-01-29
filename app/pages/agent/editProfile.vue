@@ -38,7 +38,7 @@ const saveChanges = () => {
           <button @click="router.back()"
             class="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black dark:hover:text-white transition-all group">
             <Icon name="lucide:chevron-left" class="size-5 group-hover:-translate-x-1 transition-transform" />
-            <span class="text-sm font-medium cursor-pointer tracking-wide uppercase">Back to Agents</span>
+            <span class="text-sm font-medium cursor-pointer tracking-wide uppercase">Back to Profile</span>
           </button>
         </div>
       </div>
