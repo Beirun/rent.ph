@@ -1,3 +1,5 @@
+import type { Pagination } from './pagination'
+
 export interface PropertyListResponse<T> {
   status: string
   data: T[]
@@ -46,14 +48,4 @@ export interface Property {
 export interface GalleryImage {
   large: string
   thumb: string
-}
-
-export interface Pagination {
-  current_page: number
-  last_page: number
-  per_page: number
-  total: number
-  from: number
-  to: number
-  has_more: boolean
 }
