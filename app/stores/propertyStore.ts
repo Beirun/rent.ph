@@ -1,9 +1,5 @@
-import type {
-  Pagination,
-  Property,
-  PropertyListResponse,
-  PropertyResponse,
-} from '~/models/property'
+import type { Pagination } from '~/models/pagination'
+import type { Property, PropertyListResponse, PropertyResponse } from '~/models/property'
 
 const BASE_URL = 'https://rent.ph/api'
 
