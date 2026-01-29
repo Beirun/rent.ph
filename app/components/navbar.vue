@@ -76,7 +76,9 @@ const anchors = [
         <AccountForm>
           <Button @click="ypos" variant="ghost">Login</Button>
         </AccountForm>
-        <Button variant="default" class="text-[#121212] dark:text-[#fafafa]">Register</Button>
+        <RegisterForm>
+          <Button variant="default" class="text-[#121212] dark:text-[#fafafa]">Register</Button>
+        </RegisterForm>
       </div>
       <AppSidebar :anchors="anchors" />
     </div>
