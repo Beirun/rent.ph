@@ -1,5 +1,3 @@
-// property.model.ts
-
 export interface PropertyListResponse<T> {
   status: string
   data: T[]
