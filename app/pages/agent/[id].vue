@@ -49,9 +49,10 @@ const goBack = () => {
                     :style="{ backgroundImage: `url(${photo})` }"
                     class="size-32 sm:size-40 rounded-full bg-cover bg-center ring-1 ring-gray-100 dark:ring-gray-700 shadow-xl"
                   />
-                  <div class="absolute bottom-2 text-center right-2 bg-blue-600 text-white p-1.5 rounded-full shadow-lg border-2 border-white dark:border-[#1a1b1e]">
-                    <Icon name="lucide:check" class="size-5 text-white text-bold" />
-                  </div>
+                  <div
+                      class="absolute bottom-2 w-9 h-9 text-center right-2 bg-blue-600 text-white p-1.5 rounded-full shadow-lg border-2 border-white dark:border-[#1a1b1e]">
+                      <Icon name="lucide:check" class="size-5 text-white text-bold" />
+                    </div>
                 </div>
 
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-[#fafafa] mb-1">{{ name }}</h1>
@@ -106,7 +107,7 @@ const goBack = () => {
         <main class="flex-1 overflow-y-auto pr-4 custom-scrollbar pb-20">
           
           <section class="mb-16">
-            <h2 class="text-4xl font-bold mb-8 tracking-tight">About {{ name }}</h2>
+            <h2 class="text-4xl font-bold mb-8 tracking-tight">Get to know {{ name }}</h2>
             <div class="flex flex-col gap-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
                <p class="text-justify italic">{{ about || 'Dedicated to providing excellence in the real estate industry.'}}</p>
             </div>
