@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
-const authMode = ref<'login' | 'register'>('login')
+const authMode = ref<'login' | 'register'>('register')
 
 const toggleMode = () => {
   authMode.value = authMode.value === 'login' ? 'register' : 'login'
