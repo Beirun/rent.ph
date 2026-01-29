@@ -6,48 +6,15 @@ import pagination from '~/components/pagination.vue'
 import PropertiesPage from '~/components/propertiesPage.vue'
 import propertiesAndListings2 from '~/components/propertiesAndListings2.vue'
 
-interface Property {
-  id: number
-  title: string
-  image: string
-  price: string
-  bed: number
-  bathroom: number
-  square: number
-  address: string
-  user_name: string
-  user_avatar?: string
-  agent_title: string
-  agent_phone: string
-  agent_email: string
-}
+const propertyStore = usePropertyStore()
 
-const currentPage = ref(1)
-const totalPages = ref(10)
-const properties = ref<Property[]>([])
-const loading = ref(true)
+// const handlePageChange = (page: number) => {
+//   currentPage.value = page
+//   console.log('Changed to page:', page)
+// }
 
-const fetchProperties = async () => {
-  try {
-    const response = await fetch('https://rent.ph/api/properties')
-    const data = await response.json()
-    if (data.status === 'success') {
-      properties.value = data.data
-    }
-  } catch (error) {
-    console.error('Error fetching properties:', error)
-  } finally {
-    loading.value = false
-  }
-}
-
-const handlePageChange = (page: number) => {
-  currentPage.value = page
-  console.log('Changed to page:', page)
-}
-
-onMounted(() => {
-  fetchProperties()
+onMounted(async () => {
+  await propertyStore.getProperties()
 })
 </script>
 
@@ -60,7 +27,7 @@ onMounted(() => {
       <h1 class="text-4xl font-semibold mb-8">Property for Rent</h1>
       <ClientOnly>
         <propertySearchBar />
-        <propertiesAndListings2 :properties="properties" />
+        <propertiesAndListings2 :properties="propertyStore.properties" />
       </ClientOnly>
 
       <!-- <div class="mt-12 space-y-6">
