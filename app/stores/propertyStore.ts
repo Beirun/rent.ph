@@ -26,13 +26,34 @@ export const usePropertyStore = defineStore('property', () => {
   const getPropertyBySlug = async (slug: string) => {
     loading.value = true
     try {
-      const res = await fetch(`${BASE_URL}/properties/slug/${slug}`)
-      if (!res.ok) throw new Error(`Failed to fetch property by slug: ${res.statusText}`)
-      const json: PropertyResponse<Property> = await res.json()
-      property.value = json.data
+      console.log('Fetching property with slug:', slug)
+      // Fetch all properties to find the ID matching this slug
+      const listUrl = `${BASE_URL}/properties`
+      console.log('Fetching properties list from:', listUrl)
+      const listRes = await fetch(listUrl)
+      const listJson = await listRes.json()
+      console.log('All properties response:', listJson)
+
+      // Find the property with matching slug
+      const propertyItem = listJson.data?.find((p: any) => p.slug === slug)
+      if (!propertyItem) {
+        throw new Error(`Property with slug ${slug} not found`)
+      }
+
+      console.log('Found property ID:', propertyItem.id)
+      // Now fetch the full property data using the ID
+      const detailUrl = `${BASE_URL}/properties/${propertyItem.id}`
+      console.log('Fetching full property from:', detailUrl)
+      const detailRes = await fetch(detailUrl)
+      const detailJson = await detailRes.json()
+      console.log('Full property data:', detailJson)
+
+      if (!detailRes.ok) throw new Error(`Failed to fetch property: ${detailRes.statusText}`)
+      property.value = detailJson.data
+      console.log('Property set to:', property.value)
+      loading.value = false
     } catch (err) {
       console.error(err)
-    } finally {
       loading.value = false
     }
   }
