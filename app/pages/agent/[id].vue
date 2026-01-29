@@ -49,9 +49,10 @@ const goBack = () => {
                     :style="{ backgroundImage: `url(${photo})` }"
                     class="size-32 sm:size-40 rounded-full bg-cover bg-center ring-1 ring-gray-100 dark:ring-gray-700 shadow-xl"
                   />
-                  <div class="absolute bottom-2 text-center right-2 bg-blue-600 text-white p-1.5 rounded-full shadow-lg border-2 border-white dark:border-[#1a1b1e]">
-                    <Icon name="lucide:check" class="size-5 text-white text-bold" />
-                  </div>
+                  <div
+                      class="absolute bottom-2 w-9 h-9 text-center right-2 bg-blue-600 text-white p-1.5 rounded-full shadow-lg border-2 border-white dark:border-[#1a1b1e]">
+                      <Icon name="lucide:check" class="size-5 text-white text-bold" />
+                    </div>
                 </div>
 
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-[#fafafa] mb-1">{{ name }}</h1>
