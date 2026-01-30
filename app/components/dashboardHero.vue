@@ -47,7 +47,7 @@ const stats = [
     subtitle: '14 in the last week'
   },
   {
-    label: 'Total Active',
+    label: 'Total Hide',
     value: 18,
     change: '+25%',
     changePositive: true,
@@ -144,7 +144,6 @@ const projects = [
       <div class="grid grid-cols-1 lg:grid-cols-6 gap-6 mb-8 items-start">
         
         <div class="lg:col-span-4 space-y-6">
-          
           <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
             <div v-for="stat in stats" :key="stat.label"
               class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
@@ -202,11 +201,10 @@ const projects = [
         </div>
 
         <div class="lg:col-span-2 space-y-6 sticky top-8 h-fit">
-          
           <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Rent Manager Profile</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Manage your profile in one go</p>
-            <button class="w-full py-2.5 px-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+            <button class="w-full py-2.5 px-4 cursor-pointer bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
               <Icon name="lucide:plus" class="size-4" /> View Profile
             </button>
             
@@ -227,7 +225,7 @@ const projects = [
           <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Rent Manager Tools</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Add Listings with minimal effort</p>
-            <button class="w-full py-2.5 px-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+            <button class="w-full py-2.5 px-4 bg-gray-900 dark:bg-white cursor-pointer text-white dark:text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
               <Icon name="lucide:plus" class="size-4" /> Create Listing
             </button>
 
@@ -244,7 +242,6 @@ const projects = [
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

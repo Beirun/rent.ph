@@ -84,7 +84,7 @@ onUnmounted(() => {
       <button
         v-if="showLeftArrow"
         @click="scroll('left')"
-        class="absolute -left-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all ease-in ease-out active:scale-95"
+        class="absolute -left-12 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full bg-white dark:bg-[#2e2e2e] shadow-xl border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:scale-110 transition-all ease-out active:scale-95"
       >
         <Icon name="radix-icons:arrow-left" class="size-6 text-gray-700 dark:text-gray-200" />
       </button>
