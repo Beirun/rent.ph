@@ -62,12 +62,12 @@ const awards: Award[] = [
 </script>
 
 <template>
-    <div class="min-h-screen w-full bg-white py-20">
+    <div class="min-h-screen w-full bg-white dark:bg-zinc-950 py-20 transition-colors duration-300">
         <div class="max-w-8xl mx-auto px-6 lg:px-20 flex flex-col gap-16">
 
             <div class="w-full flex flex-col lg:flex-row justify-between items-start gap-8">
-                <h2 class="uppercase text-6xl font-bold">Achievements</h2>
-                <div class="lg:w-[35%] text-justify text-gray-600 text-sm leading-relaxed">
+                <h2 class="uppercase text-6xl font-bold text-zinc-900 dark:text-white">Achievements</h2>
+                <div class="lg:w-[35%] text-justify text-gray-600 dark:text-zinc-400 text-sm leading-relaxed">
                     <p> Together with its sister brand Filipino Homes, Rent.ph has serviced owners and companies in
                         marketing their lands, apartments, houses, condominiums, warehouses
                         and commercial spaces across the country through our network of rent professionals.</p>
@@ -75,23 +75,25 @@ const awards: Award[] = [
             </div>
 
             <div class="w-full flex flex-col">
-                <div v-for="award in awards" :key="award.id" class="flex flex-col border-t border-gray-200 last:border-b">
+                <div v-for="award in awards" :key="award.id" 
+                    class="flex flex-col border-t border-gray-200 dark:border-zinc-800 last:border-b transition-colors">
                     
                     <div 
                         @click="toggleAward(award.id)"
-                        class="group w-full flex items-center justify-between py-8 transition-colors hover:bg-gray-50 cursor-pointer"
+                        class="group w-full flex items-center justify-between py-8 transition-colors hover:bg-gray-50 dark:hover:bg-zinc-900/50 cursor-pointer"
                     >
                         <div class="flex flex-col w-32">
-                            <span class="text-xs uppercase tracking-widest text-gray-400">{{ award.type }}</span>
-                            <span class="text-xl font-medium">{{ award.year }}</span>
+                            <span class="text-xs uppercase tracking-widest text-gray-400 dark:text-zinc-500">{{ award.type }}</span>
+                            <span class="text-xl font-medium text-zinc-900 dark:text-zinc-200">{{ award.year }}</span>
                         </div>
 
                         <div class="flex-1 flex justify-center">
-                            <NuxtImg :src="award.photo" class="h-16 w-auto grayscale group-hover:grayscale-0 transition-all" />
+                            <NuxtImg :src="award.photo" 
+                                class="h-16 w-auto grayscale group-hover:grayscale-0 dark:brightness-90 dark:contrast-125 transition-all" />
                         </div>
 
-                        <div class="w-[20%] text-right lg:text-left">
-                            <p class="text-lg lg:text-2xl uppercase font-light tracking-tight">
+                        <div class="w-[30%] lg:w-[20%] text-right lg:text-left">
+                            <p class="text-lg lg:text-2xl uppercase font-light tracking-tight text-zinc-800 dark:text-zinc-300">
                                 {{ award.description }}
                             </p>
                         </div>
@@ -101,8 +103,8 @@ const awards: Award[] = [
                         v-if="activeId === award.id" 
                         class="pb-10 flex items-center justify-center animate-in w-full fade-in slide-in-from-top-1 duration-300"
                     >
-                        <div class="p-6 bg-gray-50 w-full flex items-center justify-center rounded-lg border border-gray-100">
-                             <p class="text-gray-700 italic">"{{ award.details }}"</p>
+                        <div class="p-6 bg-gray-50 dark:bg-zinc-900/80 w-full flex items-center justify-center rounded-lg border border-gray-100 dark:border-zinc-800">
+                             <p class="text-gray-700 dark:text-zinc-400 italic font-light">"{{ award.details }}"</p>
                         </div>
                     </div>
 
