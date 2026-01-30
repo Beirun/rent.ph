@@ -46,7 +46,7 @@ const stories = [
                                 {{ story.title }}
                             </h4>
 
-                            <p class="text-gray-600 text-[#fe8e0a] dark:text-gray-300">
+                            <p class="text-gray-600 dark:text-gray-300">
                                 {{ story.label }}
                             </p>
                         </div>
