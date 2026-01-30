@@ -13,9 +13,9 @@ const handlePageChange = (page: number) => {
   console.log('Changed to page:', page)
 }
 
-const goToBlog = () => {
+const goToBlog = (id: string) => {
   navigateTo({
-    path: `/blogs/1`,
+    path: `/blogs/${id}`,
   })
 }
 </script>
@@ -28,7 +28,7 @@ const goToBlog = () => {
         :key="blog.id"
         v-bind="blog"
         orientation="vertical"
-        @click="goToBlog"
+        @click="goToBlog(blog.slug)"
       >
       </NewsCard>
     </div>
