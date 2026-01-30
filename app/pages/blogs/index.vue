@@ -10,7 +10,7 @@ onMounted(async () => {
     <ClientOnly>
       <Navbar />
     </ClientOnly>
-    <div class="w-screen h-screen bg-[url(/blogIndexBG.png)] bg-no-repeat bg-cover fixed -z-10"></div>
+    <div class="w-screen h-screen bg-[url(/blogIndexBG.png)] dark:bg-[url(/blogIndexBGDark.png)] bg-no-repeat bg-cover fixed -z-10"></div>
     <div id="blogsContainer">
       <NewsHero />
       <NewsHeaderSkeleton v-if="blogStore.loading" />
