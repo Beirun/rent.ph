@@ -15,6 +15,8 @@ export interface Agent {
   last_name: string
   email: string
   phone: string
+  avatar: string
+  reviews: string | null
   city: string | null
   state: string | null
   rmpro: string | null
