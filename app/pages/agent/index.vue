@@ -149,8 +149,10 @@ const categories: Record<string, string> = {
     <ClientOnly>
       <navbar />
     </ClientOnly>
-    <div class="flex flex-row w-full mx-5 px-10 pt-30 pb-20 justify-self-center">
-      <div
+    <div class="flex flex-col w-full mx-5 px-10 pt-30 pb-20 justify-self-center">
+      <h1 class="text-4xl font-semibold mb-8">Rent Managers</h1>
+      <div class="flex flex-row">
+        <div
         id="categoriesSection"
         class="w-1/5 h-fit border-1 border-gray-200 rounded-lg bg-white shadow-lg p-10 dark:bg-[#212121] dark:border-gray-800 mb-20"
       >
@@ -177,7 +179,6 @@ const categories: Record<string, string> = {
       <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
       <div class="w-4/5">
         <div class="container px-4 md:px-10 pb-20">
-          <h1 class="text-4xl font-semibold mb-8">Rent Managers</h1>
           <ClientOnly>
             <AgentSearchBar />
           </ClientOnly>
@@ -200,6 +201,7 @@ const categories: Record<string, string> = {
             />
           </div>
         </div>
+      </div>
       </div>
     </div>
     <ClientOnly>
