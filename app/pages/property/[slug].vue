@@ -103,7 +103,7 @@ const goBack = () => navigateTo('/property')
 
     <Transition name="fade">
       <div v-if="isExpanded"
-        class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+        class="fixed inset-0 z-100 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
         @click="closeExpand">
         <button class="absolute top-8 right-8 text-white/70 hover:text-white transition-colors">
           <Icon name="lucide:x" class="size-8" />

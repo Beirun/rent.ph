@@ -51,7 +51,7 @@ onMounted(async () => {
 
       <div class="flex flex-row gap-6">
         <!------------------------------------------------------------------------------------------------------>
-        <div id="categoriesSection" class="w-1/5 h-fit border-1 border-gray-200 rounded-lg bg-white shadow-lg p-10 dark:bg-[#212121] dark:border-gray-800 mb-20">
+        <div id="categoriesSection" class="w-1/5 h-fit border border-gray-200 rounded-lg bg-white shadow-lg p-10 dark:bg-[#212121] dark:border-gray-800 mb-20">
           <h1 class="font-bold text-2xl dark:text-white">Categories</h1>
             <div class="mt-10">
               <template v-for="(listings, category, index) in categories" :key="category">
