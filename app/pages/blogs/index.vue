@@ -1,4 +1,9 @@
 <script setup lang="ts">
+const blogStore = useBlogStore()
+
+onMounted(async () => {
+  await blogStore.getBlogs(1, 5)
+})
 </script>
 <template>
   <div class="w-screen min-h-screen flex flex-col overflow-hidden">
@@ -8,8 +13,11 @@
     <div class="w-screen h-screen bg-[url(/blogIndexBG.png)] bg-no-repeat bg-cover fixed -z-10"></div>
     <div id="blogsContainer">
       <NewsHero />
-      <NewsHeader />
-      <NewsBlogs />
+      <NewsHeaderSkeleton v-if="blogStore.loading" />
+      <NewsHeader v-else v-bind="blogStore.blogs[0]!" />
+
+      <NewsBlogsSkeleton v-if="blogStore.loading" />
+      <NewsBlogs v-else :blogs="blogStore.blogs.slice(1)" />
     </div>
 
     <ClientOnly>
