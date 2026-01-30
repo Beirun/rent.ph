@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { NewsItem } from '~/models/blog'
+import type { Pagination } from '~/models/pagination'
 
 interface Props {
   blogs: NewsItem[]
@@ -8,8 +9,13 @@ const props = withDefaults(defineProps<Props>(), {})
 const currentPage = ref(1)
 const totalPages = ref(10)
 
+const emit = defineEmits<{
+  'next-page': [page: string]
+}>()
+
 const handlePageChange = (page: number) => {
   currentPage.value = page
+  emit('next-page', page.toString())
   console.log('Changed to page:', page)
 }
 
@@ -18,6 +24,12 @@ const goToBlog = (id: string) => {
     path: `/blogs/${id}`,
   })
 }
+
+onMounted(() => {
+  const { pagination } = useBlogStore()
+  currentPage.value = pagination?.current_page || 1
+  totalPages.value = pagination?.last_page || 10
+})
 </script>
 <template>
   <div class="w-screen py-5 md:py-10 flex flex-col items-center">
