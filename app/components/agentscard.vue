@@ -6,16 +6,19 @@ interface ReviewItem {
 }
 
 interface Props {
-  id: string | number
-  phone: number
+  id: number
   name: string
+  first_name: string
+  last_name: string
   email: string
-  photo: string
-  location: string
-  status: string
-  reviews: string
-  about: string
-  reviewList: ReviewItem[]
+  phone: string
+  avatar: string
+  reviews: string | null
+  city: string | null
+  state: string | null
+  rmpro: string | null
+  agent_title: string
+  listing_count: number
   heartActive?: boolean
   orientation?: string
 }
@@ -34,11 +37,11 @@ const goToProfile = () => {
       name: props.name,
       phone: props.phone,
       email: props.email,
-      photo: props.photo,
-      location: props.location,
-      status: props.status,
-      about: props.about,
-      reviewList: JSON.stringify(props.reviewList),
+      // photo: props.photo,
+      // location: props.location,
+      // status: props.status,
+      // about: props.about,
+      // reviewList: JSON.stringify(props.reviewList),
     },
   })
 }
@@ -52,8 +55,8 @@ const goToProfile = () => {
   >
     <div class="h-[60%] w-full relative overflow-hidden">
       <div
-        :style="{ backgroundImage: `url(${photo})` }"
-        class="absolute inset-0 rounded-lg bg-cover bg-no-repeat bg-center"
+        :style="{ backgroundImage: `url(${avatar})` }"
+        class="absolute inset-0 rounded-lg bg-cover bg-no-repeat bg-top"
       ></div>
 
       <button
@@ -71,7 +74,7 @@ const goToProfile = () => {
       <span
         class="absolute top-0 left-0 py-1.5 px-4 text-sm text-white bg-[#205ed7] rounded-tl-lg rounded-br-2xl z-10"
       >
-        {{ status }}
+        {{ listing_count + ' Listings' }}
       </span>
     </div>
 
@@ -87,11 +90,15 @@ const goToProfile = () => {
             <Icon name="lucide:phone" class="size-4" /><span>{{ phone }}</span>
           </div>
           <div class="flex items-center gap-2">
-            <Icon name="lucide:map-pin" class="size-4" /><span>{{ location }}</span>
+            <Icon name="lucide:map-pin" class="size-4" /><span>{{
+              state || city || 'Philippines'
+            }}</span>
           </div>
           <div class="flex items-center gap-2">
             <Icon v-for="_ in 5" name="radix-icons:star-filled" class="size-3.5 text-yellow-500" />
-            <span class="text-[10px] text-[#262626]/80 dark:text-[#e8e8e8]/60">{{ reviews }}</span>
+            <span class="text-[10px] text-[#262626]/80 dark:text-[#e8e8e8]/60">{{
+              'reviews'
+            }}</span>
           </div>
         </div>
       </div>
@@ -108,8 +115,8 @@ const goToProfile = () => {
   >
     <div class="h-[60%] w-full relative bg-zinc-900 overflow-hidden">
       <div
-        :style="{ backgroundImage: `url(${photo})` }"
-        class="absolute inset-0 rounded-lg bg-cover bg-no-repeat bg-center"
+        :style="{ backgroundImage: `url(${avatar})` }"
+        class="absolute inset-0 rounded-lg bg-cover bg-no-repeat bg-top"
       ></div>
 
       <button
@@ -127,7 +134,7 @@ const goToProfile = () => {
       <span
         class="absolute top-0 left-0 py-1.5 px-4 text-sm text-white bg-[#205ed7] rounded-tl-lg rounded-br-2xl z-10"
       >
-        {{ status }}
+        {{ listing_count + ' Listings' }}
       </span>
     </div>
 
@@ -139,7 +146,9 @@ const goToProfile = () => {
             <Icon name="lucide:mail" class="size-4" /><span>{{ email }}</span>
           </div>
           <div class="flex items-center gap-2">
-            <Icon name="lucide:map-pin" class="size-4" /><span>{{ location }}</span>
+            <Icon name="lucide:map-pin" class="size-4" /><span>{{
+              state || city || 'Philippines'
+            }}</span>
           </div>
         </div>
       </div>

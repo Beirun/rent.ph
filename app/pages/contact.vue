@@ -4,7 +4,7 @@
     <ClientOnly>
       <navbar />
     </ClientOnly>
-    <div class="w-screen min-h-screen bg-[url(/blogBackGround.png)] bg-no-repeat bg-cover bg-bottom fixed -z-10">
+    <div class="w-screen min-h-screen bg-[url(/blogBackGround.png)] dark:bg-[url(/blogBackGroundDark.png)] bg-no-repeat bg-cover bg-bottom fixed -z-10">
     </div>
     <div class="container mx-auto px-4 md:px-10 pt-30 pb-20">
         <div class="flex flex-col md:flex-row p-4 md:p-5 gap-6 md:gap-8">
