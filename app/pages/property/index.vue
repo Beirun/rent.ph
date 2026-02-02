@@ -35,6 +35,31 @@ const categories: Record<string, string> = {
   'Others' : '50'
 }
 
+const topSearches: string[] = [
+  'Condominium for rent in Cebu City',
+  'House and lot for rent in Lapu-Lapu City',
+  'House and lot for rent in Mactan',
+  'Studio Unit for rent in Makati',
+  'Unit for rent in Bonifacio Global City',
+  'Commercial Space in Philippines',
+  'Commercial Spaces in Mandaue City',
+  'Warehouse for rent in Cagayan de Oro',
+  'Pet friendly unit in Manila',
+  'For rent in Batangas',
+  'Warehouse for lease in General Santos',
+  'Commercial space for rent in Gensan',
+  'Davao house and lot for rent',
+  'Davao studio unit for rent',
+  '1 bedroom unit for rent in Davao City',
+  'Warehouse for rent in Puerto Princesa',
+  '2BR condo w/ parking for rent in Cebu City',
+  'Parking Space for rent',
+  'Rental properties in Pampanga',
+  '1 Bedroom in Cebu City',
+  'Studio in Metro Manila',
+  'Rental Properties in Makati City',
+]
+
 onMounted(async () => {
   await propertyStore.getProperties()
 
@@ -51,11 +76,11 @@ onMounted(async () => {
 
       <div class="flex flex-row gap-6">
         <!------------------------------------------------------------------------------------------------------>
-        <div id="categoriesSection" class="w-1/5 h-fit border border-gray-200 rounded-lg bg-white shadow-lg p-10 dark:bg-[#212121] dark:border-gray-800 mb-20">
-          <h1 class="font-bold text-2xl dark:text-white">Categories</h1>
-            <div class="mt-10">
+        <div id="categoriesSection" class="w-1/6 h-fit mb-20">
+          <h1 class="font-bold text-lg dark:text-white dark:bg-[#212121] bg-orange-300 px-3 rounded-sm py-1">Categories</h1>
+            <div class="mt-5 mb-10">
               <template v-for="(listings, category, index) in categories" :key="category">
-                <div class="flex justify-between mt-5">
+                <div class="flex justify-between mt-2 px-3">
                   <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
                     {{ category }} 
                   </a>
@@ -65,9 +90,19 @@ onMounted(async () => {
                 </div>
               </template>
             </div>
+          <h1 class="font-bold text-lg dark:text-white dark:bg-[#212121] bg-orange-300 px-3 rounded-sm py-1">Top Rental Searches</h1>
+            <div class="mt-5">
+              <template v-for="(searches in topSearches" :key="searches">
+                <div class="flex justify-between mt-2 px-3">
+                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors ">
+                    {{ searches }} 
+                  </a>
+                </div>
+              </template>
+            </div>
         </div>
         <!-------------------------------------------------------------------------------------------------------->
-        <div id="propertiesSection" class="w-4/5 flex flex-col overflow-y-auto pr-2 custom-scrollbar" style="max-height: calc(100vh);">
+        <div id="propertiesSection" class="w-4/5 flex flex-col overflow-y-auto pr-2 custom-scrollbar" style="max-height: calc(140vh);">
           <ClientOnly>
             <propertySearchBar />
             <propertiesAndListings2 :properties="propertyStore.properties" />
