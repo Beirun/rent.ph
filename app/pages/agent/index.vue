@@ -153,55 +153,61 @@ const categories: Record<string, string> = {
       <h1 class="text-4xl font-semibold mb-8">Rent Managers</h1>
       <div class="flex flex-row">
         <div
-        id="categoriesSection"
-        class="w-1/5 h-fit border border-gray-200 rounded-lg bg-white shadow-lg p-10 dark:bg-[#212121] dark:border-gray-800 mb-20">
-        <h1 class="font-bold text-2xl dark:text-white">Categories</h1>
-        <div class="mt-10 mb-37">
-          <template v-for="(listings, category, index) in categories" :key="category">
-            <div class="flex justify-between mt-5">
-              <a
-                href="#"
-                class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors"
-              >
-                {{ category }}
-              </a>
-              <a
-                href="#"
-                class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors"
-              >
-                {{ listings }} Properties
-              </a>
+          id="categoriesSection"
+          class="w-1/5 h-fit border border-gray-200 rounded-lg bg-white shadow-lg p-10 dark:bg-[#212121] dark:border-gray-800 mb-20"
+        >
+          <h1 class="font-bold text-2xl dark:text-white">Categories</h1>
+          <div class="mt-10 mb-37">
+            <template v-for="(listings, category, index) in categories" :key="category">
+              <div class="flex justify-between mt-5">
+                <a
+                  href="#"
+                  class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors"
+                >
+                  {{ category }}
+                </a>
+                <a
+                  href="#"
+                  class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors"
+                >
+                  {{ listings }} Properties
+                </a>
+              </div>
+            </template>
+          </div>
+        </div>
+        <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <div class="w-4/5">
+          <div class="container px-4 md:px-10 pb-20">
+            <ClientOnly>
+              <AgentSearchBar />
+            </ClientOnly>
+
+            <div class="mt-12 flex flex-wrap gap-4 gap-y-5 justify-center">
+              <agentscard
+                v-for="manager in managerStore.managers"
+                :key="manager.id"
+                v-bind="manager"
+                orientation="vertical"
+                class="w-[calc(25%-1rem)]"
+              />
             </div>
-          </template>
-        </div>
-      </div>
-      <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-      <div class="w-4/5">
-        <div class="container px-4 md:px-10 pb-20">
-          <ClientOnly>
-            <AgentSearchBar />
-          </ClientOnly>
 
-          <div class="mt-12 flex flex-wrap gap-4 gap-y-5 justify-center">
-            <agentscard
-              v-for="manager in managerStore.managers"
-              :key="manager.id"
-              v-bind="manager"
-              orientation="vertical"
-              class="w-[calc(25%-1rem)]"
-            />
-          </div>
-
-          <div class="flex justify-center mt-12">
-            <pagination
-              :current-page="managerStore.pagination?.current_page ?? 1"
-              :total-pages="managerStore.pagination?.total ?? 1"
-              @page-change="handlePageChange"
-            />
+            <div class="flex justify-center mt-12">
+              <pagination
+                :current-page="managerStore.pagination?.current_page ?? 1"
+                :total-pages="managerStore.pagination?.total ?? 1"
+                @page-change="handlePageChange"
+              />
+            </div>
           </div>
         </div>
       </div>
-      </div>
+    </div>
+    <div class="pt-15">
+      <ClientOnly>
+        <Backlinks />
+      </ClientOnly>
     </div>
     <ClientOnly>
       <Footer />

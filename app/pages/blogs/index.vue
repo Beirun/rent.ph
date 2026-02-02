@@ -17,7 +17,9 @@ const nexPage = async (page: string) => {
     <ClientOnly>
       <Navbar />
     </ClientOnly>
-    <div class="w-screen h-screen bg-[url(/blogIndexBG.png)] dark:bg-[url(/blogIndexBGDark.png)] bg-no-repeat bg-cover fixed -z-10"></div>
+    <div
+      class="w-screen h-screen bg-[url(/blogIndexBG.png)] dark:bg-[url(/blogIndexBGDark.png)] bg-no-repeat bg-cover fixed -z-10"
+    ></div>
     <div id="blogsContainer">
       <NewsHero />
       <NewsHeaderSkeleton v-if="blogStore.loading" />
@@ -26,7 +28,11 @@ const nexPage = async (page: string) => {
       <NewsBlogsSkeleton v-if="blogStore.loading" />
       <NewsBlogs v-else :blogs="blogStore.blogs" @next-page="nexPage" />
     </div>
-
+    <div class="pt-15">
+      <ClientOnly>
+        <Backlinks />
+      </ClientOnly>
+    </div>
     <ClientOnly>
       <Footer />
     </ClientOnly>
