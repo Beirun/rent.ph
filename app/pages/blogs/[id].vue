@@ -13,6 +13,7 @@ onMounted(async () => {
   const route = useRoute()
   const { id } = route.params
   await blogStore.getBlog(id as string)
+  console.log(blogStore.blog?.content)
 })
 </script>
 <template>
@@ -50,8 +51,8 @@ onMounted(async () => {
           <Icon name="lucide:link" />
         </div>
       </div>
-      <div class="max-w-4xl mx-auto px-4 py-8 text-gray-900 font-sans leading-relaxed">
-        <h1 class="text-3xl font-bold mb-6 text-black">
+      <div class="max-w-4xl mx-auto px-4 py-8 font-sans leading-relaxed">
+        <h1 class="text-3xl font-bold mb-6">
           {{ blogStore.blog?.title }}
         </h1>
         <div
