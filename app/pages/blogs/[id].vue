@@ -21,7 +21,7 @@ onMounted(async () => {
       <navbar />
     </ClientOnly>
     <div
-      class="bg-[url(/blogBackGround.png)] bg-no-repeat w-screen h-screen bg-cover fixed -z-10"
+      class="bg-[url(/blogBackGround.png)] dark:bg-[url(/blogBackGroundDark.png)] bg-no-repeat w-screen h-screen bg-cover fixed -z-10"
     />
     <BlogDetailSkeleton v-if="blogStore.loading" />
     <div v-else id="scrollAraa" class="">
@@ -54,8 +54,7 @@ onMounted(async () => {
         <h1 class="text-3xl font-bold mb-6 text-black">
           {{ blogStore.blog?.title }}
         </h1>
-        <div v-html="blogStore.blog?.content.replaceAll('Calibri', 'Poppins')"></div>
-
+        <div class="dark:[&_*]:text-white" v-html="blogStore.blog?.content.replaceAll('Calibri', 'Poppins')"></div>
         <div id="RelatedBlogsScetion"></div>
       </div>
     </div>
