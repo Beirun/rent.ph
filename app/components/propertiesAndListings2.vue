@@ -58,23 +58,23 @@ const props = defineProps<{
       />
       <!-- jasdkajsd -->
       <PropertyCarousel
-        title="Popular Listings"
-        subtitle="Top picks from our community"
+        title="Recently Visited"
+        subtitle="Pick up where you left off"
         :items="properties"
       />
       <PropertyCarousel
-        title="Popular Listings"
-        subtitle="Top picks from our community"
+        title="Listings Near You"
+        subtitle="Properties right around the corner"
         :items="properties"
       />
       <PropertyCarousel
-        title="Popular Listings"
-        subtitle="Top picks from our community"
+        title="New Listings"
+        subtitle="freshest properties added to our platform"
         :items="properties"
       />
       <PropertyCarousel
-        title="Popular Listings"
-        subtitle="Top picks from our community"
+        title="Budget Friendly"
+        subtitle="high-quality homes that fit your wallet perfectly"
         :items="properties"
       />
     </div>
