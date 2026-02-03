@@ -8,8 +8,10 @@ import propertiesAndListings2 from '~/components/propertiesAndListings2.vue'
 
 const propertyStore = usePropertyStore()
 
-const showFilters = ref(false)
-
+// const handlePageChange = (page: number) => {
+//   currentPage.value = page
+//   console.log('Changed to page:', page)
+// }
 const categories: Record<string, string> = {
   'Farm Land': '1',
   Condominium: '1951',
@@ -68,111 +70,52 @@ onMounted(async () => {
     <ClientOnly>
       <navbar />
     </ClientOnly>
-    
-    <div class="flex flex-col w-full px-4 sm:px-6 md:px-10 pt-20 sm:pt-24 md:pt-30 pb-10 md:pb-20">
-      <!-- Page Title -->
-      <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 sm:mb-6 md:mb-8">Property for Rent</h1>
+    <div class="flex flex-col w-full mx-5 px-10 pt-30 pb-20 justify-self-center">
+      <h1 class="text-4xl font-semibold mb-8">Property for Rent</h1>
 
-      <!-- Mobile Filter Toggle Button -->
-      <button 
-        @click="showFilters = !showFilters"
-        class="md:hidden mb-6 w-full py-3 px-4 bg-[#fe8e0a] text-[#fafafa] rounded-lg flex items-center justify-center gap-2 font-medium shadow-md"
-      >
-        <Icon :name="showFilters ? 'lucide:x' : 'lucide:list-filter'" class="size-5" />
-        {{ showFilters ? 'Hide Categories' : 'Filter by Categories' }}
-      </button>
-
-      <div class="flex flex-col md:flex-row gap-4 md:gap-6">
-        <!------------------------------------ Categories & Filters Section ------------------------------------>
-        <aside 
-          id="categoriesSection" 
-          class="w-full md:w-1/4 lg:w-1/5 h-fit mb-6 md:mb-20 transition-all duration-300"
-          :class="{ 'hidden md:block': !showFilters }"
-        >
-          <!-- Categories -->
-          <div class="mb-6">
-            <h2 class="font-bold text-base md:text-lg dark:text-white dark:bg-[#212121] bg-orange-300 px-3 rounded-sm py-2">
-              Categories
-            </h2>
-            <div class="mt-3 md:mt-5 mb-6 md:mb-10">
-              <template v-for="(listings, category) in categories" :key="category">
-                <div class="flex justify-between mt-3 md:mt-4 px-3 hover:bg-gray-100 dark:hover:bg-gray-800 py-1 rounded transition-colors">
-                  <a href="#" class="text-xs sm:text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
+      <div class="flex flex-row gap-6">
+        <!------------------------------------------------------------------------------------------------------>
+        <div id="categoriesSection" class="w-1/6 h-fit mb-20">
+          <h1 class="font-bold text-lg dark:text-black dark:bg-orange-300 bg-orange-300 px-3 rounded-sm py-1">Categories</h1>
+            <div class="mt-5 mb-10">
+              <template v-for="(listings, category, index) in categories" :key="category">
+                <div class="flex justify-between mt-4 px-3">
+                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
                     {{ category }} 
                   </a>
-                  <a href="#" class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors">
-                    {{ listings }}
+                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
+                    {{ listings }} Properties
                   </a>
                 </div>
               </template>
             </div>
-          </div>
-
-          <!-- Top Searches -->
-          <div>
-            <h2 class="font-bold text-base md:text-lg dark:text-white dark:bg-[#212121] bg-orange-300 px-3 rounded-sm">
-              Top Rental Searches
-            </h2>
-            <div class="mt-3 md:mt-5">
-              <template v-for="search in topSearches" :key="search">
-                <div class="flex mt-3 md:mt-4 px-3 hover:bg-gray-100 dark:hover:bg-gray-800 py-1 rounded transition-colors">
-                  <a href="#" class="text-xs sm:text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
-                    {{ search }} 
+          <h1 class="font-bold text-lg dark:text-black dark:bg-orange-300 bg-orange-300 px-3 rounded-sm py-1">Top Rental Searches</h1>
+            <div class="mt-5">
+              <template v-for="(searches in topSearches" :key="searches">
+                <div class="flex justify-between mt-4 px-3">
+                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors ">
+                    {{ searches }} 
                   </a>
                 </div>
               </template>
             </div>
-          </div>
-        </aside>
-
-        <!------------------------------------ Properties Section ------------------------------------>
-        <main 
-          id="propertiesSection" 
-          class="w-full md:w-3/4 lg:w-4/5 flex flex-col overflow-y-auto pr-0 md:pr-2 custom-scrollbar" 
-          :style="{ maxHeight: showFilters ? 'auto' : 'calc(175vh)' }"
-        >
+        </div>
+        <!-------------------------------------------------------------------------------------------------------->
+        <div id="propertiesSection" class="w-4/5 flex flex-col overflow-y-auto pr-2 custom-scrollbar" style="max-height: calc(175vh);">
           <ClientOnly>
             <propertySearchBar />
             <propertiesAndListings2 :properties="propertyStore.properties" />
           </ClientOnly>
-        </main>
+        </div>
       </div>
     </div>
-
-    <!-- Backlinks Section -->
-    <div class="pt-8 md:pt-15">
+    <div class="pt-15">
       <ClientOnly>
         <Backlinks />
       </ClientOnly>
     </div>
-
-    <!-- Footer -->
     <ClientOnly>
       <Footer />
     </ClientOnly>
   </div>
 </template>
-
-<style scoped>
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-  border-radius: 3px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(156, 163, 175, 0.7);
-}
-</style>
