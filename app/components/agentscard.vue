@@ -41,10 +41,8 @@ const goToProfile = () => {
   <div v-if="orientation === 'vertical'" @click="goToProfile"
     class="rounded-xl cursor-pointer w-100 h-110 flex flex-col relative bg-white dark:bg-[#1a1a1a] shadow-md hover:shadow-lg transition-all duration-100 dark:border-zinc-800">
     <div class="h-[60%] w-full relative overflow-hidden">
-      <div
-        :style="{ backgroundImage: `url(${avatar})` }"
-        class="absolute inset-0 rounded-t-lg bg-cover bg-no-repeat bg-top"
-      ></div>
+      <div :style="{ backgroundImage: `url(${avatar})` }"
+        class="absolute inset-0 rounded-t-lg bg-cover bg-no-repeat bg-top"></div>
 
       <button @click.stop="heartActive = !heartActive"
         class="absolute top-4 right-4 size-10 bg-white/90 dark:bg-[#2e2e2e]/90 backdrop-blur-md rounded-full flex justify-center items-center z-10">
@@ -57,14 +55,18 @@ const goToProfile = () => {
       </span>
     </div>
 
-    <div
-      class="h-[40%] w-full flex p-4 flex-col justify-between rounded-b-lg bg-white dark:bg-[#1e1e1e]"
-    >
-      <div class="flex flex-col gap-2">
-        <div class="text-xl font-bold text-black dark:text-gray-200">{{ name }}</div>
-        <div class="flex flex-col gap-1.5 text-sm text-gray-500 dark:text-gray-400">
-          <div class="flex items-center gap-2">
-            <Icon name="lucide:mail" class="size-4" /><span>{{ email }}</span>
+    <div class="h-[40%] w-full flex p-4 flex-nowrap flex-col justify-between rounded-b-lg bg-white dark:bg-[#1e1e1e]">
+      <div class="flex flex-col gap-1 min-h-0">
+
+        <div class="text-xl font-bold text-black dark:text-gray-200 truncate" :title="name">
+          {{ name }}
+        </div>
+
+        <div class="flex flex-col gap-1 text-sm text-gray-500 dark:text-gray-400 overflow-hidden">
+
+          <div class="flex items-center gap-2 min-w-0">
+            <Icon name="lucide:mail" class="size-4 shrink-0" />
+            <span class="truncate">{{ email }}</span>
           </div>
 
           <div class="flex items-center gap-2 min-w-0">
