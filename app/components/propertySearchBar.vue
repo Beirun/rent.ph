@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="dark:bg-[#212121] p-4 md:p-6 rounded-lg gap-4 border border-gray-300 w-19/20 max-w-8xl mx-auto bg-gray-50 dark:border-gray-800"
+    class="dark:bg-[#212121] p-4 md:p-6 rounded-lg gap-4 border border-gray-300 w-19/20 max-w-8xl mx-auto dark:border-gray-800"
   >
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row gap-4 items-end">
       
