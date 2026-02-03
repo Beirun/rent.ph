@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { Sidebar } from 'lucide-vue-next'
+// No need for definePageMeta, we'll use NuxtLayout instead
 </script>
+
 <template>
-  <DashboardSideBar />
+  <NuxtLayout name="dashboard">
+    <DashboardHero />
+  </NuxtLayout>
 </template>

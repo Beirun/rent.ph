@@ -24,13 +24,24 @@ const handleLogin = async () => {
   console.log('Email:', loginEmail.value)
   console.log('Password:', loginPassword.value)
 
+  // Clear previous errors
+  errorMessage.value = ''
+
+  // Basic validation
   if (!loginEmail.value || !loginPassword.value) {
     errorMessage.value = 'Please enter email and password.'
     console.log('Form validation failed')
     return
   }
 
-  errorMessage.value = ''
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(loginEmail.value)) {
+    errorMessage.value = 'Please enter a valid email address.'
+    console.log('Email validation failed')
+    return
+  }
+
   isLoading.value = true
 
   try {
@@ -46,24 +57,28 @@ const handleLogin = async () => {
       }),
     })
 
+    console.log('Response status:', response.status)
+    console.log('Response ok:', response.ok)
+
     const data = await response.json()
+    console.log('Response data:', data)
 
     if (!response.ok) {
-      errorMessage.value = data.message || 'Login failed. Please try again.'
+      errorMessage.value = data.message || `Login failed (${response.status}). Please try again.`
       console.log('Login failed:', errorMessage.value)
       return
     }
 
     if (data.token) {
       localStorage.setItem('authToken', data.token)
-      console.log('Token stored')
+      console.log('Token stored successfully')
     }
 
-    console.log('Navigating to dashboard...')
+    console.log('Login successful, navigating to dashboard...')
     await router.push('/dashboard')
   } catch (error) {
-    errorMessage.value = 'An error occurred. Please try again.'
     console.error('Login error:', error)
+    errorMessage.value = 'Network error. Please check your connection and try again.'
   } finally {
     isLoading.value = false
   }
@@ -177,7 +192,6 @@ const handleLogin = async () => {
               </button>
               <button
                 type="submit"
-                @click="handleLogin"
                 :disabled="isLoading"
                 class="w-full py-6 font-semibold bg-[#fe8e0a] hover:bg-[#e07d08] rounded-md text-white"
               >

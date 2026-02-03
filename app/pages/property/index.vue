@@ -13,26 +13,26 @@ const propertyStore = usePropertyStore()
 //   console.log('Changed to page:', page)
 // }
 const categories: Record<string, string> = {
-  'Farm Land' : '1',
-  'Condominium' : '1951',
-  'Studio': '730',
+  'Farm Land': '1',
+  Condominium: '1951',
+  Studio: '730',
   '1 Bedroom': '489',
-  '2 Bedroom' : '334',
-  '3 Bedroom' : '70',
-  'House and Lot' : '1464',
-  'Apartment' : '327',
-  'Lot Only' : '153',
-  'Bed Space' : '37',
-  'Town House' : '94',
-  'Dormitory' : '7',
-  'Commercial Spaces' : '653',
+  '2 Bedroom': '334',
+  '3 Bedroom': '70',
+  'House and Lot': '1464',
+  Apartment: '327',
+  'Lot Only': '153',
+  'Bed Space': '37',
+  'Town House': '94',
+  Dormitory: '7',
+  'Commercial Spaces': '653',
   'Office Spaces': '254',
-  'Warehouse' : '227',
-  'Beach House' : '8',
-  'Conference Hall' : '1',
-  'Function Hall' : '1',
-  'Parking Space' : '9',
-  'Others' : '50'
+  Warehouse: '227',
+  'Beach House': '8',
+  'Conference Hall': '1',
+  'Function Hall': '1',
+  'Parking Space': '9',
+  Others: '50',
 }
 
 const topSearches: string[] = [
@@ -62,7 +62,6 @@ const topSearches: string[] = [
 
 onMounted(async () => {
   await propertyStore.getProperties()
-
 })
 </script>
 
@@ -109,6 +108,11 @@ onMounted(async () => {
           </ClientOnly>
         </div>
       </div>
+    </div>
+    <div class="pt-15">
+      <ClientOnly>
+        <Backlinks />
+      </ClientOnly>
     </div>
     <ClientOnly>
       <Footer />

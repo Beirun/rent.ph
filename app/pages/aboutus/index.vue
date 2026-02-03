@@ -23,7 +23,11 @@ import Testimonials from '~/components/testimonials.vue'
         <AboutTrustedPartners />
       </ClientOnly>
     </div>
-
+    <div class="pt-15">
+      <ClientOnly>
+        <Backlinks />
+      </ClientOnly>
+    </div>
     <ClientOnly>
       <Footer />
     </ClientOnly>
