@@ -56,7 +56,6 @@ const props = defineProps<{
         subtitle="Top picks from our community"
         :items="properties"
       />
-      <!-- jasdkajsd -->
       <PropertyCarousel
         title="Recently Visited"
         subtitle="Pick up where you left off"
