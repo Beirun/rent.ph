@@ -76,14 +76,14 @@ const placeDescriptions = [
       />
 
       <div
-        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-300"
+        class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent transition-opacity duration-300"
       />
 
-      <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
-        <h3 class="text-xl font-bold drop-shadow-lg whitespace-nowrap">
+      <div class="absolute bottom-0 left-0 right-0 p-6 text-white dark:text-white  flex flex-col justify-end">
+        <h3 class="text-xl text-[#fafafa] font-bold drop-shadow-lg whitespace-nowrap">
           {{ placeNames[index] || 'Location' }}
         </h3>
-        <p class="text-sm drop-shadow-md transform transition-all duration-300 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 mt-1 whitespace-nowrap">
+        <p class="text-sm drop-shadow-md text-[#fafafa] transform transition-all duration-300 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 mt-1 whitespace-nowrap">
           {{ placeDescriptions[index] || 'View Properties' }}
         </p>
       </div>

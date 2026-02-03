@@ -202,13 +202,16 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div class="px-10 flex flex-col mt-15 max-w-[98%] mx-auto">
-    <div ref="headerRef" class="flex flex-col w-full mb-8">
-      <h1 class="text-4xl font-bold">Our Star Agents</h1>
-      <p class="uppercase pt-4 text-gray-400 dark:text-gray-500">Meet Our Top Performers</p>
+  <div class="px-4 sm:px-10 flex flex-col mt-10 md:mt-15 max-w-[98%] mx-auto">
+    
+    <div ref="headerRef" class="flex flex-col pl-4 w-full mb-8 text-left">
+      <h1 class="text-3xl md:text-4xl font-bold">Our Star Agents</h1>
+      <p class="uppercase pt-2 md:pt-4 text-xs md:text-sm text-gray-400 dark:text-gray-500">
+        Meet Our Top Performers
+      </p>
     </div>
 
-    <div class="relative w-full lg:max-w-[70%] mx-auto">
+    <div class="relative w-full lg:max-w-full mx-auto">
       <Carousel
         class="w-full"
         :opts="{
@@ -217,55 +220,57 @@ onMounted(() => {
         }"
         @init-api="initAutoplay"
       >
-        <CarouselContent>
-          <CarouselItem v-for="agent in agents" :key="agent.id" class="md:basis-1/2 lg:basis-1/3">
-            <div ref="cardsRef" class="relative w-full max-w-sm">
+        <CarouselContent class="-ml-2 md:-ml-4">
+          <CarouselItem 
+            v-for="agent in agents" 
+            :key="agent.id" 
+            class="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/4 xl:basis-1/5 flex justify-center"
+          >
+            <div ref="cardsRef" class="relative w-full max-w-[350px] sm:max-w-sm lg:max-w-[350px] xl:max-w-[350px]">
               <div
-                class="relative rounded-2xl cursor-pointer w-full h-[28rem] md:w-80 md:h-[32rem] flex flex-col bg-white dark:bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                class="relative rounded-2xl cursor-pointer w-full h-[28rem] md:h-[32rem] flex flex-col bg-white dark:bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:scale-[1.02] border border-gray-100 dark:border-zinc-800"
               >
                 <div class="h-3/5 w-full relative rounded-t-2xl overflow-hidden">
                   <div
                     :style="{ backgroundImage: `url(${agent.avatar})` }"
-                    class="absolute inset-0 bg-cover bg-center object-cover"
+                    class="absolute inset-0 bg-cover bg-center"
                   ></div>
-
                   <div class="absolute top-4 left-4">
                     <img src="/rmpro.jpeg" alt="RMPro" class="w-12 h-6 object-contain" />
                   </div>
                 </div>
 
-                <div
-                  class="h-2/5 w-full flex p-4 flex-col justify-between bg-white dark:bg-[#1e1e1e] rounded-b-2xl"
-                >
-                  <div
-                    class="text-lg font-medium text-[#262626] dark:text-[#e8e8e8]/80 text-center"
-                  >
+                <div class="h-2/5 w-full flex p-4 flex-col justify-between bg-white dark:bg-[#1e1e1e] rounded-b-2xl">
+                  <div class="text-lg font-bold text-[#262626] dark:text-[#e8e8e8]/90 text-center truncate">
                     {{ agent.name }}
                   </div>
+                  
                   <div class="flex justify-between items-center">
-                    <div class="text-sm font-normal text-[#262626]/80 dark:text-[#e8e8e8]/60">
+                    <div class="text-[10px] md:text-xs font-medium text-gray-500 uppercase tracking-tighter">
                       {{ agent.listings }} Listings
                     </div>
-                    <div class="flex gap-1 items-center">
+                    <div class="flex gap-0.5 items-center">
                       <Icon
                         v-for="_ in 5"
+                        :key="_"
                         name="radix-icons:star-filled"
                         class="size-3 text-yellow-500"
                       />
                     </div>
                   </div>
-                  <div class="flex flex-col gap-1 text-xs text-[#262626]/60 dark:text-[#e8e8e8]/50">
-                    <div class="flex items-center gap-1">
-                      <Icon name="lucide:phone" class="size-3" />
-                      <span>{{ agent.phone }}</span>
+
+                  <div class="flex flex-col gap-1.5 text-[11px] text-gray-600 dark:text-gray-400">
+                    <div class="flex items-center gap-2 min-w-0">
+                      <Icon name="lucide:phone" class="size-3 shrink-0" />
+                      <span class="truncate">{{ agent.phone }}</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                      <Icon name="lucide:mail" class="size-3" />
-                      <span>{{ agent.email }}</span>
+                    <div class="flex items-center gap-2 min-w-0">
+                      <Icon name="lucide:mail" class="size-3 shrink-0" />
+                      <span class="truncate">{{ agent.email }}</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                      <Icon name="lucide:map-pin" class="size-3" />
-                      <span>{{ agent.location }}</span>
+                    <div class="flex items-center gap-2 min-w-0">
+                      <Icon name="lucide:map-pin" class="size-3 shrink-0" />
+                      <span class="truncate">{{ agent.location }}</span>
                     </div>
                   </div>
                 </div>
@@ -273,8 +278,9 @@ onMounted(() => {
             </div>
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+
+        <CarouselPrevious class="-left-4 lg:-left-12 hidden md:flex" />
+        <CarouselNext class="-right-4 lg:-right-12 hidden md:flex" />
       </Carousel>
     </div>
   </div>
