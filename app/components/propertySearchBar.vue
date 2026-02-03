@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="dark:bg-[#212121] p-4 md:p-6 rounded-lg border w-[95%] max-w-full mx-auto border-[#fe8e0a] shadow-sm"
+    class="dark:bg-[#212121] p-4 md:p-6 rounded-lg gap-4 border border-gray-300 w-19/20 max-w-8xl mx-auto bg-gray-50 dark:border-gray-800"
   >
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row gap-4 items-end">
       
@@ -11,16 +11,20 @@
         <Input
           id="keyword"
           name="keyword"
-          class="w-full border-[#fe8e0a] focus-visible:ring-[#fe8e0a] h-10 md:h-12"
-          placeholder="Property, area, etc."
+          class="w-full py-3 pl-3 border border-dark-100 rounded-md text-sm h-10"
+          icon="i-lucide-search"
+          placeholder="Keyword"
         />
       </div>
 
       <div class="flex flex-col gap-2 flex-1 w-full">
         <Label for="location" class="text-sm font-medium">Location</Label>
         <Select id="location">
-          <SelectTrigger class="w-full border-[#fe8e0a] h-10 md:h-12">
-            <SelectValue placeholder="Select City" />
+          <SelectTrigger class="w-full py-3 md:py-5">
+            <SelectValue>
+              <Icon name="lucide:map-pin" />
+              <Label class="text-sm md:text-base">Select/Enter a City</Label>
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -35,8 +39,8 @@
       <div class="flex flex-col gap-2 flex-1 w-full">
         <Label for="type" class="text-sm font-medium">Type</Label>
         <Select id="type">
-          <SelectTrigger class="w-full border-[#fe8e0a] h-10 md:h-12">
-            <SelectValue placeholder="Any Type" />
+          <SelectTrigger class="w-full py-3 md:py-5">
+            <SelectValue placeholder="Any" class="text-sm md:text-base" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="house">House</SelectItem>
@@ -49,8 +53,8 @@
       <div class="flex flex-col gap-2 flex-1 w-full">
         <Label for="PriceRange" class="text-sm font-medium">Price Range</Label>
         <Select id="PriceRange">
-          <SelectTrigger class="w-full border-[#fe8e0a] h-10 md:h-12">
-            <SelectValue placeholder="Any Price" />
+          <SelectTrigger class="w-full py-3 md:py-5">
+            <SelectValue placeholder="Any" class="text-sm md:text-base" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="1">₱0 - ₱1M</SelectItem>
