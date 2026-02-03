@@ -8,8 +8,10 @@ import propertiesAndListings2 from '~/components/propertiesAndListings2.vue'
 
 const propertyStore = usePropertyStore()
 
-const showFilters = ref(false)
-
+// const handlePageChange = (page: number) => {
+//   currentPage.value = page
+//   console.log('Changed to page:', page)
+// }
 const categories: Record<string, string> = {
   'Farm Land': '1',
   Condominium: '1951',
@@ -81,8 +83,8 @@ onMounted(async () => {
                   <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
                     {{ category }} 
                   </a>
-                  <a href="#" class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors">
-                    {{ listings }}
+                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
+                    {{ listings }} Properties
                   </a>
                 </div>
               </template>
@@ -99,49 +101,21 @@ onMounted(async () => {
             </div>
         </div>
         <!-------------------------------------------------------------------------------------------------------->
-        <div id="propertiesSection" class="w-4/5 flex flex-col overflow-y-auto pr-2 custom-scrollbar" style="max-height: calc(175gitvh);">
+        <div id="propertiesSection" class="w-4/5 flex flex-col overflow-y-auto pr-2 custom-scrollbar" style="max-height: calc(175vh);">
           <ClientOnly>
             <propertySearchBar />
             <propertiesAndListings2 :properties="propertyStore.properties" />
           </ClientOnly>
-        </main>
+        </div>
       </div>
     </div>
-
-    <!-- Backlinks Section -->
-    <div class="pt-8 md:pt-15">
+    <div class="pt-15">
       <ClientOnly>
         <Backlinks />
       </ClientOnly>
     </div>
-
-    <!-- Footer -->
     <ClientOnly>
       <Footer />
     </ClientOnly>
   </div>
 </template>
-
-<style scoped>
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-  border-radius: 3px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(156, 163, 175, 0.7);
-}
-</style>
