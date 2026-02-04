@@ -59,7 +59,6 @@ const isActiveRoute = (path: string) => {
 }
 
 const handleLogout = () => {
-  // Clear any existing session/cookie/token logic here if applicable
   navigateTo('/')
 }
 </script>

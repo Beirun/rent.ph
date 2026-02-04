@@ -2,8 +2,6 @@
 import { Calculator, FileText, CreditCard, BarChart3, Share2, TrendingUp } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 
-// No need for definePageMeta, we'll use NuxtLayout instead
-
 const tools = [
   {
     icon: Calculator,

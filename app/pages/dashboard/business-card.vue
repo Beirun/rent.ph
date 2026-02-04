@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Empty stub for Business Card
 </script>
 
 <template>

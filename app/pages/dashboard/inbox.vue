@@ -25,7 +25,6 @@ interface Conversation {
   messages: Message[]
 }
 
-// Generate dummy conversations
 const conversations = ref<Conversation[]>([
   {
     id: '1',
@@ -214,7 +213,6 @@ const totalUnread = computed(() =>
 
 const selectConversation = (conversation: Conversation) => {
   activeConversation.value = conversation
-  // Mark messages as read
   conversation.unreadCount = 0
   conversation.messages.forEach(msg => msg.read = true)
 }

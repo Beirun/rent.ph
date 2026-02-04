@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Card } from '@/components/ui/card'
 import RichTextEditor from '@/components/ui/toggle-group/RichTextEditor.vue'
 
 const router = useRouter()
@@ -28,10 +27,8 @@ const handleInputChange = () => {
 }
 
 const saveChanges = () => {
-  // Logic to save data would go here
   console.log('Saving...', formData.value)
   hasUnsavedChanges.value = false
-  // In a real app we might redirect or show a success message
 }
 </script>
 
@@ -270,7 +267,6 @@ const saveChanges = () => {
 <style scoped>
 @reference "../../../assets/tailwind.css";
 
-/* Custom transitions for the editor */
 :deep(.ql-toolbar) {
   @apply dark:bg-zinc-800 dark:border-zinc-700 rounded-t-xl;
 }

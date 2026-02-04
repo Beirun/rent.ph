@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Empty stub for Rent Estimate
 </script>
 
 <template>

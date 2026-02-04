@@ -5,7 +5,6 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 
-// SEO Meta for dashboard pages
 useHead({
   title: 'Dashboard - Rent.ph',
   meta: [
