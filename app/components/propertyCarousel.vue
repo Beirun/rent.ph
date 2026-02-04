@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 
 interface Props {
     title: string
@@ -17,8 +17,10 @@ const showRightArrow = ref(true)
 const updateArrows = () => {
     if (scrollContainer.value) {
         const { scrollLeft, scrollWidth, clientWidth } = scrollContainer.value
-        showLeftArrow.value = scrollLeft > 10
-        showRightArrow.value = scrollLeft + clientWidth < scrollWidth - 10
+        const canScroll = scrollWidth > clientWidth 
+        
+        showLeftArrow.value = canScroll && scrollLeft > 10
+        showRightArrow.value = canScroll && (scrollLeft + clientWidth < scrollWidth - 10)
     }
 }
 

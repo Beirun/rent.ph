@@ -1,9 +1,40 @@
 <script setup lang="ts">
 import { Skeleton } from './ui/skeleton'
+import { ref, computed } from 'vue'
+import { usePropertyStore } from '@/stores/propertyStore'
 
 const props = defineProps<{
   properties: any[]
 }>()
+
+const propertyStore = usePropertyStore()
+
+const popularListings = ref<any[]>([])
+const recentListings = ref<any[]>([])
+const nearbyListings = ref<any[]>([])
+const newListings = ref<any[]>([])
+const budgetListings = ref<any[]>([])
+
+const isLoading = ref(true)
+
+onMounted(async () => {
+  isLoading.value = true
+
+  const results = await Promise.all([
+      propertyStore.getPropertiesbyCategory(1, 8, 'order_by=views'),
+      propertyStore.getPropertiesbyCategory(1, 8, 'order_by=last_viewed'), //no Cache Yet
+      propertyStore.getPropertiesbyCategory(1, 8, 'location=cebu'), //no API yet
+      propertyStore.getPropertiesbyCategory(1, 8, 'order_by=newest'),
+      propertyStore.getPropertiesbyCategory(1, 8, 'order_by=price_asc')
+    ])
+      popularListings.value = results[0] || []
+      recentListings.value = results[1] || []
+      nearbyListings.value = results[2] || []
+      newListings.value = results[3] || []
+      budgetListings.value = results[4] || []
+
+      isLoading.value = false
+})
 </script>
 
 <template>
@@ -54,7 +85,7 @@ const props = defineProps<{
       <PropertyCarousel
         title="Popular Listings"
         subtitle="Top picks from our community"
-        :items="properties"
+        :items="popularListings"
       />
       <PropertyCarousel
         title="Recently Visited"
@@ -69,12 +100,12 @@ const props = defineProps<{
       <PropertyCarousel
         title="New Listings"
         subtitle="freshest properties added to our platform"
-        :items="properties"
+        :items="newListings"
       />
       <PropertyCarousel
         title="Budget Friendly"
         subtitle="high-quality homes that fit your wallet perfectly"
-        :items="properties"
+        :items="budgetListings"
       />
     </div>
   </div>
