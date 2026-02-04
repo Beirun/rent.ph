@@ -81,10 +81,10 @@ const handleLogout = () => {
           <SidebarMenuItem>
             <SidebarMenuButton as-child tooltip="Home" :class="[
               'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-11',
-              isActiveRoute('/dashboard') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+              isActiveRoute('/dashboard') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
             ]">
               <NuxtLink to="/dashboard">
-                <Home />
+                <Home :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard') }" />
                 <span>Home</span>
               </NuxtLink>
             </SidebarMenuButton>
@@ -100,10 +100,10 @@ const handleLogout = () => {
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="Inbox" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/dashboard/inbox') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+                isActiveRoute('/dashboard/inbox') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
               ]">
                 <NuxtLink to="/dashboard/inbox">
-                  <Inbox />
+                  <Inbox :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/inbox') }" />
                   <span>Inbox</span>
                 </NuxtLink>
               </SidebarMenuButton>
@@ -111,10 +111,10 @@ const handleLogout = () => {
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="Edit Profile" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/dashboard/profile/edit') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+                isActiveRoute('/dashboard/profile/edit') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
               ]">
                 <NuxtLink to="/dashboard/profile/edit">
-                  <User />
+                  <User :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/profile/edit') }" />
                   <span>Edit Profile</span>
                 </NuxtLink>
               </SidebarMenuButton>
@@ -122,10 +122,10 @@ const handleLogout = () => {
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="Downloadables" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/dashboard/downloadables') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+                isActiveRoute('/dashboard/downloadables') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
               ]">
                 <NuxtLink to="/dashboard/downloadables">
-                  <Download />
+                  <Download :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/downloadables') }" />
                   <span>Downloadables</span>
                 </NuxtLink>
               </SidebarMenuButton>
@@ -133,10 +133,10 @@ const handleLogout = () => {
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="Business Card" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/dashboard/business-card') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+                isActiveRoute('/dashboard/business-card') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
               ]">
                 <NuxtLink to="/dashboard/business-card">
-                  <IdCard />
+                  <IdCard :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/business-card') }" />
                   <span>Business Card</span>
                 </NuxtLink>
               </SidebarMenuButton>
@@ -144,10 +144,10 @@ const handleLogout = () => {
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="Change Password" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/dashboard/change-password') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+                isActiveRoute('/dashboard/change-password') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
               ]">
                 <NuxtLink to="/dashboard/change-password">
-                  <KeyRound />
+                  <KeyRound :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/change-password') }" />
                   <span>Change Password</span>
                 </NuxtLink>
               </SidebarMenuButton>
@@ -164,10 +164,10 @@ const handleLogout = () => {
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="My Listings" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/dashboard/listings') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+                isActiveRoute('/dashboard/listings') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
               ]">
                 <NuxtLink to="/dashboard/listings">
-                  <NotebookTabs />
+                  <NotebookTabs :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/listings') }" />
                   <span>My Listings</span>
                 </NuxtLink>
               </SidebarMenuButton>
@@ -175,10 +175,10 @@ const handleLogout = () => {
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="Rental Tracking" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/dashboard/tracking') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+                isActiveRoute('/dashboard/tracking') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
               ]">
                 <NuxtLink to="/dashboard/tracking">
-                  <LocateFixed />
+                  <LocateFixed :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/tracking') }" />
                   <span>Rental Tracking</span>
                 </NuxtLink>
               </SidebarMenuButton>
@@ -186,10 +186,10 @@ const handleLogout = () => {
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="Share Blogs" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/dashboard/share-blogs') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+                isActiveRoute('/dashboard/share-blogs') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
               ]">
                 <NuxtLink to="/dashboard/share-blogs">
-                  <ExternalLink />
+                  <ExternalLink :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/share-blogs') }" />
                   <span>Share Blogs</span>
                 </NuxtLink>
               </SidebarMenuButton>
@@ -197,10 +197,10 @@ const handleLogout = () => {
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="Rent Estimate" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/dashboard/estimate') ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''
+                isActiveRoute('/dashboard/estimate') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
               ]">
                 <NuxtLink to="/dashboard/estimate">
-                  <TrendingUpDown />
+                  <TrendingUpDown :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/estimate') }" />
                   <span>Rent Estimate</span>
                 </NuxtLink>
               </SidebarMenuButton>

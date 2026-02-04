@@ -1,12 +1,12 @@
+<script setup lang="ts">
+// Empty stub for Downloadables
+</script>
+
 <template>
   <NuxtLayout name="dashboard">
-    <div class="p-6">
-      <h1 class="text-2xl font-bold mb-4">Downloadables</h1>
-      <p class="text-gray-600 dark:text-gray-400">Manage and download your property-related documents here.</p>
+    <div class="p-8 min-h-screen bg-white dark:bg-[#0a0a0a]">
+      <h1 class="text-3xl font-bold text-[#FE8E0A] uppercase tracking-tight">Downloadables</h1>
+      <p class="mt-4 text-gray-500 dark:text-gray-400 font-medium italic">Property documents and templates coming soon...</p>
     </div>
   </NuxtLayout>
 </template>
-
-<script setup lang="ts">
-// Page logic will go here
-</script>

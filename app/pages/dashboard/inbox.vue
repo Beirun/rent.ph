@@ -242,11 +242,10 @@ const sendMessage = () => {
     <div class="h-[calc(100vh-4rem)] flex bg-white dark:bg-[#0a0a0a]">
       <!-- Conversations List (Left Panel) -->
       <aside class="w-80 border-r border-gray-200 dark:border-zinc-800 flex flex-col bg-white dark:bg-zinc-900">
-        <!-- Header -->
         <div class="p-4 border-b border-gray-200 dark:border-zinc-800">
           <div class="flex items-center justify-between mb-4">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Inbox</h1>
-            <div v-if="totalUnread > 0" class="flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full">
+            <h1 class="text-3xl font-bold text-[#FE8E0A] uppercase tracking-tight">Inbox</h1>
+            <div v-if="totalUnread > 0" class="flex items-center justify-center w-6 h-6 bg-[#FE8E0A] rounded-full">
               <span class="text-xs font-bold text-white">{{ totalUnread }}</span>
             </div>
           </div>
@@ -304,10 +303,9 @@ const sendMessage = () => {
                 </p>
               </div>
               
-              <!-- Unread badge -->
               <div
                 v-if="conversation.unreadCount > 0"
-                class="flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-blue-600 rounded-full flex-shrink-0"
+                class="flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-[#FE8E0A] rounded-full flex-shrink-0"
               >
                 <span class="text-xs font-bold text-white">{{ conversation.unreadCount }}</span>
               </div>
@@ -381,7 +379,7 @@ const sendMessage = () => {
                   :class="[
                     'max-w-[70%] rounded-2xl px-4 py-2',
                     message.senderId === 'me'
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-[#1b4fb5] dark:bg-[#2b68df] text-white'
                     : 'bg-white dark:bg-zinc-900 text-gray-900 dark:text-white border border-gray-200 dark:border-zinc-800'
                   ]"
                 >
@@ -418,7 +416,7 @@ const sendMessage = () => {
               <Button type="button" variant="ghost" size="icon" class="flex-shrink-0">
                 <Smile class="w-5 h-5" />
               </Button>
-              <Button type="submit" size="icon" class="flex-shrink-0 bg-blue-600 hover:bg-blue-700">
+              <Button type="submit" size="icon" class="flex-shrink-0 bg-[#1b4fb5] dark:bg-[#2b68df] hover:bg-[#1b4fb5]/90 dark:hover:bg-[#2b68df]/90 transition-colors">
                 <Send class="w-5 h-5" />
               </Button>
             </form>

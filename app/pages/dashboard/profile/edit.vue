@@ -41,7 +41,7 @@ const saveChanges = () => {
       <!-- Header -->
       <div class="flex items-center justify-between mb-8">
         <div>
-          <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-tight">Edit Profile</h1>
+          <h1 class="text-3xl font-bold text-[#FE8E0A] mb-2 uppercase tracking-tight">Edit Profile</h1>
           <p class="text-gray-500 dark:text-gray-400">Update your personal information and profile settings</p>
         </div>
       </div>
@@ -61,7 +61,7 @@ const saveChanges = () => {
             <div class="bg-gray-100 dark:bg-zinc-800 p-2 rounded-lg text-gray-600 dark:text-gray-400">
               <Icon name="lucide:user" class="size-5" />
             </div>
-            <h2 class="text-lg font-bold uppercase tracking-wider text-gray-900 dark:text-white">Personal Information</h2>
+            <h2 class="text-lg font-bold uppercase tracking-wider text-[#FE8E0A]">Personal Information</h2>
           </div>
 
           <!-- Profile Photo -->
@@ -76,7 +76,7 @@ const saveChanges = () => {
               </div>
               <div class="space-y-3">
                 <button
-                  class="bg-blue-600 dark:bg-white dark:text-black text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-lg shadow-blue-500/20 cursor-pointer"
+                  class="bg-[#1b4fb5] dark:bg-[#2b68df] dark:text-white text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-lg shadow-blue-500/20 cursor-pointer"
                 >
                   Upload New Photo
                 </button>
@@ -90,12 +90,12 @@ const saveChanges = () => {
             <div class="space-y-2">
               <label class="text-sm font-bold text-gray-700 dark:text-gray-300">First name *</label>
               <div class="relative group">
-                <Icon name="lucide:user" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                <Icon name="lucide:user" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
                   v-model="formData.firstName"
                   type="text"
                   @input="handleInputChange"
-                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all placeholder:text-gray-400"
+                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
                   placeholder="First Name"
                 >
               </div>
@@ -104,12 +104,12 @@ const saveChanges = () => {
             <div class="space-y-2">
               <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Last name *</label>
               <div class="relative group">
-                <Icon name="lucide:user" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                <Icon name="lucide:user" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
                   v-model="formData.lastName"
                   type="text"
                   @input="handleInputChange"
-                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all placeholder:text-gray-400"
+                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
                   placeholder="Last Name"
                 >
               </div>
@@ -118,12 +118,12 @@ const saveChanges = () => {
             <div class="md:col-span-2 space-y-2">
               <label class="text-sm font-bold text-red-500">Email Address (Must match LR account)</label>
               <div class="relative group">
-                <Icon name="lucide:mail" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                <Icon name="lucide:mail" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
                   v-model="formData.email"
                   type="email"
                   @input="handleInputChange"
-                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all placeholder:text-gray-400"
+                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
                   placeholder="Email"
                 >
               </div>
@@ -132,12 +132,12 @@ const saveChanges = () => {
             <div class="space-y-2">
               <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Phone Number *</label>
               <div class="relative group">
-                <Icon name="lucide:phone" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                <Icon name="lucide:phone" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
                   v-model="formData.phone"
                   type="text"
                   @input="handleInputChange"
-                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all placeholder:text-gray-400"
+                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
                   placeholder="Phone Number"
                 >
               </div>
@@ -146,12 +146,12 @@ const saveChanges = () => {
             <div class="space-y-2">
               <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Birthday *</label>
               <div class="relative group">
-                <Icon name="lucide:calendar" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                <Icon name="lucide:calendar" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
                   v-model="formData.birthday"
                   type="date"
                   @input="handleInputChange"
-                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all"
                 >
               </div>
             </div>
@@ -171,19 +171,19 @@ const saveChanges = () => {
             <div class="bg-gray-100 dark:bg-zinc-800 p-2 rounded-lg text-gray-600 dark:text-gray-400">
               <Icon name="lucide:map-pin" class="size-5" />
             </div>
-            <h2 class="text-lg font-bold uppercase tracking-wider text-gray-900 dark:text-white">Location Information</h2>
+            <h2 class="text-lg font-bold uppercase tracking-wider text-[#FE8E0A]">Location Information</h2>
           </div>
 
           <div class="grid grid-cols-1 gap-6">
             <div class="space-y-2">
               <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Address Line 1</label>
               <div class="relative group">
-                <Icon name="lucide:home" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                <Icon name="lucide:home" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
                   v-model="formData.address"
                   type="text"
                   @input="handleInputChange"
-                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all placeholder:text-gray-400"
+                  class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
                   placeholder="Main Street"
                 >
               </div>
@@ -192,11 +192,11 @@ const saveChanges = () => {
             <div class="space-y-2">
               <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Country *</label>
               <div class="relative group">
-                <Icon name="lucide:flag" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                <Icon name="lucide:flag" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <select
                   v-model="formData.country"
                   @change="handleInputChange"
-                  class="w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all appearance-none cursor-pointer"
+                  class="w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all appearance-none cursor-pointer"
                 >
                   <option>Philippines</option>
                   <option>United States</option>
@@ -209,11 +209,11 @@ const saveChanges = () => {
             <div class="space-y-2">
               <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Region *</label>
               <div class="relative group">
-                <Icon name="lucide:map" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                <Icon name="lucide:map" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <select
                   v-model="formData.region"
                   @change="handleInputChange"
-                  class="w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all appearance-none cursor-pointer"
+                  class="w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all appearance-none cursor-pointer"
                 >
                   <option>National Capital Region (NCR)</option>
                   <option>Region VII - Central Visayas</option>
@@ -227,12 +227,12 @@ const saveChanges = () => {
               <div class="space-y-2">
                 <label class="text-sm font-bold text-gray-700 dark:text-gray-300">City *</label>
                 <div class="relative group">
-                  <Icon name="lucide:building-2" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                  <Icon name="lucide:building-2" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                   <input
                     v-model="formData.city"
                     type="text"
                     @input="handleInputChange"
-                    class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all placeholder:text-gray-400"
+                    class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
                     placeholder="City"
                   >
                 </div>
@@ -241,12 +241,12 @@ const saveChanges = () => {
               <div class="space-y-2">
                 <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Zip Code</label>
                 <div class="relative group">
-                  <Icon name="lucide:hash" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                  <Icon name="lucide:hash" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                   <input
                     v-model="formData.zip"
                     type="text"
                     @input="handleInputChange"
-                    class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all placeholder:text-gray-400"
+                    class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
                     placeholder="1200"
                   >
                 </div>
@@ -255,7 +255,7 @@ const saveChanges = () => {
 
             <button
               @click="saveChanges"
-              class="w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/20 cursor-pointer flex items-center justify-center gap-2 group mt-4"
+              class="w-full bg-[#1b4fb5] dark:bg-[#2b68df] hover:opacity-90 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-[#1b4fb5]/20 dark:shadow-[#2b68df]/20 cursor-pointer flex items-center justify-center gap-2 group mt-4"
             >
               <span>Save Changes</span>
               <Icon name="lucide:check" class="size-5 group-hover:scale-110 transition-transform" />

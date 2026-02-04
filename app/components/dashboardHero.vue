@@ -59,7 +59,7 @@ const stats = [
 const weekData = [
   { day: 'Monday', value: 45, color: 'bg-blue-200 dark:bg-blue-900/30' },
   { day: 'Tuesday', value: 30, color: 'bg-blue-200 dark:bg-blue-900/30' },
-  { day: 'Wednesday', value: 85, color: 'bg-blue-600 dark:bg-blue-600' },
+  { day: 'Wednesday', value: 85, color: 'bg-[#1b4fb5] dark:bg-[#2b68df]' },
   { day: 'Thursday', value: 60, color: 'bg-blue-200 dark:bg-blue-900/30' },
   { day: 'Friday', value: 40, color: 'bg-blue-200 dark:bg-blue-900/30' },
 ]
@@ -138,7 +138,7 @@ const projects = [
   <div class="min-h-screen bg-white dark:bg-[#0a0a0a] p-4 md:p-8">
     <div class="max-w-400 mx-auto">
       <div class="flex items-center justify-between mb-6">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Overview</h1>
+        <h1 class="text-3xl font-bold text-[#FE8E0A] uppercase tracking-tight">Overview</h1>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-6 gap-6 mb-8 items-start">
@@ -172,7 +172,7 @@ const projects = [
               <div class="relative flex-1 max-w-sm">
                 <Icon name="lucide:search" class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-400" />
                 <input v-model="searchQuery" type="text" placeholder="Search locations..."
-                  class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
+                  class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#1b4fb5]/20 dark:focus:ring-[#2b68df]/20 transition-all shadow-sm" />
               </div>
             </div>
 
@@ -202,10 +202,10 @@ const projects = [
 
         <div class="lg:col-span-2 space-y-6 sticky top-8 h-fit">
           <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Rent Manager Profile</h3>
+            <h3 class="text-lg font-bold text-[#FE8E0A] mb-1">Rent Manager Profile</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Manage your profile in one go</p>
-            <button class="w-full py-2.5 px-4 cursor-pointer bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
-              <Icon name="lucide:plus" class="size-4" /> View Profile
+            <button class="w-full py-2.5 px-4 cursor-pointer bg-[#1b4fb5] dark:bg-[#2b68df] text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-[#1b4fb5]/20 dark:shadow-black/20">
+              <Icon name="lucide:user" class="size-4" /> View Profile
             </button>
             
             <div class="mt-6 space-y-1">
@@ -223,9 +223,9 @@ const projects = [
           </div>
 
           <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Rent Manager Tools</h3>
+            <h3 class="text-lg font-bold text-[#FE8E0A] mb-1">Rent Manager Tools</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Add Listings with minimal effort</p>
-            <button class="w-full py-2.5 px-4 bg-gray-900 dark:bg-white cursor-pointer text-white dark:text-gray-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+            <button class="w-full py-2.5 px-4 bg-[#FE8E0A] cursor-pointer text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-[#FE8E0A]/20">
               <Icon name="lucide:plus" class="size-4" /> Create Listing
             </button>
 
