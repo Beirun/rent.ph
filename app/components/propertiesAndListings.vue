@@ -76,7 +76,7 @@ onUnmounted(() => {
 <template>
   <div class="px-10 flex flex-col mt-15 max-w-[98%] mx-auto">
     <div class="flex flex-col w-full">
-      <h1 class="text-4xl font-bold">Our Most Popular Listings</h1>
+      <h1 class="text-4xl font-bold">Featured Listings</h1>
       <p class="uppercase pt-4 text-gray-400 dark:text-gray-500">Properties and Listings</p>
     </div>
 

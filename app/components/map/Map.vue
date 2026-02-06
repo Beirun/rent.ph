@@ -2,7 +2,9 @@
 import MapLibreGL, { type ProjectionSpecification, type MapOptions } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { ref, onMounted, onUnmounted, provide, watch, computed } from 'vue'
-import { useDark } from '@vueuse/core'
+
+const colorMode = useColorMode()
+const isDark = computed(() => colorMode.value === 'dark')
 
 type MapStyleOption = string | MapLibreGL.StyleSpecification
 
@@ -28,7 +30,6 @@ const containerRef = ref<HTMLDivElement | null>(null)
 const mapInstance = ref<MapLibreGL.Map | null>(null)
 const isLoaded = ref(false)
 const isStyleLoaded = ref(false)
-const isDark = useDark()
 
 const mapStyles = computed(() => ({
   dark: props.styles?.dark ?? defaultStyles.dark,

@@ -2,14 +2,12 @@
 import { Calculator, FileText, CreditCard, BarChart3, Share2, TrendingUp } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 
-// No need for definePageMeta, we'll use NuxtLayout instead
-
 const tools = [
   {
     icon: Calculator,
     title: 'Rental Calculator',
     description: 'Calculate rental yields and ROI for your properties',
-    color: 'bg-blue-500',
+    color: 'bg-[#1b4fb5]',
     action: 'Calculate'
   },
   {
@@ -30,7 +28,7 @@ const tools = [
     icon: BarChart3,
     title: 'Analytics Dashboard',
     description: 'View property performance and metrics',
-    color: 'bg-orange-500',
+    color: 'bg-[#FE8E0A]',
     action: 'View Analytics'
   },
   {
@@ -61,7 +59,7 @@ const recentActivities = [
   <NuxtLayout name="dashboard">
     <div class="p-6 max-w-7xl min-h-screen bg-white dark:bg-[#0a0a0a]">
       <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Rent Manager Tools</h1>
+        <h1 class="text-3xl font-bold text-[#FE8E0A] mb-2 uppercase tracking-tight">Rent Manager Tools</h1>
         <p class="text-gray-500 dark:text-gray-400">Powerful tools to manage your rental business efficiently</p>
       </div>
 
@@ -77,9 +75,9 @@ const recentActivities = [
               <component :is="tool.icon" class="w-6 h-6 text-white" />
             </div>
             <Button
-              variant="ghost"
+              variant="default"
               size="sm"
-              class="opacity-0 group-hover:opacity-100 transition-opacity"
+              class="opacity-0 group-hover:opacity-100 transition-opacity bg-[#1b4fb5] dark:bg-[#2b68df] text-white hover:opacity-90 transition-all font-bold"
             >
               {{ tool.action }}
             </Button>

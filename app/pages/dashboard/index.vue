@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// No need for definePageMeta, we'll use NuxtLayout instead
 </script>
 
 <template>

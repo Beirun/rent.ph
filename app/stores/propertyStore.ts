@@ -78,11 +78,34 @@ export const usePropertyStore = defineStore('property', () => {
     }
   }
 
+  const getPropertiesbyCategory = async (
+    page: string | number = 1,
+    numberPerPage: string | number = 10,
+    customQuery: string | null = null,
+  ): Promise<Property[]> => {
+    loading.value = true
+    try {
+      const query = `page=${page}&per_page=${numberPerPage}&${customQuery}`
+      const res = await fetch(`${BASE_URL}/properties?${query}`)
+      if (!res.ok) throw new Error(`Failed to fetch properties: ${res.statusText}`)
+      const json: PropertyListResponse<Property> = await res.json()
+      properties.value = json.data
+      pagination.value = json.pagination
+      return json.data
+    } catch (err) {
+      console.error(err)
+      return []
+    } finally {
+      loading.value = false
+    }
+  }
+
   return {
     properties,
     property,
     pagination,
     getProperty,
+    getPropertiesbyCategory,
     getPropertyBySlug,
     getProperties,
     loading,

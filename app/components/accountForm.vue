@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, nextTick } from 'vue'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useAuthStore } from '~/stores/authStore'
 
-const router = useRouter()
+const authStore = useAuthStore()
+const isDialogOpen = ref(false)
 const authMode = ref<'login' | 'register'>('login')
 const isLoading = ref(false)
 const errorMessage = ref('')
@@ -61,7 +62,8 @@ const handleLogin = async () => {
     console.log('Response ok:', response.ok)
 
     const data = await response.json()
-    console.log('Response data:', data)
+    console.log('Full login response data:', JSON.stringify(data, null, 2))
+    console.log('Current cookies after response:', document.cookie)
 
     if (!response.ok) {
       errorMessage.value = data.message || `Login failed (${response.status}). Please try again.`
@@ -69,13 +71,21 @@ const handleLogin = async () => {
       return
     }
 
-    if (data.token) {
-      localStorage.setItem('authToken', data.token)
-      console.log('Token stored successfully')
+    const token = data.token || data.data?.token || data.access_token || data.data?.access_token
+    
+    if (token) {
+      authStore.login(token)
+      console.log('Token successfully stored in authStore')
+    } else {
+      console.warn('No token found in response! Checked: data.token, data.data.token, data.access_token')
     }
 
     console.log('Login successful, navigating to dashboard...')
-    await router.push('/dashboard')
+    isDialogOpen.value = false
+    
+    // Ensure state is updated before navigation
+    await nextTick()
+    await navigateTo('/dashboard')
   } catch (error) {
     console.error('Login error:', error)
     errorMessage.value = 'Network error. Please check your connection and try again.'
@@ -86,7 +96,7 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <Dialog>
+  <Dialog v-model:open="isDialogOpen">
     <DialogTrigger as-child>
       <slot />
     </DialogTrigger>
