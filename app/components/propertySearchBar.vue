@@ -21,10 +21,12 @@
         <Label for="location" class="text-sm font-medium">Location</Label>
         <Select id="location">
           <SelectTrigger class="w-full py-3 md:py-5">
-            <SelectValue>
-              <Icon name="lucide:map-pin" />
-              <Label class="text-sm md:text-base">Select/Enter a City</Label>
-            </SelectValue>
+            <template #default>
+              <div class="flex items-center gap-2">
+                <Icon name="lucide:map-pin" />
+                <SelectValue placeholder="Select/Enter a City" />
+              </div>
+            </template>
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -40,7 +42,7 @@
         <Label for="type" class="text-sm font-medium">Type</Label>
         <Select id="type">
           <SelectTrigger class="w-full py-3 md:py-5">
-            <SelectValue placeholder="Any" class="text-sm md:text-base" />
+            <SelectValue placeholder="Any" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="house">House</SelectItem>
@@ -54,7 +56,7 @@
         <Label for="PriceRange" class="text-sm font-medium">Price Range</Label>
         <Select id="PriceRange">
           <SelectTrigger class="w-full py-3 md:py-5">
-            <SelectValue placeholder="Any" class="text-sm md:text-base" />
+            <SelectValue placeholder="Any" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="1">₱0 - ₱1M</SelectItem>
@@ -65,7 +67,7 @@
       </div>
 
       <Button 
-        class="bg-[#fe8e0a] hover:bg-[#e07d09] text-white gap-2 w-full lg:w-auto px-8 h-10 md:h-12 transition-colors"
+        class="bg-[#fe8e0a] hover:bg-[#e07d09] text-white gap-2 w-full lg:w-auto px-8 h-10 md:h-12 transition-colors !text-white"
       >
         <Icon name="lucide:search" class="size-4" />
         <span class="font-semibold">Search</span>

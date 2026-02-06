@@ -124,21 +124,21 @@ const goBack = () => navigateTo('/property')
       <p class="text-gray-600 dark:text-gray-400">Property not found</p>
     </div>
 
-    <div v-else class="min-h-screen max-w-full bg-gray-50 dark:bg-[#121212] pt-24 pb-5 mx-5">
+    <div v-else class="min-h-screen max-w-full bg-gray-50 dark:bg-[#121212] pt-24 pb-10 px-4 md:px-8">
       <div class="max-w-8xl mx-auto mb-6">
         <button @click="goBack"
-          class="flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-all cursor-pointer">
-          <Icon name="lucide:arrow-left" class="size-5" />
+          class="flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-all cursor-pointer group">
+          <Icon name="lucide:arrow-left" class="size-5 group-hover:-translate-x-1 transition-transform" />
           <span class="font-medium">Back to properties</span>
         </button>
       </div>
 
       <div class="max-w-8xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div class="lg:col-span-2 space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-8 space-y-6">
 
             <div @click="expandImage(selectedImage || propertyPhotoSrc)"
-              class="relative w-full h-125 rounded-3xl overflow-hidden bg-gray-200 dark:bg-zinc-800 flex items-center justify-center">
+              class="relative w-full h-64 md:h-96 lg:h-125 rounded-3xl overflow-hidden bg-gray-200 dark:bg-zinc-800 flex items-center justify-center shadow-lg group cursor-zoom-in">
               <Transition name="fade" mode="out-in">
                   <img :key="selectedImage" :src="selectedImage || propertyPhotoSrc" @load="checkOrientation"
                     class="transition-transform duration-300 group-hover:scale-105" :class="{
@@ -185,8 +185,8 @@ const goBack = () => navigateTo('/property')
 
             <div
               class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-lg border border-gray-100 dark:border-gray-800 p-8">
-              <h3 class="font-bold text-lg mb-4">Property Description</h3>
-              <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              <h3 class="font-bold text-lg mb-4 text-[#fe8e0a] uppercase tracking-wider">Property Description</h3>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed font-medium">
                 Welcome to this beautiful {{ title }} located in {{ address }}. This property
                 features an expansive {{ square }} sqft floor plan with modern architecture. It
                 offers a perfect balance of comfort and luxury for modern living.
@@ -194,9 +194,9 @@ const goBack = () => navigateTo('/property')
             </div>
           </div>
 
-          <div class="lg:col-span-1">
+          <div class="lg:col-span-4">
             <div
-              class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800 p-8 sticky top-28 space-y-6">
+              class="bg-white dark:bg-[#1e1e1e] rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-gray-800 p-8 lg:p-10 sticky top-28 space-y-8">
               <div>
                 <h2 class="text-xl font-black uppercase tracking-tight mb-2">Property Inquiry</h2>
                 <hr class="border-gray-100 dark:border-zinc-800" />

@@ -70,12 +70,13 @@ onMounted(async () => {
     <ClientOnly>
       <navbar />
     </ClientOnly>
-    <div class="flex flex-col w-full px-10 pt-30 justify-self-center">
-      <h1 class="text-4xl font-semibold mb-8">Property for Rent</h1>
+    <div class="flex flex-col w-full px-4 md:px-10 pt-24 md:pt-30 justify-self-center max-w-8xl mx-auto">
+      <h1 class="text-3xl md:text-4xl font-semibold mb-8">Property for Rent</h1>
 
-      <div class="flex flex-row gap-6">
+      <div class="flex flex-col lg:flex-row gap-8 lg:gap-6">
         <!------------------------------------------------------------------------------------------------------>
-        <div id="categoriesSection" class="w-1/6 h-fit mb-20">
+        <!-- Desktop Categories Sidebar -->
+        <div id="categoriesSection" class="hidden lg:block w-1/4 h-fit mb-20">
           <h1 class="font-bold text-lg dark:text-black dark:bg-orange-300 bg-orange-300 px-3 rounded-sm py-1">Categories</h1>
             <div class="mt-5 mb-10">
               <template v-for="(listings, category, index) in categories" :key="category">
@@ -101,10 +102,29 @@ onMounted(async () => {
             </div>
         </div>
         <!-------------------------------------------------------------------------------------------------------->
-        <div id="propertiesSection" class="w-4/5 flex flex-col overflow-y-auto pr-2 custom-scrollbar" style="max-height: calc(175vh);">
+        <div id="propertiesSection" class="w-full lg:w-4/5 flex flex-col">
           <ClientOnly>
+            <!-- Mobile Categories Dropdown -->
+            <div class="lg:hidden mb-6 px-2">
+              <Label class="text-sm font-bold mb-2 block text-gray-500 uppercase tracking-widest">Quick Categories</Label>
+              <Select>
+                <SelectTrigger class="w-full py-4 border-gray-300 dark:border-gray-800">
+                  <SelectValue placeholder="Browse Categories" />
+                </SelectTrigger>
+                <SelectContent>
+                  <ScrollArea class="h-80">
+                    <SelectItem v-for="(listings, category) in categories" :key="category" :value="category">
+                      {{ category }} ({{ listings }})
+                    </SelectItem>
+                  </ScrollArea>
+                </SelectContent>
+              </Select>
+            </div>
+
             <propertySearchBar />
-            <propertiesAndListings2 :properties="propertyStore.properties" />
+            <div class="mt-8">
+              <propertiesAndListings2 :properties="propertyStore.properties" />
+            </div>
           </ClientOnly>
         </div>
       </div>
