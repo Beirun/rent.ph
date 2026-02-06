@@ -121,8 +121,8 @@ onMounted(async () => {
               </Select>
             </div>
 
-            <propertySearchBar />
-            <div class="mt-8">
+            <div id="propertiesSection" class="flex flex-col overflow-y-auto pr-2 custom-scrollbar" style="max-height: calc(175vh);">
+              <propertySearchBar />
               <propertiesAndListings2 :properties="propertyStore.properties" />
             </div>
           </ClientOnly>
