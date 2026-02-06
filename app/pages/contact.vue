@@ -5,7 +5,7 @@
       <navbar />
     </ClientOnly>
     <div
-      class="w-screen min-h-screen bg-[url(/blogBackGround.png)] dark:bg-[url(/blogBackGroundDark.png)] bg-no-repeat bg-cover bg-bottom fixed -z-10"
+      class="w-screen min-h-screen bg-[url(/blogIndexBG.png)] dark:bg-[url(/blogIndexBGDark.png)] bg-no-repeat bg-cover bg-bottom fixed -z-10"
     ></div>
     <div class="container mx-auto px-4 md:px-10 pt-30 pb-20">
       <div class="flex flex-col md:flex-row p-4 md:p-5 gap-6 md:gap-8">
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div
-          class="flex flex-col border border-gray rounded-3xl p-6 md:p-8 pb-4 md:pb-5 w-full md:w-1/2 gap-4 md:gap-5 dark:bg-[#212121]"
+          class="bg-white flex flex-col border border-gray rounded-3xl p-6 md:p-8 pb-4 md:pb-5 w-full md:w-1/2 gap-4 md:gap-5 dark:bg-[#212121]"
         >
           <div class="flex flex-col md:flex-row justify-between gap-4">
             <div class="flex flex-col w-full md:w-1/2">
