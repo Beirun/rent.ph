@@ -82,8 +82,8 @@ onUnmounted(() => {
       <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
         <h2 class="text-white text-xl font-bold mb-2">{{ reel.title }}</h2>
         <div class="flex items-center text-white/80 text-sm">
-           <Icon name="radix-icons:eye-open" class="size-4 mr-2" />
-           <span>{{ reel.views }} views</span>
+           <Icon name="radix-icons:eye-open" class="size-4 mr-2 text-white" />
+           <span class="text-white">{{ reel.views }} views</span>
         </div>
       </div>
     </div>

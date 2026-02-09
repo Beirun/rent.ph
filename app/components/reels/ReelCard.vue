@@ -60,9 +60,9 @@ const stopPreview = () => {
 
     <div class="absolute bottom-0 left-0 p-4 w-full pointer-events-none">
       <h3 class="text-white font-bold text-lg leading-tight mb-1 drop-shadow-md truncate">{{ title }}</h3>
-      <div class="flex items-center gap-1.5 text-gray-300 text-sm">
-        <Icon name="radix-icons:eye-open" class="size-4" />
-        <span>{{ views }} views</span>
+      <div class="flex items-center gap-1.5 text-white text-sm">
+        <Icon name="radix-icons:eye-open" class="size-4 text-white" />
+        <span class="text-white">{{ views }} views</span>
       </div>
     </div>
   </div>

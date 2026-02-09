@@ -8,12 +8,75 @@ const props = defineProps<{
   reels?: Reel[]
 }>()
 
+const featuredReels = [
+  { 
+    id: 1, 
+    title: 'Modern Loft in Downtown', 
+    views: '2.5k', 
+    thumbnailUrl: '/images/reelThumbnail.jpg',
+    videoUrl: '/videos/sampleReel.mp4' 
+  },
+  { 
+    id: 2, 
+    title: 'Luxury Villa Pool', 
+    views: '5.1k', 
+    thumbnailUrl: '/images/reelThumbnail1.jpg',
+    videoUrl: '/videos/sampleReel1.mp4' 
+  },
+  { 
+    id: 3, 
+    title: 'Cozy Mountain Cabin', 
+    views: '1.2k', 
+    thumbnailUrl: '/images/reelThumbnail.jpg',
+    videoUrl: '/videos/sampleReel.mp4' 
+  },
+  { 
+    id: 4, 
+    title: 'Beachfront Condo', 
+    views: '8.9k', 
+    thumbnailUrl: '/images/reelThumbnail1.jpg',
+    videoUrl: '/videos/sampleReel1.mp4' 
+  },
+  { 
+    id: 5, 
+    title: 'Downtown Apartment', 
+    views: '3.4k', 
+    thumbnailUrl: '/images/reelThumbnail.jpg',
+    videoUrl: '/videos/sampleReel.mp4' 
+  },
+  { 
+    id: 6, 
+    title: 'Suburban Family Home', 
+    views: '6.7k', 
+    thumbnailUrl: '/images/reelThumbnail1.jpg',
+    videoUrl: '/videos/sampleReel1.mp4' 
+  },
+  { 
+    id: 7, 
+    title: 'Downtown Apartment', 
+    views: '3.4k', 
+    thumbnailUrl: '/images/reelThumbnail.jpg',
+    videoUrl: '/videos/sampleReel.mp4' 
+  },
+  { 
+    id: 8, 
+    title: 'Suburban Family Home', 
+    views: '6.7k', 
+    thumbnailUrl: '/images/reelThumbnail1.jpg',
+    videoUrl: '/videos/sampleReel1.mp4' 
+  }
+]
+
+const displayReels = computed(() => {
+  return (props.reels && props.reels.length > 0) ? props.reels : featuredReels
+})
+
 // --- Modal Logic ---
 const selectedReelIndex = ref<number | null>(null)
 
 const selectedReel = computed(() => {
-  if (selectedReelIndex.value === null || !props.reels) return null
-  return props.reels[selectedReelIndex.value]
+  if (selectedReelIndex.value === null) return null
+  return displayReels.value[selectedReelIndex.value]
 })
 
 const openModal = (index: number) => {
@@ -25,8 +88,8 @@ const closeModal = () => {
 }
 
 const nextReel = () => {
-  if (selectedReelIndex.value !== null && props.reels) {
-    if (selectedReelIndex.value < props.reels.length - 1) {
+    if (selectedReelIndex.value !== null) {
+    if (selectedReelIndex.value < displayReels.value.length - 1) {
       selectedReelIndex.value++
     } else {
       // Loop back to start (optional)
@@ -36,12 +99,12 @@ const nextReel = () => {
 }
 
 const prevReel = () => {
-  if (selectedReelIndex.value !== null && props.reels) {
+    if (selectedReelIndex.value !== null) {
     if (selectedReelIndex.value > 0) {
       selectedReelIndex.value--
     } else {
       // Loop back to end (optional)
-      selectedReelIndex.value = props.reels.length - 1
+      selectedReelIndex.value = displayReels.value.length - 1
     }
   }
 }
@@ -77,6 +140,9 @@ onMounted(() => {
 onUnmounted(() => {
   scrollContainer.value?.removeEventListener('scroll', checkScroll)
 })
+
+
+
 </script>
 
 <template>
@@ -92,14 +158,14 @@ onUnmounted(() => {
         class="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
         
         <ReelCard 
-          v-for="(reel, index) in reels" 
+          v-for="(reel, index) in displayReels" 
           :key="reel.id" 
           v-bind="reel"
           class="snap-center"
           @click="openModal(index)"
         />
 
-        <div v-if="!reels?.length" class="text-gray-500 py-10 w-full text-center">
+        <div v-if="!displayReels.length" class="text-gray-500 py-10 w-full text-center">
           No reels available at the moment.
         </div>
       </div>
