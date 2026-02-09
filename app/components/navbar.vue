@@ -10,6 +10,20 @@ const navbarClass = computed(() => {
     return 'w-11/12 h-4/5 rounded-[2rem] bg-white/30 dark:bg-[#2e2e2e]/30 px-4 md:px-8 backdrop-blur-xs'
   else return 'w-full h-full px-2 md:px-6 lg:px-10 xl:px-12'
 })
+
+interface NewsProps {
+  id?: number
+  slug?: string
+  title?: string
+  content?: string
+  image?: string
+  category?: any
+  author?: any
+  url?: string
+}
+
+const props = defineProps<NewsProps>()
+
 const ypos = () => {
   console.log(scrollPosY.value)
 }
@@ -41,6 +55,10 @@ const anchors = [
   {
     link: '/aboutus',
     label: 'About Us',
+  },
+    {
+    link: '/newsfromhomes',
+    label: 'News',
   },
 ]
 </script>

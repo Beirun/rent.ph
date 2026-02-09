@@ -51,11 +51,16 @@ const shareProperty = () => {
     navigator.clipboard.writeText(window.location.href)
   }
 }
+const goToProperty = () => {
+  if(!props.property) return
+  navigateTo(`/property/${props.property.id}`)
+}
 </script>
 
 <template>
   <div
     v-if="orientation === 'vertical'"
+    @click="goToProperty"
     class="rounded-xl justify-between w-80 h-90 flex flex-col border relative bg-whtie dark:bg-[#1e1e1e] cursor-pointer"
   >
     <div

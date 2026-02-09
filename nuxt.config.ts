@@ -5,7 +5,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['./app/assets/tailwind.css'],
-
+  runtimeConfig: {
+    // Keys inside public are available on both client and server
+    public: {
+      siteApiKey: process.env.NEWS_SITE_API_KEY
+    }
+  },
   vite: {
     plugins: [tailwindcss()],
   },
