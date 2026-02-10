@@ -150,7 +150,7 @@ const goToProperty = () => {
     v-else
     class="h-36 w-full max-w-md flex shadow-md relative bg-[#fafafa] dark:bg-[#1e1e1e] rounded-xl overflow-hidden"
   >
-    <div class="h-full w-32 bg-[url('/img.png')] bg-cover bg-center relative flex-shrink-0">
+    <div class="h-full w-32 bg-[url('/img.png')] bg-cover bg-center relative shrink-0">
       <span
         class="absolute top-0 left-0 py-0.5 px-2 text-[9px] font-bold text-[#fafafa] bg-[#205ed7] rounded-br-lg"
       >
@@ -163,7 +163,7 @@ const goToProperty = () => {
           <div class="text-sm font-regular text-[#262626] dark:text-[#e8e8e8]/80 pr-4">
             Modern Family Home
           </div>
-          <button @click="heartActive = !heartActive" class="flex-shrink-0">
+          <button @click="heartActive = !heartActive" class="shrink-0">
             <Icon
               :name="!heartActive ? 'radix-icons:heart' : 'radix-icons:heart-filled'"
               :class="['size-4', heartActive ? 'text-red-500' : 'text-gray-400']"
