@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import CardListing from './cardListing.vue'
-import { Skeleton } from './ui/skeleton'
+import CardListing from '../cardListing.vue'
+import { Skeleton } from '../ui/skeleton'
 
 interface Property {
   id: number

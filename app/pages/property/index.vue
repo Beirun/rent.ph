@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import propertySearchBar from '~/components/propertySearchBar.vue'
 import navbar from '~/components/navbar.vue'
-import pagination from '~/components/pagination.vue'
-import PropertiesPage from '~/components/propertiesPage.vue'
-import propertiesAndListings2 from '~/components/propertiesAndListings2.vue'
+import propertySearchBar from '~/components/listings/propertySearchBar.vue'
+import propertiesAndListings2 from '~/components/listings/propertiesAndListings2.vue'
 
 const propertyStore = usePropertyStore()
 

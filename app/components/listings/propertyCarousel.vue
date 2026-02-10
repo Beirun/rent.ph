@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
-
+import cardListingPropertiesPage from './cardListingPropertiesPage.vue'
 interface Props {
     title: string
     subtitle: string

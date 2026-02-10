@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Skeleton } from './ui/skeleton'
+import { Skeleton } from '../ui/skeleton'
 import { ref, computed } from 'vue'
 import { usePropertyStore } from '@/stores/propertyStore'
-
+import PropertyCarousel from './propertyCarousel.vue';
 const props = defineProps<{
   properties: any[]
 }>()

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Marquee } from './ui/marquee'
-import ReviewCard from './ui/marquee/ReviewCard.vue'
+import { Marquee } from '../ui/marquee'
+import ReviewCard from '../ui/marquee/ReviewCard.vue'
 
 interface Partner {
   name: string

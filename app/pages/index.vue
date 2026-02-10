@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import LandingShowcase from '~/components/landingShowcase.vue'
-import LandingPopularRegionSection from '~/components/landingPopularRegionSection.vue'
-import PartnersAndSponsors from '~/components/partnersAndSponsors.vue'
-import PropertiesAndListings from '~/components/propertiesAndListings.vue'
-import Testimonials from '~/components/testimonials.vue'
+
 import ReelsSection from '@/components/reels/ReelsSection.vue'
 
 </script>
@@ -12,14 +8,14 @@ import ReelsSection from '@/components/reels/ReelsSection.vue'
     <ClientOnly>
       <Navbar />
     </ClientOnly>
-    <Hero />
+    <LandingHero />
     <div>
       <ClientOnly>
         <div>
             <ReelsSection/>
         </div>
         <div class="pt-15">
-            <PropertiesAndListings />
+            <LandingPropertiesAndListings />
         </div>
       </ClientOnly>
     </div>
@@ -29,11 +25,11 @@ import ReelsSection from '@/components/reels/ReelsSection.vue'
       </ClientOnly>
     </div>
     <div class="pt-15">
-      <LandingShowcase />
+      <LandingAgentShowcase />
     </div>
     <div class="flex items-center justify-center pt-15">
       <ClientOnly>
-        <TestimonialsCard />
+        <LandingTestimonialsCard />
       </ClientOnly>
     </div>
     <div class="pt-15">

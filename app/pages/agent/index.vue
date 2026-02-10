@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import agentscard from '~/components/rentManagers/agentscard.vue'
+import agentsCardSkeleton from '~/components/rentManagers/agentsCardSkeleton.vue'
+import agentSearchBar from '~/components/rentManagers/agentSearchBar.vue'
 
 const managerStore = useManagerStore()
 const showFilters = ref(false) // Toggle state for mobile sidebar
@@ -12,116 +15,7 @@ const handlePageChange = (page: number) => {
   // currentPage.value = page
   console.log('Changed to page:', page)
 }
-const managers = [
-  {
-    id: 1,
-    phone: 123456789,
-    name: 'Rebecca Ferguson',
-    email: 'rebecca@rent.com',
-    photo: '/rebecca.png',
-    location: 'Downtown, Oak Street',
-    status: '613 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 1',
-    reviewList: [
-      { user: 'John', comment: 'shes very pretty and cool', rating: 5 },
-      { user: 'Kobe', comment: 'i love how she treats her customers', rating: 5 },
-      { user: 'Bryan', comment: 'She is great at customer service', rating: 5 },
-      { user: 'Bryl', comment: '100% reccomend this agent', rating: 5 },
-      { user: 'Bernerd', comment: 'very cool very nice', rating: 5 },
-    ],
-  },
-  {
-    id: 2,
-    phone: 123456789,
-    name: 'Tom Cruise',
-    email: 'tom@rent.com',
-    photo: '/img.png',
-    location: 'Manila, PH',
-    status: '120 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 2',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 3,
-    phone: 123456789,
-    name: 'Henry Cavill',
-    email: 'henry@rent.com',
-    photo: '/javie-gemini.png',
-    location: 'Cebu City',
-    status: '45 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 3',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 4,
-    phone: 123456789,
-    name: 'Simon Pegg',
-    email: 'simon@rent.com',
-    photo: '/elaine-gemini.png',
-    location: 'Davao City',
-    status: '12 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 4',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 1,
-    phone: 123456789,
-    name: 'Rebecca Ferguson',
-    email: 'rebecca@rent.com',
-    photo: '/rebecca.png',
-    location: 'Downtown, Oak Street',
-    status: '613 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 1',
-    reviewList: [
-      { user: 'John', comment: 'shes very pretty and cool', rating: 5 },
-      { user: 'Kobe', comment: 'i love how she treats her customers', rating: 5 },
-      { user: 'Bryan', comment: 'She is great at customer service', rating: 5 },
-      { user: 'Bryl', comment: '100% reccomend this agent', rating: 5 },
-      { user: 'Bernerd', comment: 'very cool very nice', rating: 5 },
-    ],
-  },
-  {
-    id: 2,
-    phone: 123456789,
-    name: 'Tom Cruise',
-    email: 'tom@rent.com',
-    photo: '/img.png',
-    location: 'Manila, PH',
-    status: '120 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 2',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 3,
-    phone: 123456789,
-    name: 'Henry Cavill',
-    email: 'henry@rent.com',
-    photo: '/javie-gemini.png',
-    location: 'Cebu City',
-    status: '45 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 3',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 4,
-    phone: 123456789,
-    name: 'Simon Pegg',
-    email: 'simon@rent.com',
-    photo: '/elaine-gemini.png',
-    location: 'Davao City',
-    status: '12 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 4',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-]
+
 
 const categories: Record<string, string> = {
   'Farm Land': '1',
@@ -223,7 +117,7 @@ const topSearches: string[] = [
         <main class="flex-1">
           <div class="w-full">
             <ClientOnly>
-              <AgentSearchBar />
+              <agentSearchBar />
             </ClientOnly>
 
             <div class="mt-8 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
