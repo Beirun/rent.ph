@@ -136,7 +136,7 @@ const projects = [
 
 <template>
   <div class="min-h-screen bg-white dark:bg-[#0a0a0a] p-4 md:p-8">
-    <div class="max-w-400 mx-auto">
+    <div class="max-w-7xl">
       <div class="flex items-center justify-between mb-6">
         <h1 class="text-3xl font-bold text-[#FE8E0A] uppercase tracking-tight">Overview</h1>
       </div>

@@ -137,7 +137,7 @@ const filteredDocuments = computed(() => {
   <NuxtLayout name="dashboard">
     <div class="p-4 md:p-8 min-h-screen bg-white dark:bg-[#0a0a0a]">
       <!-- Header Section -->
-      <div class="max-w-400 mx-auto mb-10">
+      <div class="max-w-7xl mb-10">
         <div class="flex items-center justify-between mb-6">
           <h1 class="text-3xl font-bold text-[#FE8E0A] uppercase tracking-tight">Downloadables</h1>
         </div>
@@ -182,7 +182,7 @@ const filteredDocuments = computed(() => {
       </div>
 
       <!-- Documents Grid -->
-      <div v-if="filteredDocuments.length" class="max-w-400 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
+      <div v-if="filteredDocuments.length" class="max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
         <div 
           v-for="doc in filteredDocuments" 
           :key="doc.id"
@@ -235,7 +235,7 @@ const filteredDocuments = computed(() => {
       </div>
 
       <!-- Empty State -->
-      <div v-else class="max-w-400 mx-auto flex flex-col items-center justify-center py-20 text-center">
+      <div v-else class="max-w-7xl flex flex-col items-center justify-center py-20 text-center">
         <div class="size-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6">
           <Search class="size-10 text-gray-400" />
         </div>
