@@ -68,7 +68,7 @@ export const useAuthStore = defineStore('auth', () => {
         user.value = json.data
       } else {
         console.error('Profile API error:', res.status, res.statusText)
-      }
+      } 
     } catch (err) {
       console.error('Failed to fetch user profile:', err)
     } finally {

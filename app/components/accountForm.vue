@@ -71,10 +71,13 @@ const handleLogin = async () => {
       return
     }
 
-    const token = data.token || data.data?.token || data.access_token || data.data?.access_token
+    //const token = data.token || data.data?.token || data.access_token || data.data?.access_token
+    const token = useCookie('access_token') //for access_token
+
+    token.value = data.access_token //for access_token
     
-    if (token) {
-      authStore.login(token)
+    if (token.value) {
+      authStore.login(token.value)
       console.log('Token successfully stored in authStore')
     } else {
       console.warn('No token found in response! Checked: data.token, data.data.token, data.access_token')
