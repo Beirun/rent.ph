@@ -53,7 +53,7 @@ const formatDate = (dateStr?: string) => {
             </header>
 
             <img :src="newsStore.currentArticle.image_url" :alt="newsStore.currentArticle.title"
-                class="w-full h-100 object-cover rounded-3xl shadow-lg mb-10 border dark:border-zinc-800" />
+                class="w-full h-100 object-cover object-top rounded-3xl shadow-lg mb-10 border dark:border-zinc-800" />
 
             <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-6 mb-8 rounded-r-xl">
                 <h3 class="font-bold text-blue-900 dark:text-blue-300 mb-2 font-serif uppercase tracking-tight text-sm">
