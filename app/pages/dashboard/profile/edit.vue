@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import RichTextEditor from '@/components/ui/toggle-group/RichTextEditor.vue'
 import { useUserStore } from '@/stores/userStore'
 import type { UserProfile } from '@/models/user'
+import { computed } from 'vue'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -11,8 +12,18 @@ const hasUnsavedChanges = ref(false)
 
 const editorValue = ref('')
 
+const bioProxy = computed({
+  // GET: If bio is undefined/null, give the editor an empty string
+  get: () => formData.value.bio ?? '',
+  
+  // SET: When the editor types, save the string back to formData
+  set: (val: string) => {
+    formData.value.bio = val
+  }
+})
+
 const placeHolder = ref({
-  birthday: '02-11-26',
+  birthday: '2026-11-26',
   zip: '6000'
 })
 
@@ -198,7 +209,18 @@ const saveChanges = () => {
             <div class="md:col-span-2 space-y-2">
               <label class="text-sm font-bold text-gray-700 dark:text-gray-300">About Yourself *</label>
               <div class="rounded-xl overflow-hidden border border-gray-200 dark:border-zinc-700">
-                <RichTextEditor v-model="editorValue" @input="handleInputChange" />
+                <ClientOnly>
+  
+                  <div v-if="!userStore.loading && formData.id">
+                      <RichTextEditor 
+                        v-model="bioProxy" 
+                        @input="handleInputChange" 
+                      />
+                  </div>
+
+                  <div v-else class="h-40 bg-gray-100 animate-pulse rounded-lg"></div>
+
+              </ClientOnly>
               </div>
             </div>
           </div>
