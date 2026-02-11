@@ -226,9 +226,9 @@ onMounted(() => {
             :key="agent.id" 
             class="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/4 xl:basis-1/5 flex justify-center"
           >
-            <div ref="cardsRef" class="relative w-full max-w-[350px] sm:max-w-sm lg:max-w-[350px] xl:max-w-[350px]">
+            <div ref="cardsRef" class="relative w-full max-w-87.5 sm:max-w-sm lg:max-w-87.5 xl:max-w-87.5">
               <div
-                class="relative rounded-2xl cursor-pointer w-full h-[28rem] md:h-[32rem] flex flex-col bg-white dark:bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:scale-[1.02] border border-gray-100 dark:border-zinc-800"
+                class="relative rounded-2xl cursor-pointer w-full h-112 md:h-128 flex flex-col bg-white dark:bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:scale-[1.02] border border-gray-100 dark:border-zinc-800"
               >
                 <div class="h-3/5 w-full relative rounded-t-2xl overflow-hidden">
                   <div

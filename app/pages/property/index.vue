@@ -74,23 +74,21 @@ onMounted(async () => {
       <header class="mb-8 flex flex-col justify-center gap-2">
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100">Property for Rent</h1>
         <p class="text-gray-500 dark:text-zinc-400 mt-2">Find the best properties of your choice.</p>
-
       </header>
 
       <button
         @click="showMobileFilters = !showMobileFilters"
-        class="lg:hidden mb-6 w-full py-3 px-4 bg-[#fe8e0a] text-white rounded-xl flex items-center justify-center gap-2 font-bold shadow-lg active:scale-95 transition-transform"
+        class="md:hidden mb-6 w-full py-3 px-4 bg-[#fe8e0a] text-white rounded-xl flex items-center justify-center gap-2 font-bold shadow-lg active:scale-95 transition-transform"
       >
         <Icon :name="showMobileFilters ? 'lucide:x' : 'lucide:list-filter'" class="size-5 text-[#fafafa] font-bold " />
         {{ showMobileFilters ? 'Close Filters' : 'Categories & Top Searches' }}
       </button>
 
-      <div class="flex flex-col lg:flex-row gap-4 relative">
-        
+      <div class="flex flex-col md:flex-row gap-0 relative">
         <aside 
           :class="[
-            'lg:w-1/5 xl:w-[15%]space-y-8 transition-all duration-300 overflow-hidden',
-            showMobileFilters ? 'max-h-500 opacity-100 mb-10' : 'max-h-0 opacity-0 lg:max-h-none lg:opacity-100'
+            'md:w-1/4 lg:w-1/6 space-y-6 transition-all duration-300 md:sticky md:top-28 md:self-start',
+            showMobileFilters ? 'max-h-375 opacity-100 mb-8' : 'max-h-0 opacity-0 md:max-h-none md:opacity-100'
           ]"
         >
           <div class="bg-white dark:bg-zinc-900 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800">
@@ -125,9 +123,9 @@ onMounted(async () => {
           </div>
         </aside>
 
-        <main class="w-full lg:w-3/4 flex flex-col">
+        <main class="flex-1 m-0 p-0 min-w-0">
           <ClientOnly>
-            <div class="flex flex-col">
+            <div class="flex flex-col gap-2">
               <propertySearchBar />
               <propertiesAndListings2 :properties="propertyStore.properties" />
             </div>  
