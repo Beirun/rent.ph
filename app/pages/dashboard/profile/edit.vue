@@ -1,27 +1,69 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import RichTextEditor from '@/components/ui/toggle-group/RichTextEditor.vue'
+import { useUserStore } from '@/stores/userStore'
+import type { UserProfile } from '@/models/user'
 
+const userStore = useUserStore()
 const router = useRouter()
 const hasUnsavedChanges = ref(false)
 
-const formData = ref({
-  firstName: 'John',
-  lastName: 'Doe',
-  email: 'john.doe@example.com',
-  phone: '+63 912 345 6789',
-  birthday: '1990-01-01',
-  about: 'Experienced real estate agent specializing in residential and commercial properties in Metro Manila.',
-  address: '123 Main Street, Makati City',
-  country: 'Philippines',
-  region: 'National Capital Region (NCR)',
-  province: 'Metro Manila',
-  city: 'Makati',
-  barangay: 'Bel-Air',
-  zip: '1200'
+const editorValue = ref('')
+
+const placeHolder = ref({
+  birthday: '02-11-26',
+  zip: '6000'
 })
 
+const formData = ref<Partial<UserProfile>>({
+    id: 0,
+    name: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone: '',
+    city: '',
+    state: '',
+    rmpro: true,
+    avatar: '',
+    avatar_thumb: '',
+    bio: '',
+    reviews: [],
+    agent_title: '',
+    listing_count: 0,
+})
+
+const isSaving = ref(false)
+
+onMounted(async () => {
+    if (!userStore.user) {
+        await userStore.fetchUserProfile()
+    }
+    
+    if (userStore.user) {
+        editorValue.value = userStore.user.bio ?? ''
+        formData.value = { ...userStore.user }
+    }
+})
+
+// new
+const handleSave = async () => {
+    isSaving.value = true
+    
+    const result = await userStore.updateUserProfile(formData.value)
+    
+    isSaving.value = false
+    
+    if (result.success) {
+        alert('Profile updated successfully!')
+    } else {
+        alert('Failed to update profile. Please try again.')
+    }
+}
+
+
+// old
 const handleInputChange = () => {
   hasUnsavedChanges.value = true
 }
@@ -89,7 +131,7 @@ const saveChanges = () => {
               <div class="relative group">
                 <Icon name="lucide:user" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
-                  v-model="formData.firstName"
+                  v-model="formData.first_name"
                   type="text"
                   @input="handleInputChange"
                   class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
@@ -103,7 +145,7 @@ const saveChanges = () => {
               <div class="relative group">
                 <Icon name="lucide:user" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
-                  v-model="formData.lastName"
+                  v-model="formData.last_name"
                   type="text"
                   @input="handleInputChange"
                   class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
@@ -145,7 +187,7 @@ const saveChanges = () => {
               <div class="relative group">
                 <Icon name="lucide:calendar" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
-                  v-model="formData.birthday"
+                  v-model="placeHolder.birthday"
                   type="date"
                   @input="handleInputChange"
                   class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all"
@@ -156,7 +198,7 @@ const saveChanges = () => {
             <div class="md:col-span-2 space-y-2">
               <label class="text-sm font-bold text-gray-700 dark:text-gray-300">About Yourself *</label>
               <div class="rounded-xl overflow-hidden border border-gray-200 dark:border-zinc-700">
-                <RichTextEditor v-model="formData.about" @input="handleInputChange" />
+                <RichTextEditor v-model="editorValue" @input="handleInputChange" />
               </div>
             </div>
           </div>
@@ -177,7 +219,7 @@ const saveChanges = () => {
               <div class="relative group">
                 <Icon name="lucide:home" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <input
-                  v-model="formData.address"
+                  v-model="formData.city"
                   type="text"
                   @input="handleInputChange"
                   class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
@@ -191,7 +233,7 @@ const saveChanges = () => {
               <div class="relative group">
                 <Icon name="lucide:flag" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <select
-                  v-model="formData.country"
+                  v-model="formData.state"
                   @change="handleInputChange"
                   class="w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all appearance-none cursor-pointer"
                 >
@@ -208,7 +250,7 @@ const saveChanges = () => {
               <div class="relative group">
                 <Icon name="lucide:map" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                 <select
-                  v-model="formData.region"
+                  v-model="formData.state"
                   @change="handleInputChange"
                   class="w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all appearance-none cursor-pointer"
                 >
@@ -240,7 +282,7 @@ const saveChanges = () => {
                 <div class="relative group">
                   <Icon name="lucide:hash" class="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400 group-focus-within:text-[#1b4fb5] dark:group-focus-within:text-[#2b68df] transition-colors" />
                   <input
-                    v-model="formData.zip"
+                    v-model="placeHolder.zip"
                     type="text"
                     @input="handleInputChange"
                     class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-zinc-700 dark:bg-[#0a0a0a] dark:text-white focus:ring-2 focus:ring-[#1b4fb5]/20 focus:border-[#1b4fb5] dark:focus:ring-[#2b68df]/20 dark:focus:border-[#2b68df] outline-none transition-all placeholder:text-gray-400"
