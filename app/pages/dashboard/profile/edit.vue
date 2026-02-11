@@ -120,7 +120,7 @@ const saveChanges = () => {
             <div class="flex items-center gap-6">
               <div class="relative">
                 <NuxtImg
-                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=User"
+                  :src="formData.avatar"
                   class="size-24 rounded-2xl object-cover ring-4 ring-white dark:ring-zinc-800 shadow-xl"
                 />
               </div>
