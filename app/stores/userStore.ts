@@ -15,12 +15,10 @@ export const useUserStore = defineStore('user', () => {
 
     const fetchUserProfile = async () => {
         loading.value = true
-        const token = useCookie('access_token')
 
+        const userID = useCookie('id').value
         try {
-            const res: any = await $fetch(`${BASE_URL}/api/rent-manager-details/${user.value?.id}}`, {
-                headers: { Authorization: `Bearer ${token.value}` }
-            })
+            const res: any = await $fetch(`${BASE_URL}/rent-manager-detail/${userID}`)
             user.value = res.data
         } catch (error) {
             console.error('Failed to fetch profile:', error)
