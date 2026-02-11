@@ -73,7 +73,9 @@ const handleLogin = async () => {
 
     //const token = data.token || data.data?.token || data.access_token || data.data?.access_token
     const token = useCookie('access_token') //for access_token
+    const IDtoken = useCookie('id')
 
+    IDtoken.value = data.user.id
     token.value = data.access_token //for access_token
     
     if (token.value) {
