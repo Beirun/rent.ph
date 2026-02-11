@@ -17,6 +17,55 @@ onMounted(async () => {
     await propertyStore.getMyListings()
   }
 })
+const filterStatus = ref('all') // 'all', 'active', 'inactive'
+const isDropdownOpen = ref(false)
+
+const filterOptions = [
+  { value: 'all', label: 'All Properties', icon: 'lucide:list' },
+  { value: 'active', label: 'Active Only', icon: 'lucide:check-circle' },
+  { value: 'inactive', label: 'Inactive Only', icon: 'lucide:x-circle' }
+]
+
+const selectedOption = computed(() =>
+  filterOptions.find(opt => opt.value === filterStatus.value)
+)
+
+const selectFilter = (value: string) => {
+  filterStatus.value = value
+  isDropdownOpen.value = false
+  // You can emit this value or use it to filter your properties
+}
+
+// Close dropdown when clicking outside
+const dropdownRef = ref<HTMLElement | null>(null)
+
+const handleClickOutside = (event: MouseEvent) => {
+  if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
+    isDropdownOpen.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+
+// Filtered listings based on selected filter
+const filteredListings = computed(() => {
+  if (filterStatus.value === 'all') {
+    return propertyStore.myListings
+  }
+  if (filterStatus.value === 'active') {
+    return propertyStore.myListings.filter(property => property.status === 'active')
+  }
+  if (filterStatus.value === 'inactive') {
+    return propertyStore.myListings.filter(property => property.status === 'inactive')
+  }
+  return propertyStore.myListings
+})
 </script>
 
 <template>
@@ -28,10 +77,46 @@ onMounted(async () => {
       <div class="px-4 lg:px-12 py-10 min-h-screen">
 
         <div class="flex justify-between items-center mb-8">
-          <NuxtLink to="/create-listing"
-            class="bg-black dark:bg-white text-white dark:text-black px-5 py-2.5 rounded-full font-medium text-sm hover:opacity-80 transition-opacity">
-            + Add New Property
-          </NuxtLink>
+          <div class="flex items-center gap-3">
+            <NuxtLink to="/create-listing"
+              class="bg-black dark:bg-white text-white dark:text-black px-5 py-2.5 rounded-full font-medium text-sm hover:opacity-80 transition-opacity">
+              + Add New Property
+            </NuxtLink>
+
+            <div class="relative" ref="dropdownRef">
+              <button @click="isDropdownOpen = !isDropdownOpen" :class="[
+                'flex items-center gap-2 px-4 py-2.5 rounded-full font-medium text-sm transition-all',
+                filterStatus !== 'all'
+                  ? 'bg-blue-500 dark:bg-blue-600 text-white shadow-sm'
+                  : 'bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-zinc-700'
+              ]">
+                <Icon :name="selectedOption?.icon || 'lucide:list'" class="size-4" />
+                {{ selectedOption?.label || 'Filter' }}
+                <Icon name="lucide:chevron-down"
+                  :class="['size-4 transition-transform', isDropdownOpen ? 'rotate-180' : '']" />
+              </button>
+
+              <!-- Dropdown Menu -->
+              <Transition enter-active-class="transition ease-out duration-100"
+                enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
+                leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
+                leave-to-class="transform opacity-0 scale-95">
+                <div v-if="isDropdownOpen"
+                  class="absolute top-full mt-2 left-0 w-48 bg-white dark:bg-zinc-800 rounded-xl shadow-lg border border-gray-200 dark:border-zinc-700 py-1 z-50">
+                  <button v-for="option in filterOptions" :key="option.value" @click="selectFilter(option.value)" :class="[
+                    'w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors',
+                    filterStatus === option.value
+                      ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700/50'
+                  ]">
+                    <Icon :name="option.icon" class="size-4" />
+                    {{ option.label }}
+                    <Icon v-if="filterStatus === option.value" name="lucide:check" class="size-4 ml-auto" />
+                  </button>
+                </div>
+              </Transition>
+            </div>
+          </div>
         </div>
 
         <div v-if="propertyStore.loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -53,7 +138,7 @@ onMounted(async () => {
         </div>
 
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          <AgentPropertyCard v-for="property in propertyStore.myListings" :key="property.id" :property="property" />
+          <AgentPropertyCard v-for="property in filteredListings" :key="property.id" :property="property" />
         </div>
 
       </div>
