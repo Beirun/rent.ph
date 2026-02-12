@@ -123,7 +123,7 @@ const filteredListings = computed(() => {
           <div v-for="n in 4" :key="n" class="h-87.5 bg-gray-100 dark:bg-zinc-800 rounded-xl animate-pulse"></div>
         </div>
 
-        <div v-else-if="propertyStore.myListings.length === 0"
+        <div v-else-if="!propertyStore.myListings?.length"
           class="flex flex-col items-center justify-center py-20 bg-gray-50 dark:bg-zinc-900/50 rounded-2xl border border-dashed border-gray-300 dark:border-zinc-700">
           <div class="bg-white dark:bg-zinc-800 p-4 rounded-full mb-4 shadow-sm">
             <Icon name="heroicons:home-modern" class="size-8 text-gray-400" />
