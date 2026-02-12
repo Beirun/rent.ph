@@ -121,8 +121,8 @@ export const usePropertyStore = defineStore('property', () => {
       }
     })
 
-    // Store the result
-    myListings.value = res.data 
+    // Store the result - handle both wrapped and unwrapped data
+    myListings.value = Array.isArray(res) ? res : res.data || []
 
   } catch (error: any) {
     console.error("Failed to fetch my listings:", error)
