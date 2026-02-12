@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 
 const currentStep = ref(1)
 const transitionDirection = ref('slide-right')
@@ -60,6 +60,62 @@ const formData = ref({
   
   // RAPA Upload (Step 7)
   rapaFile: null as any,
+})
+
+// Persistence Logic
+const STORAGE_KEY = 'rent_ph_add_listing_draft'
+
+const saveFormData = () => {
+  if (process.client) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(formData.value))
+    } catch (e) {
+      console.warn('Failed to save to localStorage (likely quota exceeded due to images):', e)
+    }
+  }
+}
+
+const loadFormData = () => {
+  if (process.client) {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved)
+        // Merge saved data with default structure to ensure new fields are handled
+        formData.value = { ...formData.value, ...parsed }
+      } catch (e) {
+        console.error('Failed to parse saved form data:', e)
+      }
+    }
+    
+    // Also load current step
+    const savedStep = localStorage.getItem(STORAGE_KEY + '_step')
+    if (savedStep) {
+      currentStep.value = parseInt(savedStep)
+    }
+  }
+}
+
+const clearDraft = () => {
+  if (process.client) {
+    localStorage.removeItem(STORAGE_KEY)
+    localStorage.removeItem(STORAGE_KEY + '_step')
+    window.location.reload()
+  }
+}
+
+watch(formData, () => {
+  saveFormData()
+}, { deep: true })
+
+watch(currentStep, (newStep) => {
+  if (process.client) {
+    localStorage.setItem(STORAGE_KEY + '_step', newStep.toString())
+  }
+})
+
+onMounted(() => {
+  loadFormData()
 })
 
 const nextStep = () => {
@@ -144,55 +200,63 @@ const setAsDefault = (index: number) => {
 
 <template>
   <NuxtLayout name="dashboard">
-    <div class="p-6 max-w-[1600px] mx-auto min-h-screen bg-white dark:bg-[#0a0a0a]">
+    <div class="p-6 h-screen flex flex-col overflow-hidden bg-white dark:bg-[#0a0a0a]">
       <!-- Header -->
-      <div class="mb-8">
-        <h1 class="text-3xl font-bold text-[#FE8E0A] mb-2 uppercase tracking-tight">Add New Listing</h1>
-        <p class="text-gray-500 dark:text-gray-400">Follow the steps below to publish your property</p>
+      <div class="mb-4">
+        <h1 class="text-3xl font-bold text-[#FE8E0A] mb-1 uppercase tracking-tight">Add New Listing</h1>
+        <p class="text-xs text-gray-400 font-medium italic">Create a new listing by following the steps below.</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start min-h-screen">
-        <!-- Stepper Sidebar -->
-        <div class="lg:col-span-1 space-y-4">
-          <div class="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-gray-100 dark:border-zinc-800 shadow-sm sticky top-24">
-            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-6 px-4">Steps</h2>
-            <div class="space-y-2">
-              <button
-                v-for="step in steps"
-                :key="step.id"
-                @click="goToStep(step.id)"
-                class="w-full flex items-center gap-4 p-4 rounded-2xl transition-all text-left group"
-                :class="[
-                  currentStep === step.id
-                    ? 'bg-[#FE8E0A]/10 text-[#FE8E0A] ring-1 ring-[#FE8E0A]/20'
-                    : currentStep > step.id
-                      ? 'text-green-600 dark:text-green-400'
-                      : 'text-gray-400 dark:text-gray-600 hover:bg-gray-50 dark:hover:bg-zinc-800'
-                ]"
+      <!-- Horizontal Stepper -->
+      <div class="mb-6 relative max-w-5xl mx-auto px-4 w-full">
+        <!-- Progress Bar Background -->
+        <div class="absolute top-[22px] left-0 w-full h-[2px] bg-gray-100 dark:bg-zinc-800 rounded-full"></div>
+        <!-- Active Progress Bar -->
+        <div 
+          class="absolute top-[22px] left-0 h-[2px] bg-[#FE8E0A] rounded-full transition-all duration-700 ease-out shadow-[0_0_10px_rgba(254,142,10,0.4)]"
+          :style="{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }"
+        ></div>
+
+        <div class="relative flex justify-between items-start">
+          <div 
+            v-for="step in steps" 
+            :key="step.id"
+            class="flex flex-col items-center gap-3 transition-all duration-500"
+            :class="[currentStep === step.id ? 'scale-110' : 'opacity-70 hover:opacity-100']"
+          >
+            <button
+              @click="goToStep(step.id)"
+              class="size-10 rounded-2xl flex items-center justify-center font-bold text-sm transition-all duration-500 relative z-10"
+              :class="[
+                currentStep === step.id
+                  ? 'bg-[#FE8E0A] text-white shadow-xl shadow-[#FE8E0A]/30 ring-4 ring-white dark:ring-[#0a0a0a]'
+                  : currentStep > step.id
+                    ? 'bg-green-500 text-white shadow-lg shadow-green-500/20'
+                    : 'bg-white dark:bg-zinc-900 text-gray-400 border-2 border-gray-100 dark:border-zinc-800'
+              ]"
+            >
+              <Icon v-if="currentStep > step.id" name="lucide:check" class="size-4" />
+              <span v-else>{{ step.id }}</span>
+            </button>
+            <div class="text-center max-w-[80px]">
+              <span 
+                class="text-[9px] font-black uppercase tracking-tighter transition-colors duration-500 leading-none block"
+                :class="currentStep === step.id ? 'text-[#FE8E0A]' : 'text-gray-400'"
               >
-                <div
-                  class="size-8 rounded-xl flex items-center justify-center font-bold text-sm shrink-0 transition-colors"
-                  :class="[
-                    currentStep === step.id
-                      ? 'bg-[#FE8E0A] text-white shadow-lg shadow-[#FE8E0A]/20'
-                      : currentStep > step.id
-                        ? 'bg-green-100 dark:bg-green-900/30 text-green-600'
-                        : 'bg-gray-100 dark:bg-zinc-800 text-gray-400'
-                  ]"
-                >
-                  <Icon v-if="currentStep > step.id" name="lucide:check" class="size-4" />
-                  <span v-else>{{ step.id }}</span>
-                </div>
-                <span class="font-bold leading-tight">{{ step.title }}</span>
-              </button>
+                {{ step.title }}
+              </span>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Form Content -->
-        <div class="lg:col-span-2">
+      <!-- Form Content Wrapper -->
+      <div class="max-w-5xl mx-auto mb-6 w-full flex-1 min-h-0 flex flex-col overflow-hidden">
+        <div class="w-full h-full bg-white dark:bg-zinc-900 rounded-[2.5rem] p-6 md:p-10 border border-gray-100 dark:border-zinc-800 shadow-sm flex flex-col overflow-hidden">
           <Transition :name="transitionDirection" mode="out-in">
-            <div :key="currentStep" class="bg-white dark:bg-zinc-900 rounded-3xl p-10 border border-gray-100 dark:border-zinc-800 shadow-sm min-h-[700px] flex flex-col transition-all duration-300">
+            <div :key="currentStep" class="flex-1 flex flex-col overflow-hidden">
+              <!-- Scrollable Step Area -->
+              <div class="flex-1 overflow-y-auto pr-4 custom-scrollbar">
             
             <!-- Step 1: Category -->
             <div v-if="currentStep === 1" class="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -390,7 +454,7 @@ const setAsDefault = (index: number) => {
                        </button>
                     </div>
                     <div v-if="idx === 0" class="absolute top-2 left-2 bg-[#FE8E0A] text-white text-[10px] font-bold px-2 py-1 rounded-lg">
-                      Default
+                       Default
                     </div>
                   </div>
                 </div>
@@ -558,11 +622,17 @@ const setAsDefault = (index: number) => {
 
             <!-- Step 8: Review & Publish -->
             <div v-if="currentStep === 8" class="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <div class="flex items-center gap-3 border-b border-gray-100 dark:border-zinc-800 pb-4">
-                <div class="bg-gray-100 dark:bg-zinc-800 p-2 rounded-lg text-gray-600 dark:text-gray-400">
-                  <Icon name="lucide:clipboard-check" class="size-5" />
+              <div class="flex items-center justify-between border-b border-gray-100 dark:border-zinc-800 pb-4">
+                <div class="flex items-center gap-3">
+                  <div class="bg-gray-100 dark:bg-zinc-800 p-2 rounded-lg text-gray-600 dark:text-gray-400">
+                    <Icon name="lucide:clipboard-check" class="size-5" />
+                  </div>
+                  <h2 class="text-lg font-bold uppercase tracking-wider text-[#FE8E0A]">Review & Publish</h2>
                 </div>
-                <h2 class="text-lg font-bold uppercase tracking-wider text-[#FE8E0A]">Review & Publish</h2>
+                <button @click="clearDraft" class="text-xs font-bold text-red-500 hover:text-red-600 flex items-center gap-1 bg-red-50 dark:bg-red-500/10 px-3 py-1.5 rounded-xl transition-all">
+                  <Icon name="lucide:trash-2" class="size-3" />
+                  Clear Draft
+                </button>
               </div>
               
               <div class="space-y-6">
@@ -570,12 +640,17 @@ const setAsDefault = (index: number) => {
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <!-- Main Info -->
                   <div class="space-y-4">
-                    <div class="flex justify-between items-center group">
+                    <div class="flex justify-between items-center group bg-gray-50 dark:bg-zinc-800/20 p-4 rounded-2xl border dark:border-zinc-800">
                       <h3 class="font-bold text-xl">{{ formData.title || 'Untitled Property' }}</h3>
-                      <button @click="goToStep(2)" class="text-[#FE8E0A] hover:underline text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">Edit</button>
+                      <button @click="goToStep(2)" class="text-[#FE8E0A] hover:underline text-xs font-bold flex items-center gap-1">
+                        <Icon name="lucide:pencil" class="size-3" /> Edit
+                      </button>
                     </div>
                     
-                    <div class="space-y-3 bg-gray-50 dark:bg-zinc-800/30 p-6 rounded-3xl border dark:border-zinc-800">
+                    <div class="space-y-3 bg-gray-50 dark:bg-zinc-800/30 p-6 rounded-3xl border dark:border-zinc-800 relative group">
+                      <button @click="goToStep(2)" class="absolute top-4 right-4 text-[#FE8E0A] hover:underline text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                        <Icon name="lucide:pencil" class="size-3" /> Edit
+                      </button>
                       <div class="flex items-center gap-3">
                         <Icon name="lucide:tag" class="size-4 text-gray-400" />
                         <span class="text-sm font-bold">{{ formData.category || 'No category' }}</span>
@@ -586,7 +661,11 @@ const setAsDefault = (index: number) => {
                       </div>
                       <div class="flex items-center gap-3">
                         <Icon name="lucide:map-pin" class="size-4 text-gray-400" />
-                        <span class="text-sm text-gray-500">{{ formData.city }}, {{ formData.state }}</span>
+                        <span class="text-sm text-gray-500">{{ formData.city }}, {{ formData.state }}, {{ formData.country }}</span>
+                      </div>
+                      <div class="mt-2 p-3 bg-white dark:bg-zinc-800 rounded-2xl border dark:border-zinc-700">
+                        <p class="text-[10px] text-gray-400 uppercase font-bold mb-1">Description</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300 line-clamp-3 italic">"{{ formData.description || 'No description provided.' }}"</p>
                       </div>
                       <div class="pt-2 grid grid-cols-3 gap-2">
                         <div class="bg-white dark:bg-zinc-800 p-2 rounded-xl text-center border dark:border-zinc-700">
@@ -598,18 +677,28 @@ const setAsDefault = (index: number) => {
                           <p class="font-bold text-sm">{{ formData.bathrooms }}</p>
                         </div>
                         <div class="bg-white dark:bg-zinc-800 p-2 rounded-xl text-center border dark:border-zinc-700">
-                          <p class="text-[10px] text-gray-400">Area</p>
-                          <p class="font-bold text-sm">{{ formData.floorArea }} sq</p>
+                          <p class="text-[10px] text-gray-400">Garage</p>
+                          <p class="font-bold text-sm">{{ formData.garage }}</p>
+                        </div>
+                        <div class="bg-white dark:bg-zinc-800 p-2 rounded-xl text-center border dark:border-zinc-700">
+                          <p class="text-[10px] text-gray-400">Floor</p>
+                          <p class="font-bold text-sm">{{ formData.floorArea }}m²</p>
+                        </div>
+                        <div class="bg-white dark:bg-zinc-800 p-2 rounded-xl text-center border dark:border-zinc-700">
+                          <p class="text-[10px] text-gray-400">Lot</p>
+                          <p class="font-bold text-sm">{{ formData.lotArea }}m²</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Images Grid View -->
+                  <!-- Images & Video -->
                   <div class="space-y-4">
                     <div class="flex justify-between items-center group">
-                      <h3 class="text-sm font-bold uppercase tracking-wider text-gray-400">Images ({{ formData.images.length }})</h3>
-                      <button @click="goToStep(4)" class="text-[#FE8E0A] hover:underline text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">Edit</button>
+                      <h3 class="text-sm font-bold uppercase tracking-wider text-gray-400">Media ({{ formData.images.length }} Images)</h3>
+                      <button @click="goToStep(4)" class="text-[#FE8E0A] hover:underline text-xs font-bold flex items-center gap-1">
+                        <Icon name="lucide:pencil" class="size-3" /> Edit
+                      </button>
                     </div>
                     <div class="grid grid-cols-3 gap-2">
                        <div v-for="(img, i) in formData.images.slice(0, 5)" :key="i" class="aspect-square rounded-xl overflow-hidden border dark:border-zinc-800">
@@ -619,12 +708,43 @@ const setAsDefault = (index: number) => {
                           +{{ formData.images.length - 5 }}
                        </div>
                     </div>
+                    <div v-if="formData.videoLink" class="p-3 bg-gray-50 dark:bg-zinc-800/30 rounded-2xl border dark:border-zinc-800 flex items-center gap-3">
+                      <Icon name="lucide:video" class="size-4 text-[#FE8E0A]" />
+                      <div class="min-w-0">
+                        <p class="text-[10px] text-gray-400 uppercase font-bold">Video Link</p>
+                        <p class="text-xs font-medium truncate text-blue-500 underline">{{ formData.videoLink }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Location Detail -->
+                <div class="space-y-4 bg-gray-50 dark:bg-zinc-800/30 p-6 rounded-3xl border dark:border-zinc-800 relative group">
+                  <button @click="goToStep(3)" class="absolute top-6 right-6 text-[#FE8E0A] hover:underline text-xs font-bold flex items-center gap-1">
+                    <Icon name="lucide:pencil" class="size-3" /> Edit
+                  </button>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Location Information</h3>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <p class="text-[10px] text-gray-400 uppercase font-bold">Address</p>
+                      <p class="text-sm font-bold">{{ formData.streetAddress || 'No street address' }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] text-gray-400 uppercase font-bold">Coordinates</p>
+                      <p class="text-xs font-medium">{{ formData.latitude.toFixed(6) }}, {{ formData.longitude.toFixed(6) }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] text-gray-400 uppercase font-bold">City & Province</p>
+                      <p class="text-sm font-bold">{{ formData.city }}, {{ formData.state }}</p>
+                    </div>
                   </div>
                 </div>
 
                 <!-- Attributes Summary -->
                 <div class="space-y-4 bg-gray-50 dark:bg-zinc-800/30 p-6 rounded-3xl border dark:border-zinc-800 relative group">
-                  <button @click="goToStep(6)" class="absolute top-6 right-6 text-[#FE8E0A] hover:underline text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">Edit</button>
+                  <button @click="goToStep(6)" class="absolute top-6 right-6 text-[#FE8E0A] hover:underline text-xs font-bold flex items-center gap-1">
+                    <Icon name="lucide:pencil" class="size-3" /> Edit
+                  </button>
                   <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Amenities & Furnishing</h3>
                   <div class="flex flex-wrap gap-2">
                     <span v-for="amenity in formData.amenities" :key="amenity" class="bg-white dark:bg-zinc-800 px-3 py-1.5 rounded-full text-xs font-bold border dark:border-zinc-700 border-gray-100">{{ amenity }}</span>
@@ -634,16 +754,24 @@ const setAsDefault = (index: number) => {
 
                 <!-- Owner Summary -->
                 <div class="space-y-4 bg-gray-50 dark:bg-zinc-800/30 p-6 rounded-3xl border dark:border-zinc-800 relative group">
-                  <button @click="goToStep(7)" class="absolute top-6 right-6 text-[#FE8E0A] hover:underline text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">Edit</button>
+                  <button @click="goToStep(7)" class="absolute top-6 right-6 text-[#FE8E0A] hover:underline text-xs font-bold flex items-center gap-1">
+                    <Icon name="lucide:pencil" class="size-3" /> Edit
+                  </button>
                   <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Lessor Information</h3>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                      <div>
-                       <p class="text-[10px] text-gray-400">Name</p>
+                       <p class="text-[10px] text-gray-400 uppercase font-bold">Name</p>
                        <p class="text-sm font-bold">{{ formData.ownerFirstName }} {{ formData.ownerLastName }}</p>
                      </div>
                      <div>
-                       <p class="text-[10px] text-gray-400">Phone</p>
+                       <p class="text-[10px] text-gray-400 uppercase font-bold">Contact</p>
                        <p class="text-sm font-bold">+63 {{ formData.ownerPhone }}</p>
+                       <p class="text-[10px] text-gray-500 break-all">{{ formData.ownerEmail }}</p>
+                     </div>
+                     <div class="md:col-span-2">
+                       <p class="text-[10px] text-gray-400 uppercase font-bold">Address</p>
+                       <p class="text-xs font-medium">{{ formData.ownerStreetAddress }}</p>
+                       <p class="text-xs font-bold">{{ formData.ownerCity }}, {{ formData.ownerState }}</p>
                      </div>
                   </div>
                 </div>
@@ -653,10 +781,13 @@ const setAsDefault = (index: number) => {
                   <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Check this if you don't want it to be visible on your profile page.</span>
                 </label>
               </div>
-            </div>
+            </div> <!-- End Step 8 -->
+            </div> <!-- End Scrollable Area -->
+            </div> <!-- End Transition Item -->
+          </Transition>
 
-            <!-- Navigation Buttons -->
-            <div class="mt-auto pt-10 flex items-center justify-between border-t border-gray-100 dark:border-zinc-800 mt-10">
+          <!-- Navigation Buttons -->
+          <div class="mt-auto pt-6 flex items-center justify-between border-t border-gray-100 dark:border-zinc-800 mt-6 bg-white dark:bg-zinc-900 z-10">
               <button
                 v-if="!isFirstStep"
                 @click="prevStep"
@@ -681,9 +812,6 @@ const setAsDefault = (index: number) => {
                 <Icon v-else name="lucide:check-circle" class="size-4" />
               </button>
             </div>
-
-          </div>
-          </Transition>
         </div>
       </div>
     </div>
@@ -727,5 +855,22 @@ input[type="number"]::-webkit-outer-spin-button {
 .slide-left-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+/* Custom Scrollbar Styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #FE8E0A;
 }
 </style>
