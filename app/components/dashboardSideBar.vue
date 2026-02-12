@@ -127,17 +127,6 @@ const handleLogout = () => {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton as-child tooltip="Edit Listing" :class="[
-                'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
-                isActiveRoute('/agent/editListing') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
-              ]">
-                <NuxtLink to="/agent/editListing">
-                  <User :class="{ 'text-[#FE8E0A]': isActiveRoute('/agent/editListing') }" />
-                  <span>Edit listing</span>
-                </NuxtLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="Downloadables" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
                 isActiveRoute('/dashboard/downloadables') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
