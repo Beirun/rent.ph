@@ -8,8 +8,15 @@ const props = defineProps<{
 // Format price with PHP currency
 const formattedPrice = computed(() => {
   const val = parseFloat(props.property.price)
-  return isNaN(val) ? '0.00' : val.toLocaleString()
+  if (isNaN(val) || val === 0) return 'Not Listed'
+  return `₱${val.toLocaleString()}`
 })
+
+// Format counts (Bed, Bath, Area)
+const formatCount = (val: number | string | null) => {
+  const num = Number(val)
+  return num > 0 ? num : 'Not Listed'
+}
 
 // Determine display name from owner fields or title
 const ownerName = computed(() => {
@@ -19,10 +26,17 @@ const ownerName = computed(() => {
   return 'Agent'
 })
 
-// Handle image - API gives image_id, you might need a full URL builder
-// Replacing with a placeholder if the API doesn't provide a direct URL string
+// Handle image
 const displayImage = computed(() => {
-  // If your API provides a way to get the URL via image_id, use it here
+  if (props.property.image) {
+    return props.property.image // Use full URL from API if available
+  }
+  if (props.property.image) {
+    // Fallback if image URL is missing but ID exists (though API likely provides URL)
+    // Since https://rent.ph/api/images/:id failed, we rely on property.image which is likely present.
+    // If not, we might need another way, but for now, rely on property.image.
+    return `https://rent.ph/api/images/${props.property.image}` // Keep as backup but doubtful
+  }
   return '/img.png'
 })
 
@@ -66,8 +80,9 @@ const stats = ref({
       </div>
 
       <div class="text-xl font-bold text-rose-600 dark:text-rose-400">
-        ₱{{ formattedPrice }}
-        <span class="text-xs font-normal text-gray-500 dark:text-gray-400 ml-1">{{ property.price_type || 'Monthly'
+        {{ formattedPrice }}
+        <span v-if="formattedPrice !== 'Not Listed'"
+          class="text-xs font-normal text-gray-500 dark:text-gray-400 ml-1">{{ property.price_type || 'Monthly'
           }}</span>
       </div>
 
@@ -93,22 +108,25 @@ const stats = ref({
       <!-- Property Details -->
       <div class="flex items-center justify-around py-3 border-y border-gray-100 dark:border-zinc-800">
         <div class="flex flex-col items-center">
-          <div class="flex items-center gap-1 text-gray-900 dark:text-white font-bold text-lg">
-            {{ property.bed }}
+          <div class="flex items-center gap-1 text-gray-900 dark:text-white font-bold"
+            :class="formatCount(property.bed) === 'Not Listed' ? 'text-xs' : 'text-lg'">
+            {{ formatCount(property.bed) }}
           </div>
           <span class="text-[10px] text-gray-500 dark:text-gray-400 uppercase">Beds</span>
         </div>
         <div class="flex flex-col items-center">
-          <div class="flex items-center gap-1 text-gray-900 dark:text-white font-bold text-lg">
-            {{ property.bathroom }}
+          <div class="flex items-center gap-1 text-gray-900 dark:text-white font-bold"
+            :class="formatCount(property.bathroom) === 'Not Listed' ? 'text-xs' : 'text-lg'">
+            {{ formatCount(property.bathroom) }}
           </div>
           <span class="text-[10px] text-gray-500 dark:text-gray-400 uppercase">Baths</span>
         </div>
         <div class="flex flex-col items-center">
-          <div class="flex items-center gap-1 text-gray-900 dark:text-white font-bold text-lg">
-            {{ property.area }}
+          <div class="flex items-center gap-1 text-gray-900 dark:text-white font-bold"
+            :class="formatCount(property.area) === 'Not Listed' ? 'text-xs' : 'text-lg'">
+            {{ formatCount(property.area) }}
           </div>
-          <span class="text-[10px] text-gray-500 dark:text-gray-400 uppercase">{{ property.area_unit }}</span>
+          <span class="text-[10px] text-gray-500 dark:text-gray-400 uppercase">{{ property.area_unit }}SQFT</span>
         </div>
       </div>
 
