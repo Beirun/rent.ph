@@ -3,7 +3,7 @@
 export interface PropertyListResponse<T> {
   status: string
   data: T[]
-//   pagination: Pagination
+  //   pagination: Pagination
   message: string
 }
 
@@ -20,8 +20,8 @@ export interface Property {
   title: string
   slug: string
   content: string
-  image_id: number
-  banner_image_id: number | null
+  image: string
+  banner_image_id: string | null
   region_id: number | null
   location_id: number | null
   province: string
@@ -32,7 +32,7 @@ export interface Property {
   map_lng: string
   map_zoom: number
   is_featured: number | null
-  gallery: string // Comma-separated image IDs
+  gallery: string | GalleryImage[] // Comma-separated image IDs or Array of GalleryImage objects
   video: string | null
   faqs: string | null
   last_time_viewed: string | null
