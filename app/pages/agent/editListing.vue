@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import RichTextEditor from '@/components/ui/toggle-group/RichTextEditor.vue'
+// Fetch Data on Mount if ID exists
+import { onMounted } from 'vue'
+import { useRoute } from '#app'
+import { usePropertyStore } from '~/stores/propertyStore'
+
+const route = useRoute()
+const propertyStore = usePropertyStore()
+
 
 // UI State
 const editorValue = ref('')
@@ -109,14 +117,6 @@ const handleSave = async () => {
 }
 
 
-
-// Fetch Data on Mount if ID exists
-import { onMounted } from 'vue'
-import { useRoute } from '#app'
-import { usePropertyStore } from '~/stores/propertyStore'
-
-const route = useRoute()
-const propertyStore = usePropertyStore()
 
 onMounted(async () => {
   const propertyId = route.query.id
