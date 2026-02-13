@@ -11,6 +11,9 @@ import AboutusHero from '~/components/about/aboutusHero.vue';
         <AboutusHero />
       </ClientOnly>
       <ClientOnly>
+        <AboutJapanAwards />
+      </ClientOnly>
+      <ClientOnly>
         <AboutAwards />
       </ClientOnly>
       <ClientOnly>

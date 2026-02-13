@@ -52,35 +52,23 @@ const shareProperty = () => {
   }
 }
 const goToProperty = () => {
-  if(!props.property) return
+  if (!props.property) return
   navigateTo(`/property/${props.property.id}`)
 }
 </script>
 
 <template>
-  <div
-    v-if="orientation === 'vertical'"
-    @click="goToProperty"
-    class="rounded-xl justify-between w-80 h-90 flex flex-col border relative bg-whtie dark:bg-[#1e1e1e] cursor-pointer"
-  >
-    <div
-      class="h-1/2 w-full rounded-t-lg bg-cover bg-bottom relative"
-      :style="`background-image: url('${property?.image || '/img.png'}')`"
-    >
-      <button
-        @click="heartActive = !heartActive"
-        class="absolute top-3 right-3 size-8 bg-white dark:bg-[#3e3e3e] rounded-full flex justify-center items-center active:scale-95 hover:scale-105 transition-transform duration-200 shadow-sm"
-      >
-        <Icon
-          v-if="!heartActive"
-          name="radix-icons:heart"
-          class="size-5 text-gray-700 dark:text-gray-300"
-        />
+  <div v-if="orientation === 'vertical'" @click="goToProperty"
+    class="rounded-xl justify-between w-80 h-90 flex flex-col border relative bg-white dark:bg-[#1e1e1e] cursor-pointer">
+    <div class="h-1/2 w-full rounded-t-lg bg-cover bg-bottom relative"
+      :style="`background-image: url('${property?.image || '/img.png'}')`">
+      <button @click.stop="heartActive = !heartActive"
+        class="absolute top-3 right-3 size-8 bg-white dark:bg-[#3e3e3e] rounded-full flex justify-center items-center active:scale-95 hover:scale-105 transition-transform duration-200 shadow-sm">
+        <Icon v-if="!heartActive" name="radix-icons:heart" class="size-5 text-gray-700 dark:text-gray-300" />
         <Icon v-else name="radix-icons:heart-filled" class="size-5 text-red-500" />
       </button>
       <span
-        class="absolute top-0 left-0 py-1.5 px-4 text-sm text-[#fafafa] bg-[#205ed7] dark:bg-[#1948a7] rounded-tl-lg rounded-br-2xl shadow-sm"
-      >
+        class="absolute top-0 left-0 py-1.5 px-4 text-sm text-[#fafafa] bg-[#205ed7] dark:bg-[#1948a7] rounded-tl-lg rounded-br-2xl shadow-sm">
         {{ property?.bed && property?.bed > 0 ? 'House And Lot' : 'Commercial Space' }}
       </span>
     </div>
@@ -119,12 +107,9 @@ const goToProperty = () => {
       <div class="flex justify-between items-center mt-2">
         <div class="flex gap-2 items-center">
           <Avatar class="size-7">
-            <AvatarImage
-              :src="
-                property?.user_avatar ||
-                'https://fastly.picsum.photos/id/479/100/100.jpg?hmac=2bYIJatdhVz-KV7QeLE6e4uFuTocBVeVuMAH1wklub8'
-              "
-            />
+            <AvatarImage :src="property?.user_avatar ||
+              'https://fastly.picsum.photos/id/479/100/100.jpg?hmac=2bYIJatdhVz-KV7QeLE6e4uFuTocBVeVuMAH1wklub8'
+              " />
             <AvatarFallback>{{
               property?.user_name?.substring(0, 2).toUpperCase() || 'AG'
             }}</AvatarFallback>
@@ -136,26 +121,18 @@ const goToProperty = () => {
         <div class="flex gap-2">
           <button
             class="size-8 rounded-full bg-gray-100 dark:bg-[#2e2e2e] flex items-center justify-center hover:bg-gray-200 dark:hover:bg-[#3e3e3e] transition-colors"
-            title="Share"
-          >
-            <Icon
-              name="radix-icons:envelope-closed"
-              class="size-4 text-gray-700 dark:text-gray-300"
-            />
+            title="Share">
+            <Icon name="radix-icons:envelope-closed" class="size-4 text-gray-700 dark:text-gray-300" />
           </button>
-          <button
-            @click="shareProperty"
+          <button @click="shareProperty"
             class="size-8 rounded-full bg-gray-100 dark:bg-[#2e2e2e] flex items-center justify-center hover:bg-gray-200 dark:hover:bg-[#3e3e3e] transition-colors"
-            title="Share"
-          >
+            title="Share">
             <Icon name="radix-icons:share-2" class="size-4 text-gray-700 dark:text-gray-300" />
           </button>
-          <a
-            :href="`https://wa.me/?text=Check%20out%20this%20property%3A%20${encodeURIComponent(property?.title || 'Property')}%20-%20${encodeURIComponent(property ? formatPrice(property.price) : '$850,000')}%2Fmonth`"
+          <a :href="`https://wa.me/?text=Check%20out%20this%20property%3A%20${encodeURIComponent(property?.title || 'Property')}%20-%20${encodeURIComponent(property ? formatPrice(property.price) : '$850,000')}%2Fmonth`"
             target="_blank"
             class="size-8 rounded-full bg-green-500 flex items-center justify-center hover:bg-green-600 transition-colors"
-            title="Contact on WhatsApp"
-          >
+            title="Contact on WhatsApp">
             <Icon name="radix-icons:chat-bubble" class="size-4 text-white" />
           </a>
         </div>
@@ -164,24 +141,15 @@ const goToProperty = () => {
   </div>
 
   <div v-else class="h-56 w-full flex shadow-lg relative bg-white dark:bg-[#1e1e1e] rounded-xl">
-    <div
-      class="h-full w-48 rounded-l-lg bg-cover bg-center relative"
-      :style="`background-image: url('${property?.image || '/img.png'}')`"
-    >
-      <button
-        @click="heartActive = !heartActive"
-        class="absolute top-3 right-3 size-8 bg-white dark:bg-[#3e3e3e] rounded-full flex justify-center items-center active:scale-95 hover:scale-105 transition-transform duration-200 shadow-sm"
-      >
-        <Icon
-          v-if="!heartActive"
-          name="radix-icons:heart"
-          class="size-5 text-gray-700 dark:text-gray-300"
-        />
+    <div class="h-full w-48 rounded-l-lg bg-cover bg-center relative"
+      :style="`background-image: url('${property?.image || '/img.png'}')`">
+      <button @click.stop="heartActive = !heartActive"
+        class="absolute top-3 right-3 size-8 bg-white dark:bg-[#3e3e3e] rounded-full flex justify-center items-center active:scale-95 hover:scale-105 transition-transform duration-200 shadow-sm">
+        <Icon v-if="!heartActive" name="radix-icons:heart" class="size-5 text-gray-700 dark:text-gray-300" />
         <Icon v-else name="radix-icons:heart-filled" class="size-5 text-red-500" />
       </button>
       <span
-        class="absolute top-0 left-0 py-1.5 px-4 text-sm text-[#fafafa] bg-[#205ed7] dark:bg-[#1948a7] rounded-tl-xl rounded-br-2xl shadow-sm"
-      >
+        class="absolute top-0 left-0 py-1.5 px-4 text-sm text-[#fafafa] bg-[#205ed7] dark:bg-[#1948a7] rounded-tl-xl rounded-br-2xl shadow-sm">
         {{ property?.bed && property?.bed > 0 ? 'House And Lot' : 'Commercial Space' }}
       </span>
     </div>
@@ -220,12 +188,9 @@ const goToProperty = () => {
       <div class="flex justify-between items-center mt-auto">
         <div class="flex gap-2 items-center">
           <Avatar class="size-7">
-            <AvatarImage
-              :src="
-                property?.user_avatar ||
-                'https://fastly.picsum.photos/id/479/100/100.jpg?hmac=2bYIJatdhVz-KV7QeLE6e4uFuTocBVeVuMAH1wklub8'
-              "
-            />
+            <AvatarImage :src="property?.user_avatar ||
+              'https://fastly.picsum.photos/id/479/100/100.jpg?hmac=2bYIJatdhVz-KV7QeLE6e4uFuTocBVeVuMAH1wklub8'
+              " />
             <AvatarFallback>{{
               property?.user_name?.substring(0, 2).toUpperCase() || 'AG'
             }}</AvatarFallback>
@@ -235,19 +200,15 @@ const goToProperty = () => {
           }}</span>
         </div>
         <div class="flex gap-2">
-          <button
-            @click="shareProperty"
+          <button @click="shareProperty"
             class="size-8 rounded-full bg-gray-100 dark:bg-[#2e2e2e] flex items-center justify-center hover:bg-gray-200 dark:hover:bg-[#3e3e3e] transition-colors"
-            title="Share"
-          >
+            title="Share">
             <Icon name="radix-icons:share-2" class="size-4 text-gray-700 dark:text-gray-300" />
           </button>
-          <a
-            :href="`https://wa.me/?text=Check%20out%20this%20property%3A%20${encodeURIComponent(property?.title || 'Property')}%20-%20${encodeURIComponent(property ? formatPrice(property.price) : '$850,000')}%2Fmonth`"
+          <a :href="`https://wa.me/?text=Check%20out%20this%20property%3A%20${encodeURIComponent(property?.title || 'Property')}%20-%20${encodeURIComponent(property ? formatPrice(property.price) : '$850,000')}%2Fmonth`"
             target="_blank"
             class="size-8 rounded-full bg-green-500 flex items-center justify-center hover:bg-green-600 transition-colors"
-            title="Contact on WhatsApp"
-          >
+            title="Contact on WhatsApp">
             <Icon name="radix-icons:chat-bubble" class="size-4 text-white" />
           </a>
         </div>

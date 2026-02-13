@@ -12,7 +12,7 @@ const carouselImages = [
     '/top1.jpg',
     '/award2.jpg',
     '/award3.jpg',
-    '/award4.jpg'
+    '/award4.jpg',
 ]
 
 const currentIndex = ref(0)
@@ -82,6 +82,7 @@ onUnmounted(() => clearInterval(timer))
                 </div>
             </div>
         </div>
+        
     </div>
 </template>
 
