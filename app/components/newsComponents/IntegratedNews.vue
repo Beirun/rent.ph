@@ -1,10 +1,8 @@
 <script setup lang="ts">
 const newsStore = useNewsStore();
 
-// Fetch articles on page mount
-onMounted(async () => {
-  await newsStore.getArticles();
-});
+// Fetch articles (SSR compatible)
+await useAsyncData('news-list', () => newsStore.getArticles().then(() => true));
 
 // Handle pagination
 const changePage = async (page: number | string | null) => {

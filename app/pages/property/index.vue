@@ -58,6 +58,7 @@ const topSearches: string[] = [
   'Rental Properties in Makati City',
 ]
 const showMobileFilters = ref(false) // Add this line
+const activeSidebarTab = ref('Categories') // Add this line
 onMounted(async () => {
   await propertyStore.getPropertiesbyCategory()
 })
@@ -65,7 +66,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-screen min-h-screen flex flex-col overflow-x-hidden bg-gray-50 dark:bg-zinc-950 transition-colors duration-300">
+  <div
+    class="w-screen min-h-screen flex flex-col overflow-x-hidden bg-gray-50 dark:bg-zinc-950 transition-colors duration-300">
     <ClientOnly>
       <navbar />
     </ClientOnly>
@@ -76,46 +78,64 @@ onMounted(async () => {
         <p class="text-gray-500 dark:text-zinc-400 mt-2">Find the best properties of your choice.</p>
       </header>
 
-      <button
-        @click="showMobileFilters = !showMobileFilters"
-        class="md:hidden mb-6 w-full py-3 px-4 bg-[#fe8e0a] text-white rounded-xl flex items-center justify-center gap-2 font-bold shadow-lg active:scale-95 transition-transform"
-      >
+      <button @click="showMobileFilters = !showMobileFilters"
+        class="md:hidden mb-6 w-full py-3 px-4 bg-[#fe8e0a] text-white rounded-xl flex items-center justify-center gap-2 font-bold shadow-lg active:scale-95 transition-transform">
         <Icon :name="showMobileFilters ? 'lucide:x' : 'lucide:list-filter'" class="size-5 text-[#fafafa] font-bold " />
         {{ showMobileFilters ? 'Close Filters' : 'Categories & Top Searches' }}
       </button>
 
       <div class="flex flex-col md:flex-row gap-0 relative">
-        <aside 
-          :class="[
-            'md:w-1/4 lg:w-1/6 space-y-6 transition-all duration-300 md:sticky md:top-28 md:self-start',
-            showMobileFilters ? 'max-h-375 opacity-100 mb-8' : 'max-h-0 opacity-0 md:max-h-none md:opacity-100'
-          ]"
-        >
+        <aside :class="[
+          'md:w-1/4 lg:w-1/6 space-y-6 transition-all duration-300 md:sticky md:top-28 md:self-start',
+          showMobileFilters ? 'max-h-375 opacity-100 mb-8' : 'max-h-0 opacity-0 md:max-h-none md:opacity-100'
+        ]">
           <div class="bg-white dark:bg-zinc-900 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800">
-            <h2 class="font-bold text-lg bg-orange-100 dark:bg-orange-900/30 text-orange-400 px-3 py-2 rounded-lg flex items-center gap-2">
-              <Icon name="lucide:layout-grid" class="size-4 text-orange-400" />
-              Categories
-            </h2>
-            <div class="mt-4 divide-y divide-gray-50 dark:divide-zinc-800">
-              <div v-for="(listings, category) in categories" :key="category" class="group">
-                <a href="#" class="flex justify-between py-3 text-sm text-gray-600 dark:text-zinc-400 hover:text-orange-600 transition-colors">
-                  <span>{{ category }}</span>
-                  <span class="text-xs bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded-full group-hover:bg-orange-50">
-                    {{ listings }}
-                  </span>
-                </a>
+            <!-- Tabs Header -->
+            <div class="flex items-center gap-6 border-b border-gray-100 dark:border-zinc-800 pb-2 mb-4">
+              <button v-for="tab in ['Categories', 'Top Searches']" :key="tab" @click="activeSidebarTab = tab" :class="[
+                'relative group pb-2 text-sm font-bold transition-colors duration-200 whitespace-nowrap',
+                'dark:hover:text-[#2b68df] hover:text-[#1b4fb5]',
+                activeSidebarTab === tab
+                  ? 'dark:text-[#2b68df] text-[#1b4fb5]'
+                  : 'text-gray-500 dark:text-gray-400'
+              ]">
+                {{ tab }}
+                <span :class="[
+                  'absolute left-1/2 -translate-x-1/2 -bottom-0.5 h-0.5 w-full bg-[#205ed7] origin-center scale-x-0 transition-transform duration-300 group-hover:scale-x-100',
+                  activeSidebarTab === tab ? 'scale-x-100' : '',
+                ]"></span>
+              </button>
+            </div>
+
+            <!-- Categories Content -->
+            <div v-if="activeSidebarTab === 'Categories'" class="space-y-1">
+              <div class="flex items-center gap-2 mb-3 text-sm font-semibold text-orange-500 dark:text-orange-400">
+                <Icon name="lucide:layout-grid" class="size-4" />
+                Browse Categories
+              </div>
+              <div class="divide-y divide-gray-50 dark:divide-zinc-800">
+                <div v-for="(listings, category) in categories" :key="category" class="group">
+                  <a href="#"
+                    class="flex justify-between py-2 text-sm text-gray-600 dark:text-zinc-400 hover:text-orange-600 transition-colors">
+                    <span>{{ category }}</span>
+                    <span
+                      class="text-xs bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded-full group-hover:bg-orange-50">
+                      {{ listings }}
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="bg-white dark:bg-zinc-900 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800">
-            <h2 class="font-bold text-lg bg-blue-50 dark:bg-blue-900/30 text-blue-500 px-3 py-2 rounded-lg flex items-center gap-2">
-              <Icon name="lucide:trending-up" class="size-4" />
-              Top Searches
-            </h2>
-            <div class="mt-4 space-y-1">
+            <!-- Top Searches Content -->
+            <div v-if="activeSidebarTab === 'Top Searches'" class="space-y-1">
+              <div class="flex items-center gap-2 mb-3 text-sm font-semibold text-blue-500 dark:text-blue-400">
+                <Icon name="lucide:trending-up" class="size-4" />
+                Trending Searches
+              </div>
               <div v-for="search in topSearches" :key="search">
-                <a href="#" class="block py-2 text-sm text-gray-600 dark:text-zinc-400 hover:text-blue-600 transition-colors">
+                <a href="#"
+                  class="block py-2 text-sm text-gray-600 dark:text-zinc-400 hover:text-blue-600 transition-colors">
                   {{ search }}
                 </a>
               </div>
@@ -128,7 +148,7 @@ onMounted(async () => {
             <div class="flex flex-col gap-2">
               <propertySearchBar />
               <propertiesAndListings2 :properties="propertyStore.properties" />
-            </div>  
+            </div>
           </ClientOnly>
         </main>
 
