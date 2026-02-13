@@ -49,7 +49,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="flex flex-col w-full mt-15">
+    <div class="flex flex-col w-full ">
         <h1 class="text-2xl font-bold">{{ title }}</h1>
         <p class="uppercase text-sm text-gray-400 dark:text-gray-500">{{ subtitle }}</p>
     </div>
