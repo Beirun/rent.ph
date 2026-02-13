@@ -13,13 +13,20 @@ import AboutusHero from '~/components/about/aboutusHero.vue';
       <ClientOnly>
         <AboutJapanAwards />
       </ClientOnly>
-      <ClientOnly>
+      <!-- <ClientOnly>
         <AboutAwards />
+      </ClientOnly> -->
+
+      <ClientOnly>
+        <AboutApea />
       </ClientOnly>
+      <ClientOnly>
+        <AboutApea2 />
+      </ClientOnly>
+
       <ClientOnly>
         <AboutCaresSection />
       </ClientOnly>
-
       <ClientOnly>
         <AboutTrustedPartners />
       </ClientOnly>

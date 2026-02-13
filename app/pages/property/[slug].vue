@@ -96,13 +96,13 @@ const checkOrientation = (event: Event) => {
 
 // --- AMENITIES & FURNISHING (Static Data) ---
 const amenities = [
-  { name: 'Air Conditioning', available: true },
-  { name: 'Kitchen', available: true },
-  { name: 'Parking', available: true },
+  { name: 'Air Conditioning', available: true, icon: 'ph:wind-fill' },
+  { name: 'Kitchen', available: true, icon: 'ph:cooking-pot-fill' },
+  { name: 'Parking', available: true, icon: 'ph:car-fill' },
 ]
 
 const furnishing = [
-  { name: 'Fully Furnished', available: true },
+  { name: 'Fully Furnished', available: true, icon: 'ph:armchair-fill' },
 ]
 
 // --- REVIEW FORM STATE ---
@@ -284,38 +284,68 @@ const goBack = () => {
               </div>
             </div>
 
+            <!-- DESCRIPTION SECTION -->
             <div
-              class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-lg border border-gray-100 dark:border-gray-800 p-6 md:p-8">
-              <h3 class="font-bold text-lg mb-4 text-[#fe8e0a] uppercase tracking-wider">Property Description</h3>
-              <p class="text-gray-600 dark:text-gray-400 leading-relaxed font-medium">
-                Welcome to this beautiful {{ title }} located in {{ address }}. This property
-                features an expansive {{ square }} sqft floor plan with modern architecture. It
-                offers a perfect balance of comfort and luxury for modern living.
-              </p>
+              class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-sm border border-slate-100 dark:border-gray-800 overflow-hidden">
+              <div class="px-6 py-4 border-b border-slate-50 dark:border-gray-800 bg-slate-50/50 dark:bg-zinc-900/50">
+                <h3 class="font-bold text-lg text-slate-800 dark:text-white flex items-center gap-2">
+                  <Icon name="ph:notebook-fill" class="size-5 text-blue-500" />
+                  Description
+                </h3>
+              </div>
+              <div class="p-6 md:p-8">
+                <p class="text-slate-600 dark:text-gray-300 leading-relaxed text-base font-normal">
+                  Welcome to this beautiful <span class="font-semibold text-slate-800 dark:text-white">{{ title
+                  }}</span> located in {{ address }}. This property
+                  features an expansive <span class="font-semibold text-slate-800 dark:text-white">{{ square }}
+                    sqft</span> floor plan with modern architecture. It
+                  offers a perfect balance of comfort and luxury for modern living.
+                </p>
+              </div>
             </div>
 
             <!-- AMENITIES SECTION -->
             <div
-              class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-lg border border-gray-100 dark:border-gray-800 p-6 md:p-8">
-              <h3 class="font-bold text-lg mb-6 text-gray-700 dark:text-gray-300">Amenities</h3>
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <div v-for="amenity in amenities" :key="amenity.name"
-                  class="flex items-center gap-3 text-gray-600 dark:text-gray-400">
-                  <Icon name="lucide:check" class="size-5 text-green-500 shrink-0" />
-                  <span class="text-sm md:text-base">{{ amenity.name }}</span>
+              class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-sm border border-slate-100 dark:border-gray-800 overflow-hidden">
+              <div class="px-6 py-4 border-b border-slate-50 dark:border-gray-800 bg-slate-50/50 dark:bg-zinc-900/50">
+                <h3 class="font-bold text-lg text-slate-800 dark:text-white flex items-center gap-2">
+                  <Icon name="ph:sparkle-fill" class="size-5 text-amber-500" />
+                  Amenities
+                </h3>
+              </div>
+              <div class="p-6 md:p-8">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div v-for="amenity in amenities" :key="amenity.name"
+                    class="group flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-zinc-900 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors border border-transparent hover:border-blue-100 dark:hover:border-blue-800">
+                    <div
+                      class="size-10 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center shadow-sm text-blue-500 group-hover:scale-110 transition-transform">
+                      <Icon :name="amenity.icon" class="size-5" />
+                    </div>
+                    <span class="text-sm font-semibold text-slate-700 dark:text-gray-200">{{ amenity.name }}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- FURNISHING SECTION -->
             <div
-              class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-lg border border-gray-100 dark:border-gray-800 p-6 md:p-8">
-              <h3 class="font-bold text-lg mb-6 text-gray-700 dark:text-gray-300">Furnishing</h3>
-              <div class="grid grid-cols-1 gap-4">
-                <div v-for="item in furnishing" :key="item.name"
-                  class="flex items-center gap-3 text-gray-600 dark:text-gray-400">
-                  <Icon name="lucide:check" class="size-5 text-green-500 shrink-0" />
-                  <span class="text-sm md:text-base">{{ item.name }}</span>
+              class="bg-white dark:bg-[#1e1e1e] rounded-3xl shadow-sm border border-slate-100 dark:border-gray-800 overflow-hidden">
+              <div class="px-6 py-4 border-b border-slate-50 dark:border-gray-800 bg-slate-50/50 dark:bg-zinc-900/50">
+                <h3 class="font-bold text-lg text-slate-800 dark:text-white flex items-center gap-2">
+                  <Icon name="ph:armchair-fill" class="size-5 text-emerald-500" />
+                  Furnishing
+                </h3>
+              </div>
+              <div class="p-6 md:p-8">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div v-for="item in furnishing" :key="item.name"
+                    class="group flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-zinc-900 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors border border-transparent hover:border-emerald-100 dark:hover:border-emerald-800">
+                    <div
+                      class="size-10 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center shadow-sm text-emerald-500 group-hover:scale-110 transition-transform">
+                      <Icon :name="item.icon" class="size-5" />
+                    </div>
+                    <span class="text-sm font-semibold text-slate-700 dark:text-gray-200">{{ item.name }}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -326,8 +356,7 @@ const goBack = () => {
               <div class="flex items-center gap-3 mb-6">
                 <h3 class="font-bold text-lg text-gray-700 dark:text-gray-300">0 Review</h3>
                 <div class="flex gap-1">
-                  <Icon v-for="i in 5" :key="i" name="lucide:star"
-                    class="size-4 text-yellow-400 fill-transparent" />
+                  <Icon v-for="i in 5" :key="i" name="lucide:star" class="size-4 text-yellow-400 fill-transparent" />
                 </div>
                 <span class="text-sm text-gray-500">(0 out of 5)</span>
               </div>
@@ -358,11 +387,11 @@ const goBack = () => {
 
                 <!-- Rating -->
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Your Rating & Review</label>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Your Rating &
+                    Review</label>
                   <div class="flex items-center gap-2 mb-4">
-                    <button v-for="i in 5" :key="i" type="button" @click="setRating(i)"
-                      @mouseenter="setHoverRating(i)" @mouseleave="clearHoverRating"
-                      class="transition-transform hover:scale-110 active:scale-95">
+                    <button v-for="i in 5" :key="i" type="button" @click="setRating(i)" @mouseenter="setHoverRating(i)"
+                      @mouseleave="clearHoverRating" class="transition-transform hover:scale-110 active:scale-95">
                       <Icon name="lucide:star" class="size-6 transition-colors" :class="{
                         'text-yellow-400 fill-yellow-400': i <= (hoverRating || reviewForm.rating),
                         'text-gray-300 dark:text-gray-600': i > (hoverRating || reviewForm.rating)

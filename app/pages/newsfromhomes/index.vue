@@ -1,4 +1,4 @@
-<script setup lang="ts" >
+<script setup lang="ts">
 // import IntegratedNews from '~/components/newsComponents/IntegratedNews.vue';
 </script>
 
@@ -6,7 +6,15 @@
     <ClientOnly>
         <Navbar />
     </ClientOnly>
-    <div>
+    <div class="px-12" >
         <NewsComponentsIntegratedNews />
     </div>
+    <div class="pt-15">
+        <ClientOnly>
+            <Backlinks />
+        </ClientOnly>
+    </div>
+    <ClientOnly>
+        <Footer />
+    </ClientOnly>
 </template>

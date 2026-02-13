@@ -18,18 +18,40 @@ const abouts = [
     },
     {
         img: '/transformimg.png',
-        title: 'YTransforming Real Estate Investment Into Positive Assets',
+        title: 'Transforming Real Estate Investment Into Positive Assets',
         subtitle: ' Established in 2014, under Philippines Real Estates Management Solution Inc., Rent.ph was organized with one goal in mind - to serve as the vehicle in translating real estate investment into productive assets.',
     },
 ]
 </script>
 
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-10 justify-center lg:justify-start p-25">
-        <div v-for="about in abouts" :key="about.img" class="flex flex-col items-center text-center gap-6 ">
-            <NuxtImg :src="about.img" class="h-30 w-30" />
-            <h3 class="font-bold text-xl text-gray-700 dark:text-gray-300"> {{ about.title }}</h3>
-            <p>{{ about.subtitle }}</p>
+  <div class="bg-gray-50 dark:bg-zinc-950 py-16 px-6 lg:px-20 transition-colors duration-300">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-full mx-auto">
+      
+      <div 
+        v-for="about in abouts" 
+        :key="about.img" 
+        class="group flex flex-col items-center text-center p-8 gap-6 transition-all duration-300
+               bg-white dark:bg-zinc-900 
+               rounded-2xl border border-gray-100 dark:border-zinc-800
+               shadow-sm hover:shadow-xl hover:-translate-y-1"
+      >
+        <div class="p-4 rounded-full bg-blue-50 dark:bg-blue-900/20 group-hover:scale-110 transition-transform duration-300">
+          <NuxtImg :src="about.img" class="h-20 w-20 object-contain" />
         </div>
+
+        <div class="space-y-3">
+          <h3 class="font-bold text-lg leading-snug text-gray-900 dark:text-zinc-100">
+            {{ about.title }}
+          </h3>
+          
+          <p class="text-sm leading-relaxed text-gray-600 dark:text-zinc-400">
+            {{ about.subtitle }}
+          </p>
+        </div>
+
+      </div>
     </div>
+  </div>
 </template>
