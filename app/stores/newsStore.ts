@@ -31,7 +31,7 @@ export const useNewsStore = defineStore('news', () => {
       })
 
       const found = data.data.data.find((a) => a.id === id || a.article_id === id)
-      
+
       if (!found) throw new Error(`Article with ID ${id} not found`)
 
       currentArticle.value = found
@@ -47,6 +47,7 @@ export const useNewsStore = defineStore('news', () => {
 
   const getArticles = async (page: number | string = 1) => {
     loading.value = true
+    console.log('Fetching articles with key:', config.headers['X-Site-Api-Key'] ? 'PRESENT' : 'MISSING')
     try {
       const data = await $fetch<ApiResponse<Article>>(`${config.baseUrl}/articles`, {
         method: 'GET',
