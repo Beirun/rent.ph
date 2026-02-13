@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// Trigger restart for env vars
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
