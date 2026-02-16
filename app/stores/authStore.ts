@@ -58,7 +58,7 @@ export const useAuthStore = defineStore('auth', () => {
         return
       }
 
-      const url = `https://rent.ph/api/rent-manager-detail/${userId}`
+      const url = `/api/rent-manager-detail/${userId}`
       console.log('Fetching profile from:', url)
       
       const res = await fetch(url)

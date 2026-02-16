@@ -2,7 +2,7 @@ import type { Agent } from '~/models/manager'
 import type { Pagination } from '~/models/pagination'
 import type { Review } from '~/models/review'
 
-const BASE_URL = 'https://rent.ph/api'
+const BASE_URL = '/api'
 
 export const useManagerStore = defineStore('manager', () => {
   const manager = ref<Agent>()

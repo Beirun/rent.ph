@@ -1,4 +1,6 @@
-export { default as Map } from './MapView.vue'
+import Map from './MapView.vue'
+export { Map }
+export default Map
 export { default as MapMarker } from './MapMarker.vue'
 export { default as MarkerContent } from './MarkerContent.vue'
 export { default as MarkerPopup } from './MarkerPopup.vue'
