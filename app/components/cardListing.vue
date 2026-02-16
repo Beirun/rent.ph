@@ -66,14 +66,14 @@ const callAgent = () => {
 
 <template>
   <div v-if="orientation === 'vertical'" @click="goToProperty"
-    class="rounded-md w-85 flex flex-col border border-gray-200 dark:border-gray-700 relative bg-white dark:bg-[#1e1e1e] cursor-pointer overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    class="rounded-lg w-85 flex flex-col border border-gray-200 dark:border-gray-700 relative bg-white dark:bg-[#1e1e1e] cursor-pointer overflow-hidden shadow-sm hover:shadow-md transition-shadow">
     <!-- Image Section -->
     <div class="h-56 w-full bg-cover bg-center relative overflow-hidden"
       :style="`background-image: url('${property?.image || '/img.png'}')`">
       <!-- Property Type Badge -->
       <div class="absolute top-4 left-4">
         <span
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white bg-[#205ed7] dark:bg-[#1948a7] rounded-md shadow-sm">
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white bg-[#205ed7] dark:bg-[#1948a7] rounded-lg shadow-sm">
           {{ property?.bed && property?.bed > 0 ? 'House And Lot' : 'Commercial Space' }}
         </span>
       </div>

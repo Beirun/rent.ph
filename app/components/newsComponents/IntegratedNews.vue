@@ -24,7 +24,7 @@ const featuredArticle = computed(() => newsStore.articles[0] || null);
 </script>
 
 <template>
-  <div class="max-w-full px-12 mx-auto mt-10 py-8 bg-gray-50 dark:bg-transparent min-h-screen">
+  <div class="max-w-full md:px-12 mx-auto mt-10 py-8 bg-gray-50 dark:bg-transparent min-h-screen">
 
     <header class="mb-10">
       <h1 class="text-4xl font-extrabold text-gray-900 dark:text-[#fafafa] tracking-tight">Latest News</h1>

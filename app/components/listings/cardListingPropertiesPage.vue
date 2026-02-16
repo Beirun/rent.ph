@@ -85,7 +85,7 @@ const callAgent = () => {
 
 <template>
   <div v-if="orientation === 'vertical'" @click="goToProperty"
-    class="rounded-md w-85 flex flex-col border border-gray-200 dark:border-gray-700 relative bg-white dark:bg-[#1e1e1e] cursor-pointer overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    class="rounded-full w-85 flex flex-col border border-gray-200 dark:border-gray-700 relative bg-white dark:bg-[#1e1e1e] cursor-pointer overflow-hidden shadow-sm hover:shadow-md transition-shadow">
     <!-- Image Section -->
     <div class="h-56 w-full bg-cover bg-center relative overflow-hidden"
       :style="`background-image: url('${propertyImage}')`">

@@ -98,9 +98,9 @@ const getParagraphs = (content?: string) => {
 
                         <div class="space-y-4">
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">More News</p>
-                            <NuxtLink v-for="i in 3" :key="i" to="/newsfromhomes"
+                            <NuxtLink to="https://news.homes.ph/" target="_blank"
                                 class="block text-sm text-gray-600 dark:text-zinc-400 hover:text-blue-600 transition-colors line-clamp-2">
-                                Read more stories in {{ newsStore.currentArticle.category }}
+                                Read more news from Source
                             </NuxtLink>
                         </div>
                     </div>
