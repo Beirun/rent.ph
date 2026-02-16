@@ -113,14 +113,18 @@ const initializeLayers = () => {
     const features = mapInstance.queryRenderedFeatures(e.point, {
       layers: [clusterLayerId.value]
     })
-    if (!features.length) return
-
     const feature = features[0]
+    if (!feature) return
+    
     const clusterId = feature.properties?.cluster_id as number
     const pointCount = feature.properties?.point_count as number
-    const coordinates = (feature.geometry as GeoJSON.Point).coordinates as [number, number]
+    
+    if (feature.geometry?.type !== 'Point') return
+    const coordinates = feature.geometry.coordinates as [number, number]
 
-    emit('clusterClick', clusterId, coordinates, pointCount)
+    if (clusterId !== undefined) {
+      emit('clusterClick', clusterId, coordinates, pointCount)
+    }
 
     // Default behavior: zoom to cluster
     const source = mapInstance.getSource(sourceId.value) as MapLibreGL.GeoJSONSource
@@ -129,14 +133,17 @@ const initializeLayers = () => {
   }
 
   const handlePointClick = (e: MapLibreGL.MapMouseEvent & { features?: MapLibreGL.MapGeoJSONFeature[] }) => {
-    if (!e.features?.length) return
+    const feature = e.features?.[0]
+    if (!feature) return
 
-    const feature = e.features[0]
-    const coordinates = (feature.geometry as GeoJSON.Point).coordinates.slice() as [number, number]
+    if (feature.geometry?.type !== 'Point') return
+    const coordinates = feature.geometry.coordinates.slice() as [number, number]
 
     // Handle world copies
-    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+    if (e.lngLat) {
+      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+      }
     }
 
     emit('pointClick', feature as unknown as GeoJSONFeature, coordinates)

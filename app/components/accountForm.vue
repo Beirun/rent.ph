@@ -31,7 +31,6 @@ const handleLogin = async () => {
   // Basic validation
   if (!loginEmail.value || !loginPassword.value) {
     errorMessage.value = 'Please enter email and password.'
-    alert(errorMessage.value)
     console.log('Form validation failed')
     return
   }
@@ -40,7 +39,6 @@ const handleLogin = async () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!emailRegex.test(loginEmail.value)) {
     errorMessage.value = 'Please enter a valid email address.'
-    alert(errorMessage.value)
     console.log('Email validation failed')
     return
   }
@@ -69,7 +67,6 @@ const handleLogin = async () => {
 
     if (!response.ok) {
       errorMessage.value = data.message || `Login failed (${response.status}). Please try again.`
-      alert(errorMessage.value)
       console.log('Login failed:', errorMessage.value)
       return
     }
@@ -97,7 +94,6 @@ const handleLogin = async () => {
   } catch (error: any) {
     console.error('Login error:', error)
     errorMessage.value = `Network error: ${error.message || 'Please check your connection and try again.'}`
-    alert(errorMessage.value)
   } finally {
     isLoading.value = false
   }
