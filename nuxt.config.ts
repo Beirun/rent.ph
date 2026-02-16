@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// Trigger restart for env vars
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
@@ -13,6 +14,11 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      hmr: {
+        timeout: 120000 // Increase from 60s to 120s
+      }
+    }
   },
   image: {
     // Options

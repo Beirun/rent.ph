@@ -203,7 +203,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="px-4 sm:px-10 flex flex-col mt-10 md:mt-15 max-w-[98%] mx-auto">
-    
+
     <div ref="headerRef" class="flex flex-col pl-4 w-full mb-8 text-left">
       <h1 class="text-3xl md:text-4xl font-bold">Our Star Agents</h1>
       <p class="uppercase pt-2 md:pt-4 text-xs md:text-sm text-gray-400 dark:text-gray-500">
@@ -212,65 +212,90 @@ onMounted(() => {
     </div>
 
     <div class="relative w-full lg:max-w-full mx-auto">
-      <Carousel
-        class="w-full"
-        :opts="{
-          align: 'start',
-          loop: true,
-        }"
-        @init-api="initAutoplay"
-      >
+      <Carousel class="w-full" :opts="{
+        align: 'start',
+        loop: true,
+      }" @init-api="initAutoplay">
         <CarouselContent class="-ml-2 md:-ml-4 pb-5">
-          <CarouselItem 
-            v-for="agent in agents" 
-            :key="agent.id" 
-            class="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/4 xl:basis-1/5 flex justify-center"
-          >
+          <CarouselItem v-for="agent in agents" :key="agent.id"
+            class="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/4 xl:basis-1/5 flex justify-center">
             <div ref="cardsRef" class="relative w-full max-w-87.5 sm:max-w-sm lg:max-w-87.5 xl:max-w-87.5">
               <div
-                class="relative rounded-2xl cursor-pointer w-full h-112 md:h-128 flex flex-col bg-white dark:bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:scale-[1.02] border border-gray-100 dark:border-zinc-800"
-              >
-                <div class="h-3/5 w-full relative rounded-t-2xl overflow-hidden">
-                  <div
-                    :style="{ backgroundImage: `url(${agent.avatar})` }"
-                    class="absolute inset-0 bg-cover bg-center"
-                  ></div>
+                class="relative rounded-xl cursor-pointer w-full h-112 md:h-128 flex flex-col bg-white dark:bg-[#1e1e1e] shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-gray-200 dark:border-zinc-800 overflow-hidden group">
+                <!-- Image Section with Overlay -->
+                <div class="h-3/5 w-full relative overflow-hidden">
+                  <div :style="{ backgroundImage: `url(${agent.avatar})` }"
+                    class="absolute inset-0 bg-cover bg-center transform group-hover:scale-110 transition-transform duration-500">
+                  </div>
+                  <div class="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"></div>
+
+                  <!-- Logo Badge -->
                   <div class="absolute top-4 left-4">
-                    <img src="/rmpro.jpeg" alt="RMPro" class="w-12 h-6 object-contain" />
+                    <div class="bg-white/95 px-3 py-1.5 rounded-lg shadow-sm">
+                      <img src="/rmpro.jpeg" alt="RMPro" class="w-10 h-5 object-contain" />
+                    </div>
+                  </div>
+
+                  <!-- Rating Badge -->
+                  <div class="absolute bottom-4 right-4">
+                    <div
+                      class="flex gap-1 items-center bg-white/95 dark:bg-black/80 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm">
+                      <Icon name="ph:star-fill" class="size-3.5 text-amber-400" />
+                      <span class="text-xs font-semibold text-gray-800 dark:text-gray-200">5.0</span>
+                    </div>
                   </div>
                 </div>
 
-                <div class="h-2/5 w-full flex p-4 flex-col justify-between bg-white dark:bg-[#1e1e1e] rounded-b-2xl">
-                  <div class="text-lg font-bold text-[#262626] dark:text-[#e8e8e8]/90 text-center truncate">
-                    {{ agent.name }}
-                  </div>
-                  
-                  <div class="flex justify-between items-center">
-                    <div class="text-[10px] md:text-xs font-medium text-gray-500 uppercase tracking-tighter">
-                      {{ agent.listings }} Listings
+                <!-- Content Section -->
+                <div class="h-2/5 w-full flex p-5 flex-col justify-between bg-white dark:bg-[#1e1e1e]">
+                  <!-- Agent Name and Contact Button -->
+                  <div class="flex items-start justify-between gap-2 mb-2">
+                    <div class="flex-1 min-w-0">
+                      <div class="text-lg font-bold text-[#262626] dark:text-[#e8e8e8] truncate mb-1">
+                        {{ agent.name }}
+                      </div>
+                      <div class="flex items-center gap-1.5">
+                        <div class="px-2 py-0.5 bg-blue-50 dark:bg-blue-950/30 rounded-md">
+                          <span
+                            class="text-[10px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-tight">
+                            {{ agent.listings }} Listings
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div class="flex gap-0.5 items-center">
-                      <Icon
-                        v-for="_ in 5"
-                        :key="_"
-                        name="radix-icons:star-filled"
-                        class="size-3 text-yellow-500"
-                      />
-                    </div>
+                    <button
+                      class="shrink-0 size-9 rounded-full bg-linear-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
+                      title="Contact Agent">
+                      <Icon name="ph:chat-circle-dots-fill" class="size-4 text-white" />
+                    </button>
                   </div>
 
-                  <div class="flex flex-col gap-1.5 text-[11px] text-gray-600 dark:text-gray-400">
-                    <div class="flex items-center gap-2 min-w-0">
-                      <Icon name="lucide:phone" class="size-3 shrink-0" />
-                      <span class="truncate">{{ agent.phone }}</span>
-                    </div>
-                    <div class="flex items-center gap-2 min-w-0">
-                      <Icon name="lucide:mail" class="size-3 shrink-0" />
-                      <span class="truncate">{{ agent.email }}</span>
-                    </div>
-                    <div class="flex items-center gap-2 min-w-0">
-                      <Icon name="lucide:map-pin" class="size-3 shrink-0" />
-                      <span class="truncate">{{ agent.location }}</span>
+                  <!-- Contact Information -->
+                  <div class="flex flex-col gap-2 text-xs text-gray-600 dark:text-gray-400">
+                    <a :href="`tel:${agent.phone}`"
+                      class="flex items-center gap-2.5 min-w-0 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group/item">
+                      <div
+                        class="shrink-0 size-7 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center group-hover/item:bg-blue-50 dark:group-hover/item:bg-blue-950/30 transition-colors">
+                        <Icon name="ph:phone-fill"
+                          class="size-3.5 text-gray-600 dark:text-gray-400 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400" />
+                      </div>
+                      <span class="truncate font-medium">{{ agent.phone }}</span>
+                    </a>
+                    <a :href="`mailto:${agent.email}`"
+                      class="flex items-center gap-2.5 min-w-0 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group/item">
+                      <div
+                        class="shrink-0 size-7 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center group-hover/item:bg-blue-50 dark:group-hover/item:bg-blue-950/30 transition-colors">
+                        <Icon name="ph:envelope-simple-fill"
+                          class="size-3.5 text-gray-600 dark:text-gray-400 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400" />
+                      </div>
+                      <span class="truncate font-medium">{{ agent.email }}</span>
+                    </a>
+                    <div class="flex items-center gap-2.5 min-w-0">
+                      <div
+                        class="shrink-0 size-7 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center">
+                        <Icon name="ph:map-pin-fill" class="size-3.5 text-gray-600 dark:text-gray-400" />
+                      </div>
+                      <span class="truncate font-medium">{{ agent.location }}</span>
                     </div>
                   </div>
                 </div>
@@ -285,4 +310,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-

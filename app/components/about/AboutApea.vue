@@ -9,10 +9,11 @@ const rstats = [
 
 // Simplified image array
 const carouselImages = [
-    '/top1.jpg',
-    '/award2.jpg',
-    '/award3.jpg',
-    '/award4.jpg',
+    '/aboutApea1.jpg',
+    '/Apea1.2.jpg',
+    '/Apea1.3.jpg',
+    '/Apea1.4.jpg',
+    '/Apea1.5.jpg',
 ]
 
 const currentIndex = ref(0)
@@ -30,32 +31,35 @@ onUnmounted(() => clearInterval(timer))
 </script>
 
 <template>
-    <div class="h-screen lg:mt-4 mt-20 w-full bg-white dark:bg-zinc-950 transition-colors duration-300">
-        <div class="flex flex-col lg:flex-row h-screen items-center justify-center gap-12 lg:gap-20 px-6 lg:px-24 max-w-full mx-auto">
+    <div class="h-screen w-full bg-white dark:bg-zinc-950 transition-colors duration-300">
+        <div
+            class="flex flex-col lg:flex-row h-screen items-center justify-center gap-12 lg:gap-20 px-6 lg:px-24 max-w-full mx-auto">
 
             <div class="flex flex-col justify-center gap-8 lg:gap-12 text-center lg:text-left lg:w-1/2">
                 <div class="space-y-6">
-                    <h2 class="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-[#262626] dark:text-white leading-[0.9] tracking-tighter">
-                        Philippines <br class="hidden lg:block"/> 
-                        <span class="text-[#fe8e0a]">#1 Property</span> <br class="hidden lg:block"/> 
-                        Rental Website
+                    <h2
+                        class="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-[#262626] dark:text-white leading-[0.9] tracking-tighter">
+                        Your Rentals, <br class="hidden lg:block" />
+                        <span class="text-[#fe8e0a]">Their Hope</span> <br class="hidden lg:block" />
                     </h2>
 
-                    <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 dark:text-zinc-400 font-light leading-relaxed max-w-2xl">
-                        Awarded 2024 International Realtor of the year by <br class="hidden xl:block"/> 
-                        National Association of Realtors
+                    <p
+                        class="text-lg sm:text-xl lg:text-2xl text-gray-600 dark:text-zinc-400 font-light leading-relaxed max-w-2xl">
+                        Beyond transactions, every rental fuels "Rent.ph Cares." We turn successful deals into community
+                        <br class="hidden xl:block" />
+                        opportunities—supporting local families and empowering education. Every key handed over starts a
+                        new chapter of positive change.
                     </p>
                 </div>
 
                 <div class="flex flex-wrap gap-8 sm:gap-12 justify-center lg:justify-start pt-4">
-                    <div v-for="stat in rstats" :key="stat.label" class="flex flex-col gap-1 items-center lg:items-start">
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#fe8e0a]">
-                            {{ stat.count }}
-                        </h2>
-                        <p class="text-gray-500 text-xs sm:text-sm uppercase tracking-widest font-bold dark:text-zinc-500">
-                            {{ stat.label }}
-                        </p>
-                    </div>
+                <NuxtLink 
+                    to="https://apea.asia/philippines/hall-of-fame-ph-2024/inspirational-brand-ph-2024/rent-ph-2024/"
+                    target="_blank"
+                    class="px-8 py-3 bg-[#fe8e0a] text-white font-bold uppercase text-xs tracking-widest rounded-full hover:bg-[#e67e00] transition-colors shadow-lg shadow-orange-500/20"
+                >
+                    Read Full Article
+                </NuxtLink>
                 </div>
             </div>
 
@@ -64,7 +68,7 @@ onUnmounted(() => clearInterval(timer))
                     <transition-group name="fade">
                         <div v-for="(img, index) in carouselImages" :key="img" v-show="currentIndex === index"
                             class="absolute inset-0">
-                            <NuxtImg :src="img" class="w-full h-full object-cover" />
+                            <NuxtImg :src="img" class="w-full rounded-md h-full object-contain" />
                             <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>
                     </transition-group>
@@ -76,6 +80,10 @@ onUnmounted(() => clearInterval(timer))
                         :class="currentIndex === index ? 'w-12 bg-[#fe8e0a]' : 'w-3 bg-gray-300 dark:bg-zinc-800'"></button>
                 </div>
             </div>
+
+            
+
+
         </div>
     </div>
 </template>

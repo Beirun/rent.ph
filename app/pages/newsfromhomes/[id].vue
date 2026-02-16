@@ -2,10 +2,10 @@
 const route = useRoute();
 const newsStore = useNewsStore();
 
-onMounted(async () => {
-    const articleId = route.params.id as string;
-    await newsStore.getArticleById(articleId);
-});
+const articleId = route.params.id as string;
+
+// Fetch article data (SSR compatible)
+await useAsyncData(`article-${articleId}`, () => newsStore.getArticleById(articleId).then(() => true));
 
 const formatDate = (dateStr?: string) => {
     if (!dateStr) return '';
