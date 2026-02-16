@@ -27,35 +27,10 @@ export const useUserStore = defineStore('user', () => {
         }
     }
 
-    const updateUserProfile = async (formData: Partial<UserProfile>) => {
-        loading.value = true
-        const token = useCookie('access_token')
-
-        try {
-            const res: any = await $fetch(`${BASE_URL}'}/api/rent-manager-details/${user.value?.id}`, {
-                method: 'PUT',
-                headers: { Authorization: `Bearer ${token.value}` },
-                body: formData
-            })
-            
-            if (user.value) {
-                user.value = { ...user.value, ...formData }
-            }
-            
-            return { success: true }
-        } catch (error) {
-            console.error('Update failed:', error)
-            return { success: false, error }
-        } finally {
-            loading.value = false
-        }
-    }
-
     return {
         user,
         fullName,
         loading,
-        fetchUserProfile,
-        updateUserProfile
+        fetchUserProfile
     }
 })
