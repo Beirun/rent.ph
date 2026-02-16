@@ -50,8 +50,8 @@
       <Button 
         class="bg-[#fe8e0a] hover:bg-[#e07d09] text-white gap-2 w-full lg:w-auto px-8 h-10 md:h-12 whitespace-nowrap transition-colors mt-2 lg:mt-0"
       >
-        <Icon name="lucide:search" class="size-4" />
-        <span class="text-sm md:text-base font-semibold">Search</span>
+        <Icon name="lucide:search" class="size-4 text-[#fafafa]" />
+        <span class="text-sm md:text-base font-semibold text-[#fafafa]">Search</span>
       </Button>
     </div>
   </div>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import agentscard from '~/components/rentManagers/agentscard.vue'
+import agentsCardSkeleton from '~/components/rentManagers/agentsCardSkeleton.vue'
+import agentSearchBar from '~/components/rentManagers/agentSearchBar.vue'
 
 const managerStore = useManagerStore()
 const showFilters = ref(false) // Toggle state for mobile sidebar
@@ -12,116 +15,7 @@ const handlePageChange = (page: number) => {
   // currentPage.value = page
   console.log('Changed to page:', page)
 }
-const managers = [
-  {
-    id: 1,
-    phone: 123456789,
-    name: 'Rebecca Ferguson',
-    email: 'rebecca@rent.com',
-    photo: '/rebecca.png',
-    location: 'Downtown, Oak Street',
-    status: '613 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 1',
-    reviewList: [
-      { user: 'John', comment: 'shes very pretty and cool', rating: 5 },
-      { user: 'Kobe', comment: 'i love how she treats her customers', rating: 5 },
-      { user: 'Bryan', comment: 'She is great at customer service', rating: 5 },
-      { user: 'Bryl', comment: '100% reccomend this agent', rating: 5 },
-      { user: 'Bernerd', comment: 'very cool very nice', rating: 5 },
-    ],
-  },
-  {
-    id: 2,
-    phone: 123456789,
-    name: 'Tom Cruise',
-    email: 'tom@rent.com',
-    photo: '/img.png',
-    location: 'Manila, PH',
-    status: '120 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 2',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 3,
-    phone: 123456789,
-    name: 'Henry Cavill',
-    email: 'henry@rent.com',
-    photo: '/javie-gemini.png',
-    location: 'Cebu City',
-    status: '45 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 3',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 4,
-    phone: 123456789,
-    name: 'Simon Pegg',
-    email: 'simon@rent.com',
-    photo: '/elaine-gemini.png',
-    location: 'Davao City',
-    status: '12 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 4',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 1,
-    phone: 123456789,
-    name: 'Rebecca Ferguson',
-    email: 'rebecca@rent.com',
-    photo: '/rebecca.png',
-    location: 'Downtown, Oak Street',
-    status: '613 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 1',
-    reviewList: [
-      { user: 'John', comment: 'shes very pretty and cool', rating: 5 },
-      { user: 'Kobe', comment: 'i love how she treats her customers', rating: 5 },
-      { user: 'Bryan', comment: 'She is great at customer service', rating: 5 },
-      { user: 'Bryl', comment: '100% reccomend this agent', rating: 5 },
-      { user: 'Bernerd', comment: 'very cool very nice', rating: 5 },
-    ],
-  },
-  {
-    id: 2,
-    phone: 123456789,
-    name: 'Tom Cruise',
-    email: 'tom@rent.com',
-    photo: '/img.png',
-    location: 'Manila, PH',
-    status: '120 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 2',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 3,
-    phone: 123456789,
-    name: 'Henry Cavill',
-    email: 'henry@rent.com',
-    photo: '/javie-gemini.png',
-    location: 'Cebu City',
-    status: '45 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 3',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-  {
-    id: 4,
-    phone: 123456789,
-    name: 'Simon Pegg',
-    email: 'simon@rent.com',
-    photo: '/elaine-gemini.png',
-    location: 'Davao City',
-    status: '12 Listings',
-    reviews: '5 • 12 Reviews',
-    about: 'Professional rent manager 4',
-    reviewList: [{ user: 'Doe', comment: 'very helpful', rating: 5 }],
-  },
-]
+
 
 const categories: Record<string, string> = {
   'Farm Land': '1',
@@ -173,52 +67,64 @@ const topSearches: string[] = [
 </script>
 
 <template>
-  <div class="w-screen min-h-screen flex flex-col overflow-x-hidden">
+  <div class="w-screen min-h-screen flex flex-col overflow-x-hidden bg-gray-50 dark:bg-zinc-950 transition-colors duration-300">
     <ClientOnly>
       <navbar />
     </ClientOnly>
 
-    <div class="flex flex-col w-full px-4 sm:px-6 md:px-10 pt-20 md:pt-30 pb-10 md:pb-20">
-      <h1 class="text-3xl md:text-4xl font-semibold mb-6 md:mb-8 text-center md:text-left">
-        Rent Managers
-      </h1>
+    <div class="flex flex-col w-full px-4 sm:px-6 md:px-10 pt-20 md:pt-32 pb-10 md:pb-20">
+      <header class="mb-6 md:mb-10 text-center md:text-left">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100">
+          Rent Managers
+        </h1>
+        <p class="text-gray-500 dark:text-zinc-400 mt-2">Find the best agents to manage your properties.</p>
+      </header>
 
       <button
         @click="showFilters = !showFilters"
-        class="md:hidden mb-6 w-full py-3 px-4 bg-[#fe8e0a] text-[#fafafa] rounded-lg flex items-center justify-center gap-2 font-medium shadow-md"
+        class="md:hidden mb-6 w-full py-3 px-4 bg-[#fe8e0a] text-white rounded-xl flex items-center justify-center gap-2 font-bold shadow-lg active:scale-95 transition-transform"
       >
-        <Icon :name="showFilters ? 'lucide:x' : 'lucide:list-filter'" class="size-5" />
+        <Icon :name="showFilters ? 'lucide:x' : 'lucide:list-filter'" class="size-5 text-white font-bold" />
         {{ showFilters ? 'Close Categories' : 'Filter by Category' }}
       </button>
 
-      
-      <div class="flex flex-col md:flex-row gap-8">
-        <div id="categoriesSection" class="w-1/6 h-fit mb-20">
-          <h1 class="font-bold text-lg dark:text-black dark:bg-orange-300 bg-orange-300 px-3 rounded-sm py-1">Categories</h1>
-            <div class="mt-5 mb-10">
-              <template v-for="(listings, category, index) in categories" :key="category">
-                <div class="flex justify-between mt-4 px-3">
-                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
-                    {{ category }} 
-                  </a>
-                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
-                    {{ listings }} Properties
-                  </a>
-                </div>
-              </template>
+      <div class="flex flex-col md:flex-row gap-8 relative">
+        <aside 
+          :class="[
+            'md:w-1/4 lg:w-1/6 space-y-6 transition-all duration-300 overflow-hidden',
+            showFilters ? 'max-h-250 opacity-100 mb-8' : 'max-h-0 opacity-0 md:max-h-none md:opacity-100'
+          ]"
+        >
+          <div class="bg-white dark:bg-zinc-900 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800">
+            <h2 class="font-bold text-lg bg-orange-100 dark:bg-orange-900/30 text-orange-400 px-3 py-2 rounded-lg flex items-center gap-2">
+              <Icon name="lucide:layout-grid" class="size-4 text-orange-400" />
+              Categories
+            </h2>
+            
+            <div class="mt-4 divide-y divide-gray-50 dark:divide-zinc-800">
+              <div v-for="(listings, category) in categories" :key="category" class="group">
+                <a href="#" class="flex justify-between py-3 text-sm text-gray-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
+                  <span class="font-medium">{{ category }}</span>
+                  <span class="text-xs bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded-full group-hover:bg-orange-50 dark:group-hover:bg-orange-900/20">
+                    {{ listings }}
+                  </span>
+                </a>
+              </div>
             </div>
-        </div>
+          </div>
+        </aside>
 
-        <main class="w-full md:w-3/4 lg:w-4/5">
+        <main class="flex-1">
           <div class="w-full">
             <ClientOnly>
-              <AgentSearchBar />
+              <agentSearchBar />
             </ClientOnly>
 
-            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="mt-8 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
               <agentsCardSkeleton
                 v-if="managerStore.loading"
-                v-for="_ in new Array(8)"
+                v-for="_ in 8"
+                :key="`skeleton-${_}`"
                 orientation="vertical"
               />
               <agentscard
@@ -231,7 +137,12 @@ const topSearches: string[] = [
               />
             </div>
 
-            <div class="flex justify-center mt-12 overflow-x-auto py-2">
+            <div v-if="!managerStore.loading && managerStore.managers.length === 0" class="text-center py-20">
+              <Icon name="lucide:user-search" class="size-16 mx-auto text-gray-300" />
+              <p class="mt-4 text-gray-500">No managers found in this category.</p>
+            </div>
+
+            <div class="flex justify-center mt-12 mb-10">
               <pagination
                 :current-page="managerStore.pagination?.current_page ?? 1"
                 :total-pages="managerStore.pagination?.total ?? 1"

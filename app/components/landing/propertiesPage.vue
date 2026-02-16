@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import CardListing from './cardListing.vue'
 </script>
 <template>
   <div class="mt-20">

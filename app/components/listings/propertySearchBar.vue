@@ -67,10 +67,10 @@
       </div>
 
       <Button 
-        class="bg-[#fe8e0a] hover:bg-[#e07d09] text-white gap-2 w-full lg:w-auto px-8 h-10 md:h-12 transition-colors !text-white"
+        class="bg-[#fe8e0a] hover:bg-[#e07d09] text-white gap-2 w-full lg:w-auto px-8 h-10 md:h-12 transition-colors"
       >
-        <Icon name="lucide:search" class="size-4" />
-        <span class="font-semibold">Search</span>
+        <Icon name="lucide:search" class="size-4 text-[#fafafa]" />
+        <span class="font-semibold text-[#fafafa]">Search</span>
       </Button>
     </div>
   </div>

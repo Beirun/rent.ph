@@ -38,6 +38,7 @@ import {
   Download,
   IdCard,
   KeyRound,
+  PlusCircle,
 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '~/stores/authStore'
@@ -167,6 +168,17 @@ const handleLogout = () => {
         <SidebarGroupLabel>Rent Manager Tools</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu class="space-y-1">
+            <SidebarMenuItem>
+              <SidebarMenuButton as-child tooltip="Add Listings" :class="[
+                'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',
+                isActiveRoute('/dashboard/add-listing') ? 'bg-gray-100 dark:bg-gray-800 font-medium text-[#FE8E0A] dark:text-[#FE8E0A]' : ''
+              ]">
+                <NuxtLink to="/dashboard/add-listing">
+                  <PlusCircle :class="{ 'text-[#FE8E0A]': isActiveRoute('/dashboard/add-listing') }" />
+                  <span>Add Listings</span>
+                </NuxtLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton as-child tooltip="My Listings" :class="[
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md transition-colors duration-200 h-10',

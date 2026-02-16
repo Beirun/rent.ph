@@ -1,12 +1,13 @@
 import type { Pagination } from '~/models/pagination'
 import type { Property, PropertyListResponse, PropertyResponse } from '~/models/property'
 
-const BASE_URL = 'https://rent.ph/api'
+const BASE_URL = '/api'
 
 export const usePropertyStore = defineStore('property', () => {
   const property = ref<Property>()
-  const properties = ref<Property[]>([])
+  const properties = ref<Property[]>([])  
   const pagination = ref<Pagination>()
+  const myListings = ref<any[]>([])
   const loading = ref(false)
 
   const getProperty = async (id: string | number) => {
@@ -83,7 +84,7 @@ export const usePropertyStore = defineStore('property', () => {
     numberPerPage: string | number = 10,
     customQuery: string | null = null,
   ): Promise<Property[]> => {
-    loading.value = true
+    loading.value = true    
     try {
       const query = `page=${page}&per_page=${numberPerPage}&${customQuery}`
       const res = await fetch(`${BASE_URL}/properties?${query}`)
@@ -100,6 +101,41 @@ export const usePropertyStore = defineStore('property', () => {
     }
   }
 
+  const getMyListings = async () => {
+    loading.value = true
+
+    const token = useCookie('access_token')
+
+    if (!token.value) {
+      console.error("No access token found")
+      loading.value = false
+      return
+    }
+
+    try {
+    const res: any = await $fetch(`${BASE_URL}/agent/properties`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token.value}`,
+        'Accept': 'application/json'
+      }
+    })
+
+    // Store the result - handle both wrapped and unwrapped data
+    myListings.value = Array.isArray(res) ? res : res.data || []
+
+  } catch (error: any) {
+    console.error("Failed to fetch my listings:", error)
+
+    if (error.response?.status === 401) {
+      token.value = null
+      navigateTo('/login')
+    }
+  } finally {
+    loading.value = false
+  }
+  }
+
   return {
     properties,
     property,
@@ -109,5 +145,7 @@ export const usePropertyStore = defineStore('property', () => {
     getPropertyBySlug,
     getProperties,
     loading,
+    myListings,
+    getMyListings
   }
 })

@@ -92,7 +92,7 @@ const requirements = [
 <template>
   <NuxtLayout name="dashboard">
     <div class="p-4 md:p-8 min-h-screen bg-white dark:bg-[#0a0a0a]">
-      <div class="max-w-400 mx-auto">
+      <div class="max-w-7xl">
         <!-- Header -->
         <div class="flex items-center justify-between mb-8">
           <div>

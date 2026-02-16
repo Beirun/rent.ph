@@ -58,7 +58,7 @@ export const useAuthStore = defineStore('auth', () => {
         return
       }
 
-      const url = `https://rent.ph/api/rent-manager-detail/${userId}`
+      const url = `/api/rent-manager-detail/${userId}`
       console.log('Fetching profile from:', url)
       
       const res = await fetch(url)
@@ -68,7 +68,7 @@ export const useAuthStore = defineStore('auth', () => {
         user.value = json.data
       } else {
         console.error('Profile API error:', res.status, res.statusText)
-      }
+      } 
     } catch (err) {
       console.error('Failed to fetch user profile:', err)
     } finally {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Testimonials from '~/components/testimonials.vue'
+import AboutusHero from '~/components/about/aboutusHero.vue';
 </script>
 <template>
   <div class="w-screen min-h-screen">
@@ -11,14 +11,22 @@ import Testimonials from '~/components/testimonials.vue'
         <AboutusHero />
       </ClientOnly>
       <ClientOnly>
-        <awards />
+        <AboutJapanAwards />
       </ClientOnly>
+      <!-- <ClientOnly>
+        <AboutAwards />
+      </ClientOnly> -->
+
+      <ClientOnly>
+        <AboutApea />
+      </ClientOnly>
+      <ClientOnly>
+        <AboutApea2 />
+      </ClientOnly>
+
       <ClientOnly>
         <AboutCaresSection />
       </ClientOnly>
-      <!-- <ClientOnly>
-        <testimonials />
-      </ClientOnly> -->
       <ClientOnly>
         <AboutTrustedPartners />
       </ClientOnly>

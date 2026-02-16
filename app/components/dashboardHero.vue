@@ -2,7 +2,19 @@
 
 const currentView = ref('map')
 const searchQuery = ref('')
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { usePropertyStore } from '@/stores/propertyStore';
 
+const propertyStore = usePropertyStore()
+const token = useCookie('access_token')
+
+onMounted(async () => {
+  // Only fetch if we actually have a token
+  if (token.value) {
+    await propertyStore.getMyListings()
+  }
+})
 const stats = [
   {
     label: 'Active Listing',
@@ -136,15 +148,18 @@ const projects = [
 
 <template>
   <div class="min-h-screen bg-white dark:bg-[#0a0a0a] p-4 md:p-8">
-    <div class="max-w-400 mx-auto">
+    <div class="max-w-full">
       <div class="flex items-center justify-between mb-6">
         <h1 class="text-3xl font-bold text-[#FE8E0A] uppercase tracking-tight">Overview</h1>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-6 gap-6 mb-8 items-start">
-        
-        <div class="lg:col-span-4 space-y-6">
-          <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
+      <!-- Main Grid with 10 columns: 8 for content + 2 for sidebar -->
+      <div class="grid grid-cols-1 lg:grid-cols-10 gap-6 mb-8">
+
+        <!-- Left Section: Overview Cards + Map (col-span-8) -->
+        <div class="lg:col-span-8 space-y-6">
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-4 gap-4">
             <div v-for="stat in stats" :key="stat.label"
               class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ stat.label }}</p>
@@ -156,8 +171,11 @@ const projects = [
             </div>
           </div>
 
-          <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm">
-            <div class="p-4 border-b border-gray-100 dark:border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <!-- Map Section -->
+          <div
+            class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm">
+            <div
+              class="p-4 border-b border-gray-100 dark:border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div class="flex items-center gap-2 p-1 bg-gray-100 dark:bg-zinc-800 rounded-lg w-fit">
                 <button @click="currentView = 'map'" :class="[
                   'px-4 py-1.5 text-sm font-medium rounded-md transition-all',
@@ -190,54 +208,67 @@ const projects = [
 
               <div v-else class="h-full p-6 space-y-4 overflow-y-auto bg-gray-50/50 dark:bg-black/20">
                 <div class="flex items-center justify-between mb-4">
-                   <button class="flex items-center gap-2 px-3 py-1.5 border border-gray-200 dark:border-zinc-700 rounded-lg text-xs font-medium dark:text-gray-300 bg-white dark:bg-zinc-900">
+                  <button
+                    class="flex items-center gap-2 px-3 py-1.5 border border-gray-200 dark:border-zinc-700 rounded-lg text-xs font-medium dark:text-gray-300 bg-white dark:bg-zinc-900">
                     <Icon name="lucide:filter" class="size-3" /> Filter Properties
                   </button>
                 </div>
-                <PropertiesAndListings />
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  <ListingsAgentPropertyCard v-for="property in propertyStore.myListings" :key="property.id"
+                    :property="property" />
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="lg:col-span-2 space-y-6 sticky top-8 h-fit">
+        <!-- Right Section: Rent Manager Tools (col-span-2) -->
+        <div class="lg:col-span-2 space-y-6">
+          <!-- Rent Manager Profile Card -->
           <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
             <h3 class="text-lg font-bold text-[#FE8E0A] mb-1">Rent Manager Profile</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Manage your profile in one go</p>
-            <button class="w-full py-2.5 px-4 cursor-pointer bg-[#1b4fb5] dark:bg-[#2b68df] text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-[#1b4fb5]/20 dark:shadow-black/20">
+            <button
+              class="w-full py-2.5 px-4 cursor-pointer bg-[#1b4fb5] dark:bg-[#2b68df] text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-[#1b4fb5]/20 dark:shadow-black/20">
               <Icon name="lucide:user" class="size-4" /> View Profile
             </button>
-            
+
             <div class="mt-6 space-y-1">
               <div v-for="action in actions" :key="action.title"
-                class="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-zinc-800/50 rounded-xl cursor-pointer group transition-colors">
-                <div class="size-9 flex items-center justify-center bg-gray-100 dark:bg-zinc-800 rounded-lg group-hover:bg-white dark:group-hover:bg-zinc-700 shadow-sm">
+                class="flex items-start gap-3 p-3 hover:bg-gray-50 dark:hover:bg-zinc-800/50 rounded-xl cursor-pointer group transition-colors">
+                <div
+                  class="size-9 flex-shrink-0 flex items-center justify-center bg-gray-100 dark:bg-zinc-800 rounded-lg group-hover:bg-white dark:group-hover:bg-zinc-700 shadow-sm">
                   <Icon :name="action.icon" class="size-4.5 text-gray-600 dark:text-gray-400" />
                 </div>
                 <div>
-                  <p class="text-sm font-semibold text-gray-900 dark:text-white leading-none mb-1">{{ action.title }}</p>
-                  <p class="text-xs text-gray-500 truncate">{{ action.subtitle }}</p>
+                  <p class="text-sm font-semibold text-gray-900 dark:text-white leading-none mb-1">{{ action.title }}
+                  </p>
+                  <p class="text-xs text-gray-500">{{ action.subtitle }}</p>
                 </div>
               </div>
             </div>
           </div>
 
+          <!-- Rent Manager Tools Card -->
           <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
             <h3 class="text-lg font-bold text-[#FE8E0A] mb-1">Rent Manager Tools</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Add Listings with minimal effort</p>
-            <button class="w-full py-2.5 px-4 bg-[#FE8E0A] cursor-pointer text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-[#FE8E0A]/20">
+            <button
+              class="w-full py-2.5 px-4 bg-[#FE8E0A] cursor-pointer text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-[#FE8E0A]/20">
               <Icon name="lucide:plus" class="size-4" /> Create Listing
             </button>
 
             <div class="mt-6 space-y-1">
               <div v-for="managerAction in managerActions" :key="managerAction.title"
-                class="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-zinc-800/50 rounded-xl cursor-pointer group transition-colors">
-                <div class="size-9 flex items-center justify-center bg-gray-100 dark:bg-zinc-800 rounded-lg group-hover:bg-white dark:group-hover:bg-zinc-700 shadow-sm">
+                class="flex items-start gap-3 p-3 hover:bg-gray-50 dark:hover:bg-zinc-800/50 rounded-xl cursor-pointer group transition-colors">
+                <div
+                  class="size-9 flex-shrink-0 flex items-center justify-center bg-gray-100 dark:bg-zinc-800 rounded-lg group-hover:bg-white dark:group-hover:bg-zinc-700 shadow-sm">
                   <Icon :name="managerAction.icon" class="size-4.5 text-gray-600 dark:text-gray-400" />
                 </div>
                 <div>
-                  <p class="text-sm font-semibold text-gray-900 dark:text-white leading-none mb-1">{{ managerAction.title }}</p>
-                  <p class="text-xs text-gray-500 truncate">{{ managerAction.subtitle }}</p>
+                  <p class="text-sm font-semibold text-gray-900 dark:text-white leading-none mb-1">{{
+                    managerAction.title }}</p>
+                  <p class="text-xs text-gray-500">{{ managerAction.subtitle }}</p>
                 </div>
               </div>
             </div>

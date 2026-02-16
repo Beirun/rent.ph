@@ -31,6 +31,7 @@ const handleLogin = async () => {
   // Basic validation
   if (!loginEmail.value || !loginPassword.value) {
     errorMessage.value = 'Please enter email and password.'
+    alert(errorMessage.value)
     console.log('Form validation failed')
     return
   }
@@ -39,6 +40,7 @@ const handleLogin = async () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!emailRegex.test(loginEmail.value)) {
     errorMessage.value = 'Please enter a valid email address.'
+    alert(errorMessage.value)
     console.log('Email validation failed')
     return
   }
@@ -47,7 +49,7 @@ const handleLogin = async () => {
 
   try {
     console.log('Sending login request...')
-    const response = await fetch('https://rent.ph/api/auth/login', {
+    const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -67,14 +69,20 @@ const handleLogin = async () => {
 
     if (!response.ok) {
       errorMessage.value = data.message || `Login failed (${response.status}). Please try again.`
+      alert(errorMessage.value)
       console.log('Login failed:', errorMessage.value)
       return
     }
 
-    const token = data.token || data.data?.token || data.access_token || data.data?.access_token
+    //const token = data.token || data.data?.token || data.access_token || data.data?.access_token
+    const token = useCookie('access_token') //for access_token
+    const IDtoken = useCookie('id')
+
+    IDtoken.value = data.user.id
+    token.value = data.access_token //for access_token
     
-    if (token) {
-      authStore.login(token)
+    if (token.value) {
+      authStore.login(token.value)
       console.log('Token successfully stored in authStore')
     } else {
       console.warn('No token found in response! Checked: data.token, data.data.token, data.access_token')
@@ -86,9 +94,10 @@ const handleLogin = async () => {
     // Ensure state is updated before navigation
     await nextTick()
     await navigateTo('/dashboard')
-  } catch (error) {
+  } catch (error: any) {
     console.error('Login error:', error)
-    errorMessage.value = 'Network error. Please check your connection and try again.'
+    errorMessage.value = `Network error: ${error.message || 'Please check your connection and try again.'}`
+    alert(errorMessage.value)
   } finally {
     isLoading.value = false
   }

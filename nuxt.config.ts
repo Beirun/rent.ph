@@ -1,13 +1,24 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// Trigger restart for env vars
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['./app/assets/tailwind.css'],
-
+  runtimeConfig: {
+    // Keys inside public are available on both client and server
+    public: {
+      siteApiKey: process.env.NEWS_SITE_API_KEY
+    }
+  },
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      hmr: {
+        timeout: 120000 // Increase from 60s to 120s
+      }
+    }
   },
   image: {
     // Options
@@ -54,4 +65,9 @@ export default defineNuxtConfig({
     storage: 'localStorage', // or 'sessionStorage' or 'cookie'
     storageKey: 'nuxt-color-mode',
   },
+  nitro: {
+    routeRules: {
+      '/api/**': { proxy: 'https://rent.ph/api/**' },
+    }
+  }
 })

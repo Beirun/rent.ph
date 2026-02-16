@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import propertySearchBar from '~/components/propertySearchBar.vue'
 import navbar from '~/components/navbar.vue'
-import pagination from '~/components/pagination.vue'
-import PropertiesPage from '~/components/propertiesPage.vue'
-import propertiesAndListings2 from '~/components/propertiesAndListings2.vue'
+import propertySearchBar from '~/components/listings/propertySearchBar.vue'
+import propertiesAndListings2 from '~/components/listings/propertiesAndListings2.vue'
 
 const propertyStore = usePropertyStore()
 
@@ -59,83 +57,109 @@ const topSearches: string[] = [
   'Studio in Metro Manila',
   'Rental Properties in Makati City',
 ]
-
+const showMobileFilters = ref(false) // Add this line
+const activeSidebarTab = ref('Categories') // Add this line
 onMounted(async () => {
   await propertyStore.getPropertiesbyCategory()
 })
+
 </script>
 
 <template>
-  <div class="w-screen min-h-screen flex flex-col">
+  <div
+    class="w-screen min-h-screen flex flex-col overflow-x-hidden bg-gray-50 dark:bg-zinc-950 transition-colors duration-300">
     <ClientOnly>
       <navbar />
     </ClientOnly>
-    <div class="flex flex-col w-full px-4 md:px-10 pt-24 md:pt-30 justify-self-center max-w-8xl mx-auto">
-      <h1 class="text-3xl md:text-4xl font-semibold mb-8">Property for Rent</h1>
 
-      <div class="flex flex-col lg:flex-row gap-8 lg:gap-6">
-        <!------------------------------------------------------------------------------------------------------>
-        <!-- Desktop Categories Sidebar -->
-        <div id="categoriesSection" class="hidden lg:block w-1/4 h-fit mb-20">
-          <h1 class="font-bold text-lg dark:text-black dark:bg-orange-300 bg-orange-300 px-3 rounded-sm py-1">Categories</h1>
-            <div class="mt-5 mb-10">
-              <template v-for="(listings, category, index) in categories" :key="category">
-                <div class="flex justify-between mt-4 px-3">
-                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
-                    {{ category }} 
-                  </a>
-                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors">
-                    {{ listings }} Properties
+    <div class="flex flex-col w-full px-4 md:px-10 pt-24 md:pt-32 max-w-8xl mx-auto">
+      <header class="mb-8 flex flex-col justify-center gap-2">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100">Property for Rent</h1>
+        <p class="text-gray-500 dark:text-zinc-400 mt-2">Find the best properties of your choice.</p>
+      </header>
+
+      <button @click="showMobileFilters = !showMobileFilters"
+        class="md:hidden mb-6 w-full py-3 px-4 bg-[#fe8e0a] text-white rounded-xl flex items-center justify-center gap-2 font-bold shadow-lg active:scale-95 transition-transform">
+        <Icon :name="showMobileFilters ? 'lucide:x' : 'lucide:list-filter'" class="size-5 text-[#fafafa] font-bold " />
+        {{ showMobileFilters ? 'Close Filters' : 'Categories & Top Searches' }}
+      </button>
+
+      <div class="flex flex-col md:flex-row gap-0 relative">
+        <aside :class="[
+          'md:w-1/4 lg:w-1/6 space-y-6 transition-all duration-300 md:sticky md:top-28 md:self-start',
+          showMobileFilters ? 'max-h-375 opacity-100 mb-8' : 'max-h-0 opacity-0 md:max-h-none md:opacity-100'
+        ]">
+          <div class="bg-white dark:bg-zinc-900 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800">
+            <!-- Tabs Header -->
+            <div class="flex items-center gap-6 border-b border-gray-100 dark:border-zinc-800 pb-2 mb-4">
+              <button v-for="tab in ['Categories', 'Top Searches']" :key="tab" @click="activeSidebarTab = tab" :class="[
+                'relative group pb-2 text-sm font-bold transition-colors duration-200 whitespace-nowrap',
+                'dark:hover:text-[#2b68df] hover:text-[#1b4fb5]',
+                activeSidebarTab === tab
+                  ? 'dark:text-[#2b68df] text-[#1b4fb5]'
+                  : 'text-gray-500 dark:text-gray-400'
+              ]">
+                {{ tab }}
+                <span :class="[
+                  'absolute left-1/2 -translate-x-1/2 -bottom-0.5 h-0.5 w-full bg-[#205ed7] origin-center scale-x-0 transition-transform duration-300 group-hover:scale-x-100',
+                  activeSidebarTab === tab ? 'scale-x-100' : '',
+                ]"></span>
+              </button>
+            </div>
+
+            <!-- Categories Content -->
+            <div v-if="activeSidebarTab === 'Categories'" class="space-y-1">
+              <div class="flex items-center gap-2 mb-3 text-sm font-semibold text-orange-500 dark:text-orange-400">
+                <Icon name="lucide:layout-grid" class="size-4" />
+                Browse Categories
+              </div>
+              <div class="divide-y divide-gray-50 dark:divide-zinc-800">
+                <div v-for="(listings, category) in categories" :key="category" class="group">
+                  <a href="#"
+                    class="flex justify-between py-2 text-sm text-gray-600 dark:text-zinc-400 hover:text-orange-600 transition-colors">
+                    <span>{{ category }}</span>
+                    <span
+                      class="text-xs bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded-full group-hover:bg-orange-50">
+                      {{ listings }}
+                    </span>
                   </a>
                 </div>
-              </template>
+              </div>
             </div>
-          <h1 class="font-bold text-lg dark:text-black dark:bg-orange-300 bg-orange-300 px-3 rounded-sm py-1">Top Rental Searches</h1>
-            <div class="mt-5">
-              <template v-for="searches in topSearches" :key="searches">
-                <div class="flex justify-between mt-4 px-3">
-                  <a href="#" class="text-sm text-gray-600 dark:text-white hover:text-blue-600 transition-colors ">
-                    {{ searches }} 
-                  </a>
-                </div>
-              </template>
+
+            <!-- Top Searches Content -->
+            <div v-if="activeSidebarTab === 'Top Searches'" class="space-y-1">
+              <div class="flex items-center gap-2 mb-3 text-sm font-semibold text-blue-500 dark:text-blue-400">
+                <Icon name="lucide:trending-up" class="size-4" />
+                Trending Searches
+              </div>
+              <div v-for="search in topSearches" :key="search">
+                <a href="#"
+                  class="block py-2 text-sm text-gray-600 dark:text-zinc-400 hover:text-blue-600 transition-colors">
+                  {{ search }}
+                </a>
+              </div>
             </div>
-        </div>
-        <!-------------------------------------------------------------------------------------------------------->
-        <div id="propertiesSection" class="w-full lg:w-4/5 flex flex-col">
+          </div>
+        </aside>
+
+        <main class="flex-1 m-0 p-0 min-w-0">
           <ClientOnly>
-            <!-- Mobile Categories Dropdown -->
-            <div class="lg:hidden mb-6 px-2">
-              <Label class="text-sm font-bold mb-2 block text-gray-500 uppercase tracking-widest">Quick Categories</Label>
-              <Select>
-                <SelectTrigger class="w-full py-4 border-gray-300 dark:border-gray-800">
-                  <SelectValue placeholder="Browse Categories" />
-                </SelectTrigger>
-                <SelectContent>
-                  <ScrollArea class="h-80">
-                    <SelectItem v-for="(listings, category) in categories" :key="category" :value="category">
-                      {{ category }} ({{ listings }})
-                    </SelectItem>
-                  </ScrollArea>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <propertySearchBar />
-            <div class="mt-8">
+            <div class="flex flex-col gap-2">
+              <propertySearchBar />
               <propertiesAndListings2 :properties="propertyStore.properties" />
             </div>
           </ClientOnly>
-        </div>
+        </main>
+
       </div>
     </div>
-    <div class="">
+
+    <div class="mt-auto">
       <ClientOnly>
         <Backlinks />
+        <Footer />
       </ClientOnly>
     </div>
-    <ClientOnly>
-      <Footer />
-    </ClientOnly>
   </div>
 </template>

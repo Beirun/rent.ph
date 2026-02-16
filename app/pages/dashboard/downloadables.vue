@@ -137,7 +137,7 @@ const filteredDocuments = computed(() => {
   <NuxtLayout name="dashboard">
     <div class="p-4 md:p-8 min-h-screen bg-white dark:bg-[#0a0a0a]">
       <!-- Header Section -->
-      <div class="max-w-400 mx-auto mb-10">
+      <div class="max-w-7xl mb-10">
         <div class="flex items-center justify-between mb-6">
           <h1 class="text-3xl font-bold text-[#FE8E0A] uppercase tracking-tight">Downloadables</h1>
         </div>
@@ -165,14 +165,14 @@ const filteredDocuments = computed(() => {
         </div>
 
         <!-- Welcome Banner -->
-        <div class="mt-8 p-6 bg-gradient-to-r from-[#FE8E0A] to-[#ffaa45] rounded-2xl shadow-lg shadow-orange-500/10 text-white relative overflow-hidden">
+        <div class="mt-8 p-6 bg-linear-to-r from-[#FE8E0A] to-[#ffaa45] rounded-2xl shadow-lg shadow-orange-500/10 text-white relative overflow-hidden">
           <div class="relative z-10 flex items-center gap-4">
             <div class="bg-white/20 p-3 rounded-2xl backdrop-blur-md">
-              <Info class="size-8 !text-white" />
+              <Info class="size-8 text-white!" />
             </div>
             <div>
-              <h2 class="text-xl font-bold !text-white">Welcome to your Resource Center</h2>
-              <p class="text-white/90 font-medium !text-white">These standardized forms ensure consistency and professionalism in all client interactions.</p>
+              <h2 class="text-xl font-bold text-white!">Welcome to your Resource Center</h2>
+              <p class="font-medium text-white!">These standardized forms ensure consistency and professionalism in all client interactions.</p>
             </div>
           </div>
           <!-- Decorative Background Elements -->
@@ -182,11 +182,11 @@ const filteredDocuments = computed(() => {
       </div>
 
       <!-- Documents Grid -->
-      <div v-if="filteredDocuments.length" class="max-w-400 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
+      <div v-if="filteredDocuments.length" class="max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
         <div 
           v-for="doc in filteredDocuments" 
           :key="doc.id"
-          class="group bg-white dark:bg-[#1a1b1e] rounded-[2rem] p-6 border-2 border-gray-50 dark:border-gray-800 hover:border-[#FE8E0A]/30 dark:hover:border-[#FE8E0A]/30 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 flex flex-col relative"
+          class="group bg-white dark:bg-[#1a1b1e] rounded-4xl p-6 border-2 border-gray-50 dark:border-gray-800 hover:border-[#FE8E0A]/30 dark:hover:border-[#FE8E0A]/30 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 flex flex-col relative"
         >
           <!-- Document Icon & New Tag -->
           <div class="flex items-start justify-between mb-6">
@@ -217,8 +217,8 @@ const filteredDocuments = computed(() => {
 
             <!-- Action Buttons -->
             <div class="flex items-center gap-3">
-              <button class="flex-1 bg-gray-900 dark:bg-[#FE8E0A] !text-white py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-black/5 dark:shadow-orange-500/10 active:scale-95">
-                <Download class="size-4 !text-white" />
+              <button class="flex-1 bg-gray-900 dark:bg-[#FE8E0A] text-white! py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-black/5 dark:shadow-orange-500/10 active:scale-95">
+                <Download class="size-4 text-white!" />
                 Download
               </button>
               
@@ -235,7 +235,7 @@ const filteredDocuments = computed(() => {
       </div>
 
       <!-- Empty State -->
-      <div v-else class="max-w-400 mx-auto flex flex-col items-center justify-center py-20 text-center">
+      <div v-else class="max-w-7xl flex flex-col items-center justify-center py-20 text-center">
         <div class="size-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6">
           <Search class="size-10 text-gray-400" />
         </div>
