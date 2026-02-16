@@ -12,7 +12,7 @@ export interface UserProfile {
     rmpro: boolean;
     avatar: string;
     avatar_thumb: string;
-    bio: string | null;
+    bio: string;
     reviews: any[];
     agent_title: string | null;
     listing_count: number;
