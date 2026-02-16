@@ -17,9 +17,10 @@ const newListings = ref<any[]>([])
 const budgetListings = ref<any[]>([])
 
 const isLoading = ref(true)
-const activeTab = ref('Popular')
+const activeTab = ref('All')
 
 const tabs = [
+  { name: 'All', label: 'All Listings', subtitle: 'Explore our complete collection of properties' },
   { name: 'Popular', label: 'Popular Listings', subtitle: 'Top picks from our community' },
   { name: 'Recent', label: 'Recently Visited', subtitle: 'Pick up where you left off' },
   { name: 'Nearby', label: 'Listings Near You', subtitle: 'Properties right around the corner' },
@@ -27,8 +28,9 @@ const tabs = [
   { name: 'Budget', label: 'Budget Friendly', subtitle: 'High-quality homes that fit your wallet perfectly' },
 ]
 
-const currentListings = computed(() => {
-  switch (activeTab.value) {
+const currentListings = (tabName: string) => {
+  switch (tabName) {
+    case 'All': return []
     case 'Popular': return popularListings.value
     case 'Recent': return recentListings.value
     case 'Nearby': return nearbyListings.value
@@ -36,7 +38,7 @@ const currentListings = computed(() => {
     case 'Budget': return budgetListings.value
     default: return []
   }
-})
+}
 
 const currentSubtitle = computed(() => {
   const tab = tabs.find(t => t.name === activeTab.value)
@@ -114,9 +116,19 @@ onMounted(async () => {
       </div>
 
       <div v-else>
-        <PropertyCarousel
-          :title="activeTab === 'Popular' ? 'Popular Listings' : tabs.find(t => t.name === activeTab)?.label || ''"
-          :subtitle="currentSubtitle" :items="currentListings" :key="activeTab" />
+        <!-- Stacked View for "All Listings" -->
+        <div v-if="activeTab === 'All'" class="space-y-12">
+          <div v-for="tab in tabs.slice(1)" :key="tab.name">
+            <PropertyCarousel v-if="currentListings(tab.name).length > 0" :title="tab.label" :subtitle="tab.subtitle"
+              :items="currentListings(tab.name)" />
+          </div>
+        </div>
+
+        <!-- Single View for Specific Tabs -->
+        <div v-else>
+          <PropertyCarousel :title="tabs.find(t => t.name === activeTab)?.label || ''" :subtitle="currentSubtitle"
+            :items="currentListings(activeTab)" :key="activeTab" />
+        </div>
       </div>
     </div>
   </div>
