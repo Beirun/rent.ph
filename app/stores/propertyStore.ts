@@ -1,7 +1,7 @@
 import type { Pagination } from '~/models/pagination'
 import type { Property, PropertyListResponse, PropertyResponse } from '~/models/property'
 
-const BASE_URL = 'https://rent.ph/api'
+const BASE_URL = '/api'
 
 export const usePropertyStore = defineStore('property', () => {
   const property = ref<Property>()

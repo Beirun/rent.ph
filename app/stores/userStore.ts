@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { UserProfile } from '@/models/user'
 
-const BASE_URL = 'https://rent.ph/api'
+const BASE_URL = '/api'
 
 export const useUserStore = defineStore('user', () => {
     const user = ref<UserProfile | null>(null)

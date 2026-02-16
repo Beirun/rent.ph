@@ -65,4 +65,9 @@ export default defineNuxtConfig({
     storage: 'localStorage', // or 'sessionStorage' or 'cookie'
     storageKey: 'nuxt-color-mode',
   },
+  nitro: {
+    routeRules: {
+      '/api/**': { proxy: 'https://rent.ph/api/**' },
+    }
+  }
 })
